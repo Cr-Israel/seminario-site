@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [
+      // quando o back-end/CMS servir imagens de outro domínio, adiciona aqui
+      // { protocol: "https", hostname: "cdn.seminariosimonton.com.br" },
+    ],
+  },
 };
 
 export default nextConfig;

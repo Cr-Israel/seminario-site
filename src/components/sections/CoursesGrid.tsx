@@ -1,18 +1,19 @@
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { courses, type Course } from "@/data/courses";
 
-function CourseCard({ icon: Icon, tag, title, description, meta }: Course) {
-  return (
-    <div className="group flex h-full flex-col rounded-sm border border-brand-900/10 bg-white p-7 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
+function CourseCard({ icon: Icon, tag, title, description, meta, href }: Course) {
+  const content = (
+    <>
       <div className="flex items-center justify-between">
         <div className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-50 text-brand-800">
           <Icon size={20} strokeWidth={1.75} />
         </div>
-        <span className="text-xs font-medium uppercase tracking-wider text-accent-700">
+        <span className="text-xs font-medium uppercase tracking-wider text-brand-700">
           {tag}
         </span>
       </div>
-      <h3 className="mt-5 font-serif text-xl font-semibold text-brand-950">
+      <h3 className="mt-5 font-serif text-xl font-bold text-brand-950">
         {title}
       </h3>
       <p className="mt-3 flex-1 text-sm leading-relaxed text-stone-600">
@@ -24,8 +25,21 @@ function CourseCard({ icon: Icon, tag, title, description, meta }: Course) {
           Saiba mais <ArrowRight size={14} />
         </span>
       </div>
-    </div>
+    </>
   );
+
+  const className =
+    "group flex h-full flex-col rounded-sm border border-brand-900/10 bg-white p-7 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg";
+
+  if (href) {
+    return (
+      <Link href={href} className={className}>
+        {content}
+      </Link>
+    );
+  }
+
+  return <div className={className}>{content}</div>;
 }
 
 export default function CoursesGrid() {
@@ -33,10 +47,10 @@ export default function CoursesGrid() {
     <section id="cursos" className="bg-brand-50/60 py-28">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="text-xs font-medium uppercase tracking-[0.2em] text-accent-700">
+          <span className="text-xs font-medium uppercase tracking-[0.2em] text-brand-700">
             Formação teológica
           </span>
-          <h2 className="mt-4 font-serif text-3xl font-semibold text-brand-950 sm:text-4xl">
+          <h2 className="mt-4 font-serif text-3xl font-extrabold text-brand-950 sm:text-4xl">
             Nossos cursos
           </h2>
           <p className="mt-4 text-base leading-relaxed text-stone-600">

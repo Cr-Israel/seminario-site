@@ -1,24 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  --font-serif: "Source Serif 4", ui-serif, Georgia, serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  /* Montserrat é carregada via next/font em layout.tsx e exposta como
+     --font-montserrat; aqui só apontamos as utilities do Tailwind pra ela. */
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
 
-  /* Verde institucional — substitua pelos hex oficiais da marca quando tiverem */
-  --color-brand-50: #f0f5f1;
-  --color-brand-100: #dbe8dc;
-  --color-brand-200: #b9d4bd;
-  --color-brand-800: #1e4a2a;
-  --color-brand-900: #14361e;
-  --color-brand-950: #0c2314;
-
-  /* Dourado/âmbar de acento */
-  --color-accent-300: #f3d38a;
-  --color-accent-400: #e2b962;
-  --color-accent-500: #d9a441;
-  --color-accent-600: #b8842a;
-  --color-accent-700: #966b21;
-  --color-accent-900: #5c4114;
+  /* Paleta oficial do Seminário Simonton */
+  --color-brand-50: #f3f5f4;   /* exata */
+  --color-brand-100: #e4ebe7;  /* interpolada entre 50 e 200 */
+  --color-brand-200: #bdd1c4;  /* exata */
+  --color-brand-400: #7baa8c;  /* exata */
+  --color-brand-700: #005c1f;  /* exata */
+  --color-brand-800: #004c1a;  /* interpolada entre 700 e 900 */
+  --color-brand-900: #004117;  /* exata */
+  --color-brand-950: #002d10;  /* interpolada, mais escura que 900 */
 }
 
 body {

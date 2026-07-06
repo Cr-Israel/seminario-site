@@ -69,7 +69,7 @@ function StatCard({
   const count = useCountUp(value, inView);
   return (
     <div className="flex flex-col items-center px-6 py-2 text-center sm:px-10">
-      <span className="font-serif text-4xl font-semibold text-brand-900 sm:text-5xl">
+      <span className="font-serif text-4xl font-extrabold text-brand-900 sm:text-5xl">
         {count}
         {suffix}
       </span>

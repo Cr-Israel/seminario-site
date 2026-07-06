@@ -1,34 +1,48 @@
 "use client";
 
 import { useState } from "react";
-import { ScrollText, Menu, X } from "lucide-react";
+import Image from "next/image";
+import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "Sobre", href: "#sobre" },
-  { label: "Cursos", href: "#cursos" },
-  { label: "Diferenciais", href: "#diferenciais" },
-  { label: "Contato", href: "#contato" },
+  { label: "Sobre", href: "/#sobre" },
+  { label: "Cursos", href: "/#cursos" },
+  { label: "EFAL", href: "/efal" },
+  { label: "Contato", href: "/#contato" },
 ];
 
-export default function Header() {
+type HeaderProps = {
+  /**
+   * "transparent" fica sobre um hero escuro (usado na Home).
+   * "solid" fica fixo com fundo verde sólido (usado nas páginas internas
+   * que não têm hero escuro atrás, como /efal).
+   */
+  variant?: "transparent" | "solid";
+};
+
+export default function Header({ variant = "transparent" }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const isSolid = variant === "solid";
 
   return (
-    <header className="absolute inset-x-0 top-0 z-30">
+    <header
+      className={
+        isSolid
+          ? "sticky top-0 z-30 bg-brand-950 shadow-sm shadow-brand-950/20"
+          : "absolute inset-x-0 top-0 z-30"
+      }
+    >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
-        <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/30 text-white">
-            <ScrollText size={18} strokeWidth={1.75} />
-          </div>
-          <div className="leading-tight text-white">
-            <p className="font-serif text-sm font-semibold tracking-wide">
-              SEMINÁRIO SIMONTON
-            </p>
-            <p className="text-[10px] uppercase tracking-[0.2em] text-white/70">
-              Rev. Ashbel Green Simonton
-            </p>
-          </div>
-        </div>
+        <a href="/">
+          <Image
+            src="/images/logo-branca.png"
+            alt="Seminário Teológico Presbiteriano Rev. Ashbel Green Simonton"
+            width={172}
+            height={47}
+            priority
+            className="h-10 w-auto sm:h-11"
+          />
+        </a>
 
         <nav className="hidden items-center gap-9 md:flex">
           {navLinks.map((link) => (
@@ -41,8 +55,8 @@ export default function Header() {
             </a>
           ))}
           <a
-            href="#cursos"
-            className="rounded-sm bg-accent-500 px-5 py-2.5 text-sm font-medium text-brand-950 transition-colors hover:bg-accent-400"
+            href="/#cursos"
+            className="rounded-sm bg-brand-50 px-5 py-2.5 text-sm font-medium text-brand-900 transition-colors hover:bg-white"
           >
             Quero me matricular
           </a>
@@ -70,9 +84,9 @@ export default function Header() {
             </a>
           ))}
           <a
-            href="#cursos"
+            href="/#cursos"
             onClick={() => setMenuOpen(false)}
-            className="mt-2 rounded-sm bg-accent-500 px-3 py-2.5 text-center text-sm font-medium text-brand-950"
+            className="mt-2 rounded-sm bg-brand-50 px-3 py-2.5 text-center text-sm font-medium text-brand-900"
           >
             Quero me matricular
           </a>

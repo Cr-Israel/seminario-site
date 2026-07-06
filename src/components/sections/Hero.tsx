@@ -9,13 +9,13 @@ export default function Hero() {
         }}
       />
       <div className="pointer-events-none absolute -right-40 -top-40 h-96 w-96 rounded-full bg-brand-800/40 blur-3xl" />
-      <div className="pointer-events-none absolute -left-20 bottom-0 h-72 w-72 rounded-full bg-accent-900/20 blur-3xl" />
+      <div className="pointer-events-none absolute -left-20 bottom-0 h-72 w-72 rounded-full bg-brand-400/15 blur-3xl" />
 
       <div className="relative mx-auto max-w-4xl px-6 text-center">
-        <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-accent-300/90">
+        <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-brand-200/90">
           Tradição Reformada · Igreja Presbiteriana do Brasil
         </p>
-        <h1 className="font-serif text-4xl font-semibold leading-[1.15] text-white sm:text-5xl md:text-6xl">
+        <h1 className="font-serif text-4xl font-extrabold leading-[1.15] text-white sm:text-5xl md:text-6xl">
           Uma casa de ensino e formação,
           <br className="hidden sm:block" /> em busca da excelência
         </h1>
@@ -27,7 +27,7 @@ export default function Hero() {
         <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
             href="#cursos"
-            className="w-full rounded-sm bg-accent-500 px-7 py-3.5 text-sm font-medium text-brand-950 transition-colors hover:bg-accent-400 sm:w-auto"
+            className="w-full rounded-sm bg-brand-50 px-7 py-3.5 text-sm font-medium text-brand-900 transition-colors hover:bg-white sm:w-auto"
           >
             Conheça nossos cursos
           </a>

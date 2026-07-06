@@ -23,10 +23,10 @@ export default function About() {
     <section id="sobre" className="mx-auto max-w-6xl px-6 py-28">
       <div className="grid gap-14 md:grid-cols-2 md:gap-20">
         <div>
-          <span className="text-xs font-medium uppercase tracking-[0.2em] text-accent-700">
+          <span className="text-xs font-medium uppercase tracking-[0.2em] text-brand-700">
             Quem somos
           </span>
-          <h2 className="mt-4 font-serif text-3xl font-semibold text-brand-950 sm:text-4xl">
+          <h2 className="mt-4 font-serif text-3xl font-extrabold text-brand-950 sm:text-4xl">
             Sem devoção não há formação
           </h2>
           <p className="mt-6 text-base leading-relaxed text-stone-600">
@@ -55,7 +55,7 @@ export default function About() {
                 <item.icon size={18} strokeWidth={1.75} />
               </div>
               <div>
-                <h3 className="font-serif text-base font-semibold text-brand-950">
+                <h3 className="font-serif text-base font-bold text-brand-950">
                   {item.title}
                 </h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-stone-600">

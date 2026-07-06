@@ -15,10 +15,10 @@ export default function ContactCta() {
     <section id="contato" className="bg-brand-950 py-24">
       <div className="mx-auto grid max-w-6xl gap-14 px-6 md:grid-cols-[1.2fr_1fr]">
         <div>
-          <span className="text-xs font-medium uppercase tracking-[0.2em] text-accent-300/90">
+          <span className="text-xs font-medium uppercase tracking-[0.2em] text-brand-200/90">
             Fale com a gente
           </span>
-          <h2 className="mt-4 font-serif text-3xl font-semibold text-white sm:text-4xl">
+          <h2 className="mt-4 font-serif text-3xl font-extrabold text-white sm:text-4xl">
             Dê o próximo passo na sua formação teológica
           </h2>
           <p className="mt-5 max-w-lg text-base leading-relaxed text-brand-100/75">
@@ -27,7 +27,7 @@ export default function ContactCta() {
           </p>
           <a
             href="#"
-            className="mt-8 inline-flex items-center gap-2 rounded-sm bg-accent-500 px-7 py-3.5 text-sm font-medium text-brand-950 transition-colors hover:bg-accent-400"
+            className="mt-8 inline-flex items-center gap-2 rounded-sm bg-brand-50 px-7 py-3.5 text-sm font-medium text-brand-900 transition-colors hover:bg-white"
           >
             Falar com a secretaria <ArrowRight size={16} />
           </a>
@@ -36,7 +36,7 @@ export default function ContactCta() {
         <div className="flex flex-col gap-5 text-sm text-brand-100/85">
           {contactInfo.map((item) => (
             <div key={item.text} className="flex items-start gap-3">
-              <item.icon size={18} className="mt-0.5 shrink-0 text-accent-300" />
+              <item.icon size={18} className="mt-0.5 shrink-0 text-brand-200" />
               <span>{item.text}</span>
             </div>
           ))}

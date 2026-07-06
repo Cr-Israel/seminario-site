@@ -8,6 +8,8 @@ export type Course = {
   title: string;
   description: string;
   meta: string;
+  /** Se definido, o card vira um link para essa rota (ex: página já pronta da EFAL). */
+  href?: string;
 };
 
 export const courses: Course[] = [
@@ -28,6 +30,7 @@ export const courses: Course[] = [
     description:
       "8 disciplinas em formato remoto ao vivo, com certificado outorgado pela Junta Regional de Educação Teológica da IPB.",
     meta: "100% online · Até 6 meses",
+    href: "/efal/cit",
   },
   {
     slug: "formacao-de-oficiais",
@@ -37,6 +40,7 @@ export const courses: Course[] = [
     description:
       "Capacita aspirantes ao oficialato e oficiais já ordenados para o exercício consciente e bem preparado de suas funções.",
     meta: "100% online · Ao vivo",
+    href: "/efal/cfo",
   },
   {
     slug: "pos-graduacao-estudos-biblicos",
@@ -64,5 +68,6 @@ export const courses: Course[] = [
     description:
       "Capacitação de líderes para o ensino bíblico local, unindo fundamentos teológicos à prática pedagógica na igreja.",
     meta: "100% online · Ao vivo",
+    href: "/efal/cfp",
   },
 ];

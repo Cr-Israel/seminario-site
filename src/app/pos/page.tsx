@@ -1,17 +1,17 @@
 import Link from "next/link";
-import { ArrowRight, GraduationCap } from "lucide-react";
+import { ArrowRight, ScrollText } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { efalCourses } from "@/data/efal";
+import { posCourses } from "@/data/pos";
 import { coordinators } from "@/data/coordinators";
 
 export const metadata = {
-  title: "EFAL — Escola de Formação e Aperfeiçoamento de Líderes | Seminário Simonton",
+  title: "Pós-graduação | Seminário Simonton",
   description:
-    "Conheça os 7 cursos da EFAL do Seminário Simonton: CIT, CAL, CFO, CFP, CFL, CFM e CFC. Formação de curta e média duração para líderes da igreja local.",
+    "Especializações teológicas do Seminário Simonton — aprofundamento acadêmico em Estudos Bíblicos e Novo Testamento, para quem já concluiu a graduação.",
 };
 
-export default function EfalPage() {
+export default function PosPage() {
   return (
     <div className="min-h-screen bg-stone-50 font-sans text-stone-800">
       <Header variant="solid" />
@@ -20,24 +20,23 @@ export default function EfalPage() {
       <section className="bg-brand-950 py-20">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-brand-200/90">
-            Escola de Formação e Aperfeiçoamento de Líderes
+            Especialização
           </p>
           <h1 className="font-serif text-4xl font-extrabold leading-[1.15] text-white sm:text-5xl">
-            EFAL
+            Pós-graduação
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-brand-100/80 sm:text-lg">
-            Cursos de curta e média duração para o treinamento inicial e a
-            atualização de líderes das igrejas locais — presbíteros,
-            diáconos, professores de Escola Dominical e todo cristão que
-            deseja se capacitar para servir com excelência.
+            Para quem já concluiu a graduação e quer aprofundar o estudo das
+            Escrituras — especializações acadêmicas que unem rigor exegético e
+            teologia reformada.
           </p>
           <p className="mt-6 text-sm text-brand-200/80">
-            Coordenação: {coordinators.efal.name} ·{" "}
+            Coordenação: {coordinators.pos.name} ·{" "}
             <a
-              href={`mailto:${coordinators.efal.email}`}
+              href={`mailto:${coordinators.pos.email}`}
               className="underline decoration-brand-200/40 underline-offset-4 transition-colors hover:text-white"
             >
-              {coordinators.efal.email}
+              {coordinators.pos.email}
             </a>
           </p>
         </div>
@@ -45,27 +44,22 @@ export default function EfalPage() {
 
       {/* GRID DE CURSOS */}
       <section className="mx-auto max-w-6xl px-6 py-20">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {efalCourses.map((course) => (
+        <div className="grid gap-6 sm:grid-cols-2">
+          {posCourses.map((course) => (
             <Link
               key={course.slug}
-              href={`/efal/${course.slug}`}
+              href={`/pos/${course.slug}`}
               className="group flex h-full flex-col rounded-sm border border-brand-900/10 bg-white p-7 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
             >
               <div className="flex items-center justify-between">
                 <div className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-50 text-brand-800">
-                  <GraduationCap size={20} strokeWidth={1.75} />
+                  <ScrollText size={20} strokeWidth={1.75} />
                 </div>
-                <div className="flex items-center gap-2">
-                  {course.isNew && (
-                    <span className="rounded-full bg-brand-700 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white">
-                      Novo
-                    </span>
-                  )}
-                  <span className="text-xs font-medium uppercase tracking-wider text-brand-700">
-                    {course.code}
+                {course.isPlaceholder && (
+                  <span className="rounded-full bg-stone-100 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-stone-500">
+                    Conteúdo provisório
                   </span>
-                </div>
+                )}
               </div>
               <h2 className="mt-5 font-serif text-xl font-bold text-brand-950">
                 {course.title}
@@ -74,9 +68,7 @@ export default function EfalPage() {
                 {course.tagline}
               </p>
               <div className="mt-5 flex items-center justify-between border-t border-stone-100 pt-4">
-                <span className="text-xs text-stone-500">
-                  {course.duration}
-                </span>
+                <span className="text-xs text-stone-500">{course.format}</span>
                 <span className="flex items-center gap-1 text-sm font-medium text-brand-800 transition-transform group-hover:translate-x-1">
                   Ver curso <ArrowRight size={14} />
                 </span>

@@ -1,36 +1,29 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
-  ArrowLeft,
-  ArrowRight,
-  Clock,
-  Layers,
-  Users,
-  Monitor,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight, Clock, Layers, Monitor, Users } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CourseCoordinator from "@/components/sections/CourseCoordinator";
-import { efalCourses, getEfalCourse } from "@/data/efal";
+import { posCourses, getPosCourse } from "@/data/pos";
 import { coordinators } from "@/data/coordinators";
 
 type Params = Promise<{ slug: string }>;
 
 export function generateStaticParams() {
-  return efalCourses.map((course) => ({ slug: course.slug }));
+  return posCourses.map((course) => ({ slug: course.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Params }) {
   const { slug } = await params;
-  const course = getEfalCourse(slug);
+  const course = getPosCourse(slug);
   if (!course) return {};
   return {
-    title: `${course.title} (${course.code}) — EFAL | Seminário Simonton`,
+    title: `${course.title} — Pós-graduação | Seminário Simonton`,
     description: course.tagline,
   };
 }
 
-function infoItems(course: NonNullable<ReturnType<typeof getEfalCourse>>) {
+function infoItems(course: NonNullable<ReturnType<typeof getPosCourse>>) {
   return [
     { icon: Clock, label: "Duração", value: course.duration },
     { icon: Layers, label: "Disciplinas", value: course.disciplines },
@@ -38,13 +31,9 @@ function infoItems(course: NonNullable<ReturnType<typeof getEfalCourse>>) {
   ];
 }
 
-export default async function EfalCoursePage({
-  params,
-}: {
-  params: Params;
-}) {
+export default async function PosCoursePage({ params }: { params: Params }) {
   const { slug } = await params;
-  const course = getEfalCourse(slug);
+  const course = getPosCourse(slug);
   if (!course) notFound();
 
   return (
@@ -55,20 +44,20 @@ export default async function EfalCoursePage({
       <section className="bg-brand-950 py-20">
         <div className="mx-auto max-w-3xl px-6">
           <Link
-            href="/efal"
+            href="/pos"
             className="inline-flex items-center gap-2 text-sm text-brand-200 transition-colors hover:text-white"
           >
-            <ArrowLeft size={16} /> Voltar para a EFAL
+            <ArrowLeft size={16} /> Voltar para a Pós-graduação
           </Link>
 
           <div className="mt-6 flex flex-wrap items-center gap-3">
-            {course.isNew && (
+            {course.isPlaceholder && (
               <span className="rounded-full bg-brand-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-brand-900">
-                Novo curso
+                Conteúdo provisório
               </span>
             )}
             <span className="text-xs font-medium uppercase tracking-[0.2em] text-brand-200/90">
-              EFAL · {course.code}
+              Pós-graduação
             </span>
           </div>
 
@@ -121,12 +110,12 @@ export default async function EfalCoursePage({
           </div>
         </div>
 
-        <CourseCoordinator coordinator={coordinators.efal} />
+        <CourseCoordinator coordinator={coordinators.pos} />
 
         <div className="mt-12 flex flex-col items-center gap-4 rounded-sm bg-brand-950 p-10 text-center sm:flex-row sm:justify-between sm:text-left">
           <div>
             <h3 className="font-serif text-lg font-bold text-white">
-              Pronto para começar o {course.code}?
+              Quer se especializar?
             </h3>
             <p className="mt-1 text-sm text-brand-100/75">
               Garanta sua vaga na próxima turma.

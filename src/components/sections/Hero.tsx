@@ -1,3 +1,5 @@
+import { whatsappHref } from "@/lib/whatsapp";
+
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-brand-950 pb-28 pt-40">
@@ -32,7 +34,9 @@ export default function Hero() {
             Conheça nossos cursos
           </a>
           <a
-            href="#contato"
+            href={whatsappHref()}
+            target="_blank"
+            rel="noopener noreferrer"
             className="w-full rounded-sm border border-white/25 px-7 py-3.5 text-sm font-medium text-white transition-colors hover:bg-white/10 sm:w-auto"
           >
             Falar com a secretaria

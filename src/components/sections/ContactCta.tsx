@@ -1,4 +1,5 @@
 import { ArrowRight, MapPin, Phone, Mail, Clock } from "lucide-react";
+import { whatsappHref } from "@/lib/whatsapp";
 
 const contactInfo = [
   {
@@ -6,7 +7,11 @@ const contactInfo = [
     text: "Rua Isolina, nº 151, Méier — Rio de Janeiro, RJ, CEP 20710-080",
   },
   { icon: Phone, text: "(21) 2201-6734" },
-  { icon: Mail, text: "contato@seminariosimonton.com.br" },
+  {
+    icon: Mail,
+    text: "secretaria.stps@ipb.org.br",
+    href: "mailto:secretaria.stps@ipb.org.br",
+  },
   { icon: Clock, text: "Segunda a sexta-feira, das 13h às 20h" },
 ];
 
@@ -26,7 +31,9 @@ export default function ContactCta() {
             cursos, matrículas e datas de início das turmas.
           </p>
           <a
-            href="#"
+            href={whatsappHref()}
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-8 inline-flex items-center gap-2 rounded-sm bg-brand-50 px-7 py-3.5 text-sm font-medium text-brand-900 transition-colors hover:bg-white"
           >
             Falar com a secretaria <ArrowRight size={16} />
@@ -37,7 +44,16 @@ export default function ContactCta() {
           {contactInfo.map((item) => (
             <div key={item.text} className="flex items-start gap-3">
               <item.icon size={18} className="mt-0.5 shrink-0 text-brand-200" />
-              <span>{item.text}</span>
+              {item.href ? (
+                <a
+                  href={item.href}
+                  className="transition-colors hover:text-white"
+                >
+                  {item.text}
+                </a>
+              ) : (
+                <span>{item.text}</span>
+              )}
             </div>
           ))}
         </div>

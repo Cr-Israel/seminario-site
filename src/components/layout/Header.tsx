@@ -6,8 +6,9 @@ import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { label: "Sobre", href: "/#sobre" },
-  { label: "Cursos", href: "/#cursos" },
+  { label: "Cursos", href: "/cursos" },
   { label: "EFAL", href: "/efal" },
+  { label: "Pós", href: "/pos" },
   { label: "Contato", href: "/#contato" },
 ];
 
@@ -35,12 +36,12 @@ export default function Header({ variant = "transparent" }: HeaderProps) {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
         <a href="/">
           <Image
-            src="/images/logo-branca.png"
+            src="/images/logo-branca-trim.png"
             alt="Seminário Teológico Presbiteriano Rev. Ashbel Green Simonton"
-            width={172}
-            height={47}
+            width={269}
+            height={91}
             priority
-            className="h-10 w-auto sm:h-11"
+            className="h-16 w-auto sm:h-20"
           />
         </a>
 
@@ -55,7 +56,7 @@ export default function Header({ variant = "transparent" }: HeaderProps) {
             </a>
           ))}
           <a
-            href="/#cursos"
+            href="/cursos"
             className="rounded-sm bg-brand-50 px-5 py-2.5 text-sm font-medium text-brand-900 transition-colors hover:bg-white"
           >
             Quero me matricular
@@ -84,7 +85,7 @@ export default function Header({ variant = "transparent" }: HeaderProps) {
             </a>
           ))}
           <a
-            href="/#cursos"
+            href="/cursos"
             onClick={() => setMenuOpen(false)}
             className="mt-2 rounded-sm bg-brand-50 px-3 py-2.5 text-center text-sm font-medium text-brand-900"
           >

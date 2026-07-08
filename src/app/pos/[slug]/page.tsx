@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, Clock, Layers, Monitor, Users } from "lucide-rea
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CourseCoordinator from "@/components/sections/CourseCoordinator";
+import CourseCurriculum from "@/components/sections/CourseCurriculum";
 import { posCourses, getPosCourse } from "@/data/pos";
 import { coordinators } from "@/data/coordinators";
 
@@ -109,6 +110,8 @@ export default async function PosCoursePage({ params }: { params: Params }) {
             </p>
           </div>
         </div>
+
+        <CourseCurriculum disciplines={course.curriculum} />
 
         <CourseCoordinator coordinator={coordinators.pos} />
 

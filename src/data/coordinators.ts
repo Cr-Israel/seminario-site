@@ -19,6 +19,7 @@ export const coordinators = {
     name: "Rev. João Batista",
     role: "Coordenação do Bacharelado",
     email: "coordenacao.stps@ipb.org.br",
+    photo: "/images/rev-joao.jpg",
   },
   efal: {
     name: "Rev. Jerson Neto",
@@ -30,5 +31,6 @@ export const coordinators = {
     name: "Rev. Eduardo Machado",
     role: "Coordenação da Pós-graduação",
     email: "npg.stps@ipb.org.br",
+    photo: "/images/rev-eduardo.jpg",
   },
 } satisfies Record<string, Coordinator>;

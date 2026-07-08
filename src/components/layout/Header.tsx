@@ -6,9 +6,8 @@ import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { label: "Sobre", href: "/#sobre" },
-  { label: "Cursos", href: "/cursos" },
-  { label: "EFAL", href: "/efal" },
-  { label: "Pós", href: "/pos" },
+  { label: "Graduação", href: "/graduacao" },
+  { label: "Cursos Online", href: "/cursos-online" },
   { label: "Contato", href: "/#contato" },
 ];
 
@@ -56,7 +55,7 @@ export default function Header({ variant = "transparent" }: HeaderProps) {
             </a>
           ))}
           <a
-            href="/cursos"
+            href="/cursos-online"
             className="rounded-sm bg-brand-50 px-5 py-2.5 text-sm font-medium text-brand-900 transition-colors hover:bg-white"
           >
             Quero me matricular
@@ -85,7 +84,7 @@ export default function Header({ variant = "transparent" }: HeaderProps) {
             </a>
           ))}
           <a
-            href="/cursos"
+            href="/cursos-online"
             onClick={() => setMenuOpen(false)}
             className="mt-2 rounded-sm bg-brand-50 px-3 py-2.5 text-center text-sm font-medium text-brand-900"
           >

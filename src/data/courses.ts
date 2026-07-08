@@ -1,73 +1,43 @@
 import type { LucideIcon } from "lucide-react";
-import { BookOpen, GraduationCap, Users, Church, ScrollText } from "lucide-react";
+import { GraduationCap, MonitorPlay } from "lucide-react";
 
-export type Course = {
-  slug: string;
+export type HomeTrack = {
   icon: LucideIcon;
   tag: string;
   title: string;
   description: string;
-  meta: string;
-  /** Se definido, o card vira um link para essa rota (ex: página já pronta da EFAL). */
-  href?: string;
+  /** Destaques curtos mostrados como bullets no rodapé do card. */
+  highlights: string[];
+  cta: string;
+  href: string;
 };
 
-export const courses: Course[] = [
+/**
+ * As duas naturezas de formação do Simonton, mostradas lado a lado na Home.
+ * Antes o Bacharelado (presencial, ingresso via processo seletivo da IPB) vinha
+ * misturado com EFAL/Pós (online, inscrição direta) numa única grade — o que
+ * dava a impressão errada de que são produtos equivalentes. Agora cada trilha
+ * tem seu próprio caminho.
+ */
+export const homeTracks: HomeTrack[] = [
   {
-    slug: "bacharelado-em-teologia",
     icon: GraduationCap,
-    tag: "Graduação",
-    title: "Curso Livre de Bacharelado em Teologia",
+    tag: "Graduação · Presencial",
+    title: "Bacharelado em Teologia",
     description:
-      "Formação sólida em teologia reformada, seguindo a grade curricular aprovada pelo Supremo Concílio da Igreja Presbiteriana do Brasil.",
-    meta: "Presencial · Rio de Janeiro",
+      "A formação teológica completa do Seminário, para quem foi chamado ao ministério pastoral. O ingresso é pelo Vestibular Unificado da Igreja Presbiteriana do Brasil.",
+    highlights: ["Presencial · Rio de Janeiro", "Ingresso pelo processo seletivo da IPB"],
+    cta: "Conhecer a Graduação",
+    href: "/graduacao",
   },
   {
-    slug: "curso-introdutorio-de-teologia",
-    icon: BookOpen,
-    tag: "EFAL",
-    title: "Curso Introdutório de Teologia",
+    icon: MonitorPlay,
+    tag: "Online · Inscrição direta",
+    title: "Cursos Online — EFAL & Pós-graduação",
     description:
-      "8 disciplinas em formato remoto ao vivo, com certificado outorgado pela Junta Regional de Educação Teológica da IPB.",
-    meta: "100% online · Até 6 meses",
-    href: "/efal/cit",
-  },
-  {
-    slug: "formacao-de-oficiais",
-    icon: Users,
-    tag: "EFAL",
-    title: "Curso de Formação de Oficiais",
-    description:
-      "Capacita aspirantes ao oficialato e oficiais já ordenados para o exercício consciente e bem preparado de suas funções.",
-    meta: "100% online · Ao vivo",
-    href: "/efal/cfo",
-  },
-  {
-    slug: "pos-graduacao-estudos-biblicos",
-    icon: ScrollText,
-    tag: "Pós-graduação",
-    title: "Pós-Graduação em Estudos Bíblicos",
-    description:
-      "Especialização acadêmica 100% EAD, aprovada pela JURET-Rio, aprofundando exegese e teologia sistemática.",
-    meta: "100% online",
-  },
-  {
-    slug: "pos-graduacao-novo-testamento",
-    icon: BookOpen,
-    tag: "Pós-graduação",
-    title: "Pós-Graduação em Estudos do Novo Testamento",
-    description:
-      "Panorama exegético dos evangelhos, cartas paulinas e literatura joanina, com foco em temas teológicos do Novo Testamento.",
-    meta: "100% online",
-  },
-  {
-    slug: "formacao-de-professores",
-    icon: Church,
-    tag: "EFAL",
-    title: "Curso de Formação de Professores",
-    description:
-      "Capacitação de líderes para o ensino bíblico local, unindo fundamentos teológicos à prática pedagógica na igreja.",
-    meta: "100% online · Ao vivo",
-    href: "/efal/cfp",
+      "Sete cursos na EFAL e programas de pós-graduação, de curta e média duração, com inscrição direta pelo Simonton — sem processo seletivo externo.",
+    highlights: ["100% online, com aula ao vivo", "Certificação pela JURET/IPB"],
+    cta: "Explorar cursos online",
+    href: "/cursos-online",
   },
 ];

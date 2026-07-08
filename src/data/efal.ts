@@ -8,6 +8,11 @@ export type EfalCourse = {
   format: string;
   duration: string;
   disciplines: string;
+  /**
+   * Grade curricular (nomes das disciplinas, na ordem). Vazia enquanto o
+   * conteúdo não está definido (cursos placeholder CFL/CFM/CFC).
+   */
+  curriculum: string[];
   isNew: boolean;
   /**
    * Link de inscrição. Enquanto o formulário/fluxo de matrícula não está
@@ -16,6 +21,22 @@ export type EfalCourse = {
    */
   enrollUrl: string;
 };
+
+/**
+ * As 8 disciplinas do Curso Introdutório de Teologia (CIT). O CFO e o CFP são
+ * compostos por essas 8 + um programa específico de mais 8 — por isso a grade
+ * deles reaproveita esta lista.
+ */
+const citDisciplines = [
+  "Introdução à Teologia Reformada 1",
+  "Introdução à Teologia Reformada 2",
+  "Panorama sobre a História da Igreja",
+  "Panorama sobre o Antigo Testamento",
+  "Princípios de Interpretação Bíblica",
+  "Panorama sobre o Novo Testamento",
+  "Noções de Aconselhamento Cristão",
+  "Evangelização Prática",
+];
 
 export const efalCourses: EfalCourse[] = [
   {
@@ -30,6 +51,7 @@ export const efalCourses: EfalCourse[] = [
     format: "100% online, aulas ao vivo (remoto)",
     duration: "Até 6 meses",
     disciplines: "8 disciplinas",
+    curriculum: citDisciplines,
     isNew: false,
     enrollUrl: "#",
   },
@@ -45,6 +67,16 @@ export const efalCourses: EfalCourse[] = [
     format: "100% online, aulas ao vivo (remoto)",
     duration: "Até 6 meses",
     disciplines: "8 disciplinas",
+    curriculum: [
+      "Fundamentos de liderança 1",
+      "Fundamentos de liderança 2",
+      "Preparação de Estudos e Mensagens 1",
+      "Preparação de Estudos e Mensagens 2",
+      "Princípios práticos de Liturgia",
+      "Cuidando do ser (introdução a capelania e visitação)",
+      "Discipulado",
+      "Inclusão na Igreja (necessidades especiais)",
+    ],
     isNew: false,
     enrollUrl: "#",
   },
@@ -60,6 +92,17 @@ export const efalCourses: EfalCourse[] = [
     format: "100% online, aulas ao vivo (remoto)",
     duration: "Até 12 meses (CIT + programa específico)",
     disciplines: "16 disciplinas",
+    curriculum: [
+      ...citDisciplines,
+      "Fundamentos de liderança 1",
+      "Fundamentos de liderança 2",
+      "Fundamentos de Constituição e Ordem da IPB 1",
+      "Fundamentos de Constituição e Ordem da IPB 2",
+      "Panorama de História da IPB 1",
+      "Panorama de História da IPB 2",
+      "Símbolos de Fé 1",
+      "Símbolos de Fé 2",
+    ],
     isNew: false,
     enrollUrl: "#",
   },
@@ -75,6 +118,17 @@ export const efalCourses: EfalCourse[] = [
     format: "100% online, aulas ao vivo (remoto)",
     duration: "Até 12 meses (CIT + programa específico)",
     disciplines: "16 disciplinas",
+    curriculum: [
+      ...citDisciplines,
+      "Fundamentos de Didática 1",
+      "Fundamentos de Didática 2",
+      "Técnicas de Comunicação 1",
+      "Técnicas de Comunicação 2",
+      "Noções de Psicologia da Educação 1",
+      "Noções de Psicologia da Educação 2",
+      "Preparação de Plano de Aula",
+      "Ferramentas Digitais Aplicadas ao Ensino",
+    ],
     isNew: false,
     enrollUrl: "#",
   },
@@ -89,6 +143,7 @@ export const efalCourses: EfalCourse[] = [
     format: "A definir",
     duration: "A definir",
     disciplines: "A definir",
+    curriculum: [],
     isNew: true,
     enrollUrl: "#",
   },
@@ -103,6 +158,7 @@ export const efalCourses: EfalCourse[] = [
     format: "A definir",
     duration: "A definir",
     disciplines: "A definir",
+    curriculum: [],
     isNew: true,
     enrollUrl: "#",
   },
@@ -117,6 +173,7 @@ export const efalCourses: EfalCourse[] = [
     format: "A definir",
     duration: "A definir",
     disciplines: "A definir",
+    curriculum: [],
     isNew: true,
     enrollUrl: "#",
   },

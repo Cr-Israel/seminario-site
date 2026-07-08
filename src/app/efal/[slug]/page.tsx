@@ -11,6 +11,7 @@ import {
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CourseCoordinator from "@/components/sections/CourseCoordinator";
+import CourseCurriculum from "@/components/sections/CourseCurriculum";
 import { efalCourses, getEfalCourse } from "@/data/efal";
 import { coordinators } from "@/data/coordinators";
 
@@ -120,6 +121,10 @@ export default async function EfalCoursePage({
             </p>
           </div>
         </div>
+
+        <CourseCurriculum
+          disciplines={course.curriculum.map((name) => ({ name }))}
+        />
 
         <CourseCoordinator coordinator={coordinators.efal} />
 

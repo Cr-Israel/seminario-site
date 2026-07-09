@@ -32,7 +32,7 @@ export default function Header({ variant = "transparent" }: HeaderProps) {
           : "absolute inset-x-0 top-0 z-30"
       }
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
+      <div className="flex items-center justify-between py-6 pl-6 pr-6 md:pl-10 md:pr-10 lg:pl-16 lg:pr-16">
         <a href="/">
           <Image
             src="/images/logo-branca-trim.png"
@@ -44,19 +44,19 @@ export default function Header({ variant = "transparent" }: HeaderProps) {
           />
         </a>
 
-        <nav className="hidden items-center gap-9 md:flex">
+        <nav className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-white/85 transition-colors hover:text-white"
+              className="text-base text-white/85 transition-colors hover:text-white"
             >
               {link.label}
             </a>
           ))}
           <a
             href="/cursos-online"
-            className="rounded-sm bg-brand-50 px-5 py-2.5 text-sm font-medium text-brand-900 transition-colors hover:bg-white"
+            className="rounded-sm bg-brand-50 px-5 py-2.5 text-base font-medium text-brand-900 transition-colors hover:bg-white"
           >
             Quero me matricular
           </a>

@@ -122,9 +122,7 @@ export default async function EfalCoursePage({
           </div>
         </div>
 
-        <CourseCurriculum
-          disciplines={course.curriculum.map((name) => ({ name }))}
-        />
+        <CourseCurriculum disciplines={course.curriculum} />
 
         <CourseCoordinator coordinator={coordinators.efal} />
 

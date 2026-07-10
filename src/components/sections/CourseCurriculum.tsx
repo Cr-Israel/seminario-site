@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { BadgeCheck, Calendar, ChevronDown, Clock } from "lucide-react";
 
 type Discipline = {
   name: string;
@@ -11,6 +11,10 @@ type Discipline = {
   docente?: string;
   /** Ementa (tópicos das aulas). Quando presente, a disciplina vira acordeão. */
   ementa?: string[];
+  /** Metadados por nível (Curso de Libras) — linha discreta sob o nome. */
+  schedule?: string;
+  start?: string;
+  prerequisite?: string;
 };
 
 /** "Professor" / "Professor em aberto" ainda sem nome definido no calendário. */
@@ -42,8 +46,11 @@ function NumberBadge({ n }: { n: number }) {
  */
 export default function CourseCurriculum({
   disciplines,
+  unit = "disciplinas",
 }: {
   disciplines: Discipline[];
+  /** Rótulo plural do contador (ex.: "disciplinas", "trilhas"). */
+  unit?: string;
 }) {
   const baseId = useId();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -59,7 +66,7 @@ export default function CourseCurriculum({
           Grade curricular
         </h2>
         <span className="text-xs uppercase tracking-wider text-stone-500">
-          {disciplines.length} disciplinas
+          {disciplines.length} {unit}
         </span>
       </div>
 
@@ -86,8 +93,34 @@ export default function CourseCurriculum({
                     className="flex min-h-[3.25rem] w-full items-center gap-3.5 p-4 text-left transition-colors hover:bg-brand-50/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-700"
                   >
                     <NumberBadge n={i + 1} />
-                    <span className="min-w-0 flex-1 text-sm font-medium leading-snug text-brand-950">
-                      {discipline.name}
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-sm font-medium leading-snug text-brand-950">
+                        {discipline.name}
+                      </span>
+                      {(discipline.schedule ||
+                        discipline.start ||
+                        discipline.prerequisite) && (
+                        <span className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-stone-500">
+                          {discipline.schedule && (
+                            <span className="inline-flex items-center gap-1">
+                              <Clock size={13} aria-hidden="true" className="shrink-0" />
+                              {discipline.schedule}
+                            </span>
+                          )}
+                          {discipline.start && (
+                            <span className="inline-flex items-center gap-1">
+                              <Calendar size={13} aria-hidden="true" className="shrink-0" />
+                              {discipline.start}
+                            </span>
+                          )}
+                          {discipline.prerequisite && (
+                            <span className="inline-flex items-center gap-1">
+                              <BadgeCheck size={13} aria-hidden="true" className="shrink-0" />
+                              {discipline.prerequisite}
+                            </span>
+                          )}
+                        </span>
+                      )}
                     </span>
                     <ChevronDown
                       size={20}

@@ -10,6 +10,19 @@ export type EfalDiscipline = {
   name: string;
   docente: string;
   ementa: string[];
+  // Campos opcionais usados pelos níveis do Curso de Libras (cada nível é
+  // tratado como uma "disciplina" com dia/horário, início e pré-requisito):
+  schedule?: string; // ex.: "Terças-feiras, 19h–21h30"
+  start?: string; // ex.: "Início em 04/08/2026"
+  prerequisite?: string; // ex.: "Sem pré-requisito"
+};
+
+/** Professor(a) de um curso, exibido na seção "Professoras do curso". */
+export type EfalProfessor = {
+  name: string;
+  credential?: string; // ex.: "Intérprete credenciada pela APECOM"
+  bio: string;
+  photo: string; // caminho em /public
 };
 
 export type EfalCourse = {
@@ -34,6 +47,15 @@ export type EfalCourse = {
    * da secretaria, ou sistema de matrícula) assim que definido.
    */
   enrollUrl: string;
+  /**
+   * Rótulo do item da grade (plural). Default "disciplinas"; o Curso de Libras
+   * usa "trilhas" porque a grade lista níveis, não disciplinas.
+   */
+  curriculumUnit?: string;
+  /** Valor do curso (opcional) — exibido perto do CTA quando presente. */
+  price?: { installments: string; total: string };
+  /** Professoras/professores do curso (opcional) — seção dedicada na página. */
+  professors?: EfalProfessor[];
 };
 
 /**
@@ -464,6 +486,85 @@ const capDisciplines: EfalDiscipline[] = [
   },
 ];
 
+/** Os 3 níveis do Curso de Libras, cada um tratado como uma "disciplina"
+ *  com sua ementa. Iniciante e Intermediário com ementa aula-a-aula (PDFs
+ *  oficiais 2026); Avançado com os principais conteúdos (o PDF do Avançado
+ *  não traz a lista aula-a-aula). */
+const librasLevels: EfalDiscipline[] = [
+  {
+    name: "Nível Iniciante",
+    docente: "Profª Vívian Vianna Breder",
+    schedule: "Terças-feiras, 19h–21h30",
+    start: "Início em 04/08/2026",
+    prerequisite: "Sem pré-requisito — aberto a quem nunca teve contato com Libras",
+    ementa: [
+      "Aula 1 – Apresentação do curso; introdução à Língua Brasileira de Sinais (conceitos básicos)",
+      "Aula 2 – Introdução à Libras II; alfabeto manual e acentuação; datilologia",
+      "Aula 3 – História da língua de sinais e da surdez na sociedade; tipos de números (cardinais, ordinais e quantitativos); idade, dinheiro e operações monetárias",
+      "Aula 4 – Os 5 parâmetros; saudações; apresentação pessoal (nome e sinal); estado de espírito; conversação básica entre duas pessoas",
+      "Aula 5 – Marcações temporais I: dias da semana, meses do ano e advérbios de tempo I",
+      "Aula 6 – Marcações temporais II: horas e advérbios de tempo II",
+      "Aula 7 – Inclusão do surdo na igreja (panorama dos surdos no Brasil); por que e como acessibilizar a igreja; sinais cristãos básicos e litúrgicos (Deus, Senhor, Igreja, Ofertório). Avaliação teórica e prática",
+      "Aula 8 – Verbos: tipos de verbos em Libras; vocabulário de verbos I",
+      "Aula 9 – Pronomes pessoais e de posse; vocabulário de família, estado civil e relações",
+      "Aula 10 – Elementos da cultura surda; vocabulário de sentimentos I e adjetivos I",
+      "Aula 11 – Formas de negação e sentenças negativas; vocabulário de alimentos I e bebidas",
+      "Aula 12 – A profissão do tradutor/intérprete (formação, trabalho e ética); vocabulário de cores, etnias e vestuário",
+      "Aula 13 – Pronomes interrogativos; conceito e uso de dêixis; vocabulário de lugares I (estabelecimentos comerciais e locais urbanos)",
+      "Aula 14 – Acessibilidade na Igreja Presbiteriana; sinais da estrutura e vivências da IPB; revisão. Avaliação teórica e prática",
+      "Aula 15 – Introdução aos classificadores; vocabulário de animais I e de natureza",
+      "Aula 16 – Vocabulário de verbos II; conversação",
+      "Aula 17 – Onde e como pesquisar sinais (materiais e bibliografias confiáveis); vocabulário de objetos (mobílias, itens de casa e de papelaria)",
+      "Aula 18 – Acessibilidade em diversos contextos (lazer, saúde, trabalho); vocabulário de profissões I",
+      "Aula 19 – Vocabulário de lugares II (estados do Brasil) e de meios de transporte; revisão",
+      "Aula 20 – Ética na interpretação na igreja; princípios da tradução de música; sinais cristãos e litúrgicos II (Glória, fidelidade, diabo). Avaliação teórica e prática",
+    ],
+  },
+  {
+    name: "Nível Intermediário",
+    docente: "Profª Vívian Vianna Breder",
+    schedule: "Segundas-feiras, 19h–21h30",
+    start: "Início em 03/08/2026",
+    prerequisite: "Conhecimento prévio básico (algumas aulas só em Libras)",
+    ementa: [
+      "Aula 1 – Apresentação do curso; vocabulário de verbos III; revisão do curso básico",
+      "Aula 2 – Ordem nas frases (estruturas frasais da Libras); uso de expressão na ordem das frases; mouthing",
+      "Aula 3 – Tipos de texto e sua tonalidade em Libras; texto narrativo",
+      "Aula 4 – Vocabulário de sentimentos II e adjetivos II; grau comparativo (mais do que, maior do que)",
+      "Aula 5 – Conectivos; revisão de referenciais no espaço; vocabulário de lugares III (países)",
+      "Aula 6 – Aspectos da cultura surda I — aula com convidado surdo presbiteriano",
+      "Aula 7 – Vocabulário de livros da Bíblia; particularidades da sinalização de textos bíblicos simples. Avaliação teórica e prática",
+      "Aula 8 – Tecnologia na acessibilidade; vocabulário de tecnologia, redes sociais e streamings",
+      "Aula 9 – Vocabulário de corpo humano e saúde; vestuário II (acessórios)",
+      "Aula 10 – História dos surdos: Hellen Keller; vocabulário de alimentos II",
+      "Aula 11 – Particularidades da sinalização de músicas simples",
+      "Aula 12 – Experiências positivas e negativas do surdo numa sociedade excludente — aula com convidado surdo presbiteriano",
+      "Aula 13 – Seminário de História dos Surdos (apresentação dos alunos). Avaliação prática",
+      "Aula 14 – Tipos e gêneros de texto (sinopse, diário, injuntivo); vocabulário de termos escolares e de educação",
+      "Aula 15 – Metáforas e expressões idiomáticas; gírias na comunidade surda; vocabulário de profissões II",
+      "Aula 16 – Vocabulário de animais II; uso de classificadores",
+      "Aula 17 – Ordem nas frases (estrutura tópico-frasal); revisão de termos de negação",
+      "Aula 18 – Primeiros passos para iniciar ministério com surdos — aula com convidados TILS presbiterianos",
+      "Aula 19 – Prática de sinalização de liturgia simples. Avaliação teórica e prática",
+    ],
+  },
+  {
+    name: "Nível Avançado",
+    docente: "Profª Letícia Muniz Magalhães da Cunha",
+    schedule: "Quartas-feiras, 19h–21h30",
+    start: "Início em 05/08/2026",
+    prerequisite: "Nível intermediário (a maioria das aulas é ministrada só em Libras)",
+    ementa: [
+      "Consolidação de vocabulário complexo",
+      "Construção de histórias e narrativas de gêneros variados, com múltiplos personagens",
+      "Estruturas frasais complexas da língua de sinais",
+      "Estratégias de tradução e prática de tarefas tradutórias iniciais",
+      "Aulas majoritariamente ministradas em Libras (imersão)",
+      "Observação: este nível desenvolve fluência em Libras; não substitui a formação profissional de intérprete.",
+    ],
+  },
+];
+
 export const efalCourses: EfalCourse[] = [
   {
     slug: "cit",
@@ -531,18 +632,36 @@ export const efalCourses: EfalCourse[] = [
   },
   {
     slug: "cfl",
-    code: "CFL",
-    title: "Curso de Formação em Libras",
-    tagline: "Lorem ipsum dolor sit amet",
+    code: "Libras",
+    title: "Curso de Libras",
+    tagline: "Do primeiro sinal à fluência.",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    audience: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    format: "A definir",
-    duration: "A definir",
-    disciplines: "A definir",
-    curriculum: [],
-    isNew: true,
-    enrollUrl: "#",
+      "Aprenda Língua Brasileira de Sinais em um ambiente cristão, com foco em acessibilidade na igreja e na sociedade. Uma trilha progressiva completa — Iniciante, Intermediário e Avançado — com conteúdo voltado à atuação religiosa cristã (tradição reformada) e à acessibilidade da igreja. As turmas contam com aulas ministradas por convidados surdos e intérpretes (TILS) presbiterianos, proporcionando vivência real da comunidade surda. É o caminho natural para quem deseja se tornar bilíngue em Libras e usar esse conhecimento na igreja ou na sociedade.",
+    audience:
+      "Aberto a qualquer pessoa do Brasil, a partir de 15 anos. Cada nível tem seu pré-requisito: o Iniciante não exige conhecimento prévio; o Intermediário exige base (algumas aulas só em Libras); o Avançado exige nível intermediário (maioria das aulas só em Libras).",
+    format: "100% online, aulas ao vivo (remoto)",
+    duration: "Trilha em 3 níveis · aulas semanais, 19h–21h30",
+    disciplines: "3 níveis (Iniciante · Intermediário · Avançado)",
+    curriculum: librasLevels,
+    curriculumUnit: "trilhas",
+    isNew: false,
+    enrollUrl:
+      "https://docs.google.com/forms/d/e/1FAIpQLSfx1TdA9TIl9RKhdwtgnbdYq4cC0Mlc-WRNxpmK_bR7_S6wWg/viewform",
+    price: { installments: "6x de R$ 89,90", total: "R$ 539,40" },
+    professors: [
+      {
+        name: "Vívian Vianna Breder",
+        credential: "Intérprete credenciada pela APECOM",
+        bio: "Intérprete e professora de Libras. Graduada em Letras Libras e graduanda em Letras Inglês. Atuou como intérprete na UFF e, atualmente, na UNIASSELVI. Interpreta há 10 anos na denominação presbiteriana, onde aprendeu Libras.",
+        photo: "/images/professoras/foto-prof-vivian.png",
+      },
+      {
+        name: "Letícia Muniz Magalhães da Cunha",
+        credential: "Certificada pelo PROLIBRAS (MEC, 2009)",
+        bio: "Intérprete e professora de Libras. Pedagoga, com pós-graduações em Tradução, Interpretação e Ensino de Libras e em Libras e Educação de Surdos. Coordenadora das escolas polos bilíngues de surdos da rede municipal de Guarulhos, com mais de 20 anos de experiência na educação e mais de uma década como instrutora e intérprete no SENAI. Idealizadora do 1º Encontro Nacional de Surdos e Intérpretes Presbiterianos (ENSIP, 2025).",
+        photo: "/images/professoras/foto-prof-leticia.png",
+      },
+    ],
   },
   {
     slug: "cfm",

@@ -12,6 +12,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CourseCoordinator from "@/components/sections/CourseCoordinator";
 import CourseCurriculum from "@/components/sections/CourseCurriculum";
+import CourseProfessors from "@/components/sections/CourseProfessors";
 import { efalCourses, getEfalCourse } from "@/data/efal";
 import { coordinators } from "@/data/coordinators";
 
@@ -122,9 +123,30 @@ export default async function EfalCoursePage({
           </div>
         </div>
 
-        <CourseCurriculum disciplines={course.curriculum} />
+        <CourseCurriculum
+          disciplines={course.curriculum}
+          unit={course.curriculumUnit}
+        />
+
+        {course.professors && (
+          <CourseProfessors professors={course.professors} />
+        )}
 
         <CourseCoordinator coordinator={coordinators.efal} />
+
+        {course.price && (
+          <div className="mt-12 rounded-sm border border-brand-900/10 bg-white p-6">
+            <p className="text-xs uppercase tracking-wider text-stone-500">
+              Investimento
+            </p>
+            <p className="mt-2 font-serif text-3xl font-bold text-brand-950">
+              {course.price.installments}
+            </p>
+            <p className="mt-1 text-sm text-stone-500">
+              Total: {course.price.total}
+            </p>
+          </div>
+        )}
 
         <div className="mt-12 flex flex-col items-center gap-4 rounded-sm bg-brand-950 p-10 text-center sm:flex-row sm:justify-between sm:text-left">
           <div>

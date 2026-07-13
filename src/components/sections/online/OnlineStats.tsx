@@ -12,7 +12,7 @@ const stats = [
 export default function OnlineStats() {
   return (
     <section className="relative px-6">
-      <div className="mx-auto -mt-14 flex max-w-5xl flex-wrap justify-center divide-y divide-stone-100 rounded-sm bg-white shadow-xl shadow-brand-950/10 sm:divide-x sm:divide-y-0">
+      <div className="mx-auto -mt-14 flex max-w-5xl flex-wrap justify-center rounded-sm bg-white shadow-xl shadow-brand-950/10">
         {stats.map((stat) => (
           <div
             key={stat.label}

@@ -21,7 +21,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={montserrat.variable}>
+    <html
+      lang="pt-BR"
+      className={montserrat.variable}
+      data-theme="light"
+      suppressHydrationWarning
+    >
+      <head>
+        {/* Aplica o tema salvo antes da primeira pintura, evitando flash. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("theme");if(!t){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})()`,
+          }}
+        />
+      </head>
       <body>
         {children}
         <WhatsappFab />

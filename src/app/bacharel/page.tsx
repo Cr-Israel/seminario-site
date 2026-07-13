@@ -13,7 +13,7 @@ export const metadata = {
 export default function BacharelPage() {
   return (
     <div className="min-h-screen bg-stone-50 font-sans text-stone-800">
-      <Header variant="solid" />
+      <Header />
 
       {/* HERO */}
       <section className="bg-brand-950 py-20">

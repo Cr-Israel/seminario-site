@@ -14,29 +14,53 @@ import CourseCoordinator from "@/components/sections/CourseCoordinator";
 import CourseCurriculum from "@/components/sections/CourseCurriculum";
 import CourseProfessors from "@/components/sections/CourseProfessors";
 import { efalCourses, getEfalCourse } from "@/data/efal";
+import { posCourses, getPosCourse } from "@/data/pos";
 import { coordinators } from "@/data/coordinators";
 
 type Params = Promise<{ slug: string }>;
 
+/**
+ * Página unificada de um curso online. A EFAL e a Pós deixaram de ter páginas
+ * próprias (/efal, /pos) — tudo mora sob /cursos-online. Como só pode existir
+ * um segmento [slug] por pasta, este template resolve o curso pelo slug,
+ * primeiro na EFAL e depois na Pós, e renderiza o layout apropriado.
+ *
+ * O CIT tem landing dedicada em /cursos-online/cit (rota estática, com
+ * precedência sobre este [slug]); por isso é excluído do generateStaticParams.
+ */
 export function generateStaticParams() {
-  // O CIT tem landing dedicada em src/app/efal/cit/page.tsx (rota estática, com
-  // precedência sobre este [slug]). Excluímos aqui para evitar conflito no build.
-  return efalCourses
-    .filter((course) => course.slug !== "cit")
-    .map((course) => ({ slug: course.slug }));
+  return [
+    ...efalCourses
+      .filter((course) => course.slug !== "cit")
+      .map((course) => ({ slug: course.slug })),
+    ...posCourses.map((course) => ({ slug: course.slug })),
+  ];
 }
 
 export async function generateMetadata({ params }: { params: Params }) {
   const { slug } = await params;
-  const course = getEfalCourse(slug);
-  if (!course) return {};
-  return {
-    title: `${course.title} (${course.code}) — EFAL | Seminário Simonton`,
-    description: course.tagline,
-  };
+  const efalCourse = getEfalCourse(slug);
+  if (efalCourse) {
+    return {
+      title: `${efalCourse.title} (${efalCourse.code}) — EFAL | Seminário Simonton`,
+      description: efalCourse.tagline,
+    };
+  }
+  const posCourse = getPosCourse(slug);
+  if (posCourse) {
+    return {
+      title: `${posCourse.title} — Pós-graduação | Seminário Simonton`,
+      description: posCourse.tagline,
+    };
+  }
+  return {};
 }
 
-function infoItems(course: NonNullable<ReturnType<typeof getEfalCourse>>) {
+function infoItems(course: {
+  duration: string;
+  disciplines: string;
+  format: string;
+}) {
   return [
     { icon: Clock, label: "Duração", value: course.duration },
     { icon: Layers, label: "Disciplinas", value: course.disciplines },
@@ -44,18 +68,22 @@ function infoItems(course: NonNullable<ReturnType<typeof getEfalCourse>>) {
   ];
 }
 
-export default async function EfalCoursePage({
+export default async function OnlineCoursePage({
   params,
 }: {
   params: Params;
 }) {
   const { slug } = await params;
-  const course = getEfalCourse(slug);
+  const efalCourse = getEfalCourse(slug);
+  const posCourse = efalCourse ? undefined : getPosCourse(slug);
+  const course = efalCourse ?? posCourse;
   if (!course) notFound();
+
+  const isEfal = Boolean(efalCourse);
 
   return (
     <div className="min-h-screen bg-stone-50 font-sans text-stone-800">
-      <Header variant="solid" />
+      <Header />
 
       {/* HERO */}
       <section className="bg-brand-950 py-20">
@@ -68,13 +96,18 @@ export default async function EfalCoursePage({
           </Link>
 
           <div className="mt-6 flex flex-wrap items-center gap-3">
-            {course.isNew && (
+            {efalCourse?.isNew && (
               <span className="rounded-full bg-brand-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-brand-900">
                 Novo curso
               </span>
             )}
+            {posCourse?.isPlaceholder && (
+              <span className="rounded-full bg-brand-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-brand-900">
+                Conteúdo provisório
+              </span>
+            )}
             <span className="text-xs font-medium uppercase tracking-[0.2em] text-brand-200/90">
-              EFAL · {course.code}
+              {efalCourse ? `EFAL · ${efalCourse.code}` : "Pós-graduação"}
             </span>
           </div>
 
@@ -127,27 +160,33 @@ export default async function EfalCoursePage({
           </div>
         </div>
 
-        <CourseCurriculum
-          disciplines={course.curriculum}
-          unit={course.curriculumUnit}
-        />
-
-        {course.professors && (
-          <CourseProfessors professors={course.professors} />
+        {efalCourse ? (
+          <CourseCurriculum
+            disciplines={efalCourse.curriculum}
+            unit={efalCourse.curriculumUnit}
+          />
+        ) : (
+          <CourseCurriculum disciplines={posCourse!.curriculum} />
         )}
 
-        <CourseCoordinator coordinator={coordinators.efal} />
+        {efalCourse?.professors && (
+          <CourseProfessors professors={efalCourse.professors} />
+        )}
 
-        {course.price && (
+        <CourseCoordinator
+          coordinator={isEfal ? coordinators.efal : coordinators.pos}
+        />
+
+        {efalCourse?.price && (
           <div className="mt-12 rounded-sm border border-brand-900/10 bg-white p-6">
             <p className="text-xs uppercase tracking-wider text-stone-500">
               Investimento
             </p>
             <p className="mt-2 font-serif text-3xl font-bold text-brand-950">
-              {course.price.installments}
+              {efalCourse.price.installments}
             </p>
             <p className="mt-1 text-sm text-stone-500">
-              Total: {course.price.total}
+              Total: {efalCourse.price.total}
             </p>
           </div>
         )}
@@ -155,7 +194,9 @@ export default async function EfalCoursePage({
         <div className="mt-12 flex flex-col items-center gap-4 rounded-sm bg-brand-950 p-10 text-center sm:flex-row sm:justify-between sm:text-left">
           <div>
             <h3 className="font-serif text-lg font-bold text-white">
-              Pronto para começar o {course.code}?
+              {efalCourse
+                ? `Pronto para começar o ${efalCourse.code}?`
+                : "Quer se especializar?"}
             </h3>
             <p className="mt-1 text-sm text-brand-100/75">
               Garanta sua vaga na próxima turma.

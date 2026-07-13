@@ -57,7 +57,7 @@ const efalEntries: Entry[] = efalCourses.map((c) => ({
   title: c.title,
   description: c.tagline,
   meta: c.duration !== "A definir" ? c.duration : c.format,
-  href: `/efal/${c.slug}`,
+  href: `/cursos-online/${c.slug}`,
   isNew: c.isNew,
 }));
 
@@ -68,7 +68,7 @@ const posEntries: Entry[] = posCourses.map((c) => ({
   title: c.title,
   description: c.tagline,
   meta: c.format,
-  href: `/pos/${c.slug}`,
+  href: `/cursos-online/${c.slug}`,
   isPlaceholder: c.isPlaceholder,
 }));
 

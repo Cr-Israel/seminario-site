@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Dark mode controlado por classe/atributo (não por prefers-color-scheme),
+   para que o toggle do Header mande. O tema fica em data-theme no <html>. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 @theme {
   /* Montserrat é carregada via next/font em layout.tsx e exposta como
      --font-montserrat; aqui só apontamos as utilities do Tailwind pra ela. */
@@ -19,4 +23,101 @@
 
 body {
   @apply bg-stone-50 text-stone-800;
+}
+
+[data-theme="dark"] body {
+  background-color: #0a0a0a;
+  color: #ececec;
+}
+
+/* ------------------------------------------------------------------ *
+ * DARK MODE — remapeamento centralizado (paleta NEUTRA/preta)
+ *
+ * As seções foram escritas com cores claras fixas (bg-white, bg-stone-*,
+ * títulos em text-brand-950 etc.). Aqui, no escuro, as superfícies claras
+ * viram PRETO e os verdes escuros (ilegíveis no preto) viram um VERDE CLARO.
+ *
+ * O HEADER é preservado por completo via `:not(header *)` — ele mantém a
+ * aparência própria (dark: dele), inclusive o botão de tema. Os heros verdes
+ * (bg-brand-950/900) e os acentos claros (bg-brand-50 = botões/badges/círculos)
+ * também não são tocados. Ajuste os hexes abaixo à vontade.
+ * ------------------------------------------------------------------ */
+[data-theme="dark"] {
+  --dk-bg: #0a0a0a;            /* fundo de seção (branco → preto) */
+  --dk-card: #171717;          /* card elevado (bg-white → cinza quase preto) */
+  --dk-fg: #ececec;            /* texto forte neutro */
+  --dk-muted: #b3b3b3;         /* texto secundário */
+  --dk-muted-2: #8f8f8f;       /* texto terciário */
+  --dk-green: #7fb191;         /* verde claro p/ acentos e links */
+  --dk-green-strong: #a6d1b4;  /* verde claro p/ títulos e números */
+  --dk-border: rgb(255 255 255 / 0.1);
+}
+
+/* Superfícies claras → pretas (exceto dentro do header) */
+[data-theme="dark"] .bg-white:not(header *),
+[data-theme="dark"] .bg-white\/70:not(header *),
+[data-theme="dark"] .bg-white\/55:not(header *) {
+  background-color: var(--dk-card);
+}
+[data-theme="dark"] .bg-stone-50:not(header *),
+[data-theme="dark"] .bg-stone-100:not(header *),
+[data-theme="dark"] .bg-brand-50\/60:not(header *) {
+  background-color: var(--dk-bg);
+}
+
+/* Gradientes claros decorativos → escuros */
+[data-theme="dark"] .from-brand-50:not(header *) {
+  --tw-gradient-from: var(--dk-bg);
+}
+[data-theme="dark"] .to-brand-50:not(header *) {
+  --tw-gradient-to: var(--dk-bg);
+}
+[data-theme="dark"] .via-white\/90:not(header *) {
+  --tw-gradient-via: var(--dk-bg);
+}
+
+/* Texto neutro → claro */
+[data-theme="dark"] .text-stone-800:not(header *) {
+  color: var(--dk-fg);
+}
+[data-theme="dark"] .text-stone-600:not(header *) {
+  color: var(--dk-muted);
+}
+[data-theme="dark"] .text-stone-500:not(header *),
+[data-theme="dark"] .text-stone-400:not(header *) {
+  color: var(--dk-muted-2);
+}
+
+/* Verdes escuros (ilegíveis no preto) → verde claro */
+[data-theme="dark"] .text-brand-950:not(header *),
+[data-theme="dark"] .text-brand-900:not(header *) {
+  color: var(--dk-green-strong); /* títulos e números de destaque */
+}
+[data-theme="dark"] .text-brand-800:not(header *),
+[data-theme="dark"] .text-brand-700:not(header *) {
+  color: var(--dk-green); /* rótulos, links e ícones de acento */
+}
+/* Botões/círculos claros (bg-brand-50) mantêm o texto/ícone verde escuro:
+   duas classes → mais específico que as regras acima, então vence. */
+[data-theme="dark"] .bg-brand-50.text-brand-900:not(header *) {
+  color: var(--color-brand-900);
+}
+[data-theme="dark"] .bg-brand-50.text-brand-800:not(header *) {
+  color: var(--color-brand-800);
+}
+
+/* Bordas/divisores sutis → claros */
+[data-theme="dark"] .border-white\/15:not(header *),
+[data-theme="dark"] .border-stone-100:not(header *),
+[data-theme="dark"] .border-brand-100:not(header *),
+[data-theme="dark"] .border-brand-200\/60:not(header *),
+[data-theme="dark"] .border-brand-900:not(header *),
+[data-theme="dark"] .border-brand-900\/10:not(header *),
+[data-theme="dark"] .border-brand-900\/15:not(header *),
+[data-theme="dark"] .border-brand-900\/20:not(header *) {
+  border-color: var(--dk-border);
+}
+[data-theme="dark"] .divide-brand-900\/10:not(header *) > :not([hidden]) ~ :not([hidden]),
+[data-theme="dark"] .divide-stone-100:not(header *) > :not([hidden]) ~ :not([hidden]) {
+  border-color: var(--dk-border);
 }

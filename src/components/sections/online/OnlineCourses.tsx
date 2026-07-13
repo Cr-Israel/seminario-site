@@ -22,7 +22,7 @@ type CourseCard = {
 
 const efalCards: CourseCard[] = efalCourses.map((c) => ({
   key: c.slug,
-  href: `/efal/${c.slug}`,
+  href: `/cursos-online/${c.slug}`,
   icon: BookOpen,
   code: c.code,
   title: c.title,
@@ -33,7 +33,7 @@ const efalCards: CourseCard[] = efalCourses.map((c) => ({
 
 const posCards: CourseCard[] = posCourses.map((c) => ({
   key: c.slug,
-  href: `/pos/${c.slug}`,
+  href: `/cursos-online/${c.slug}`,
   icon: ScrollText,
   code: "Pós",
   title: c.title,

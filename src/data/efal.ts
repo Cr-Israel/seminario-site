@@ -679,7 +679,7 @@ export const efalCourses: EfalCourse[] = [
     enrollUrl: "#",
   },
   {
-    // Slot histórico "CFC" mantido para preservar a URL /efal/cfc. O curso real
+    // Slot histórico "CFC" mantido para preservar a URL /cursos-online/cfc. O curso real
     // é o CAP — Curso de Capelania (calendário 2026.2), cuja grade já está
     // definida abaixo. Tagline/descrição/público seguem placeholder até serem
     // fornecidos (não constam no calendário oficial).

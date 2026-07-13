@@ -85,7 +85,7 @@ export default function Stats() {
     <section className="relative px-6">
       <div
         ref={statsRef}
-        className="mx-auto -mt-16 flex max-w-5xl flex-wrap justify-center divide-y divide-stone-100 rounded-sm bg-white shadow-xl shadow-brand-950/10 sm:divide-x sm:divide-y-0"
+        className="mx-auto -mt-16 flex max-w-5xl flex-wrap justify-center rounded-sm bg-white shadow-xl shadow-brand-950/10"
       >
         {stats.map((stat) => (
           <StatCard key={stat.label} {...stat} inView={statsInView} />

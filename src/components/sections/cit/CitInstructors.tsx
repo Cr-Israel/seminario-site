@@ -167,7 +167,10 @@ export default function CitInstructors() {
                     <span className="mt-0.5 block text-xs font-medium text-brand-700">
                       {person.discipline}
                     </span>
-                    <span className="mt-0.5 block text-xs leading-snug text-stone-500 line-clamp-1">
+                    {/* line-clamp já aplica display:-webkit-box; NÃO usar `block`
+                        junto — o `.block` do Tailwind vence e mata o clamp.
+                        Bio resumida a 2 linhas; a íntegra abre no painel ao lado. */}
+                    <span className="mt-0.5 line-clamp-2 text-xs leading-snug text-stone-500">
                       {person.bio}
                     </span>
                   </span>

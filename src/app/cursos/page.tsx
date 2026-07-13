@@ -13,7 +13,7 @@ export const metadata = {
 export default function CursosPage() {
   return (
     <div className="min-h-screen bg-stone-50 font-sans text-stone-800">
-      <Header variant="solid" />
+      <Header />
 
       {/* HERO — proposta de valor institucional */}
       <section className="bg-brand-950 pb-28 pt-20">

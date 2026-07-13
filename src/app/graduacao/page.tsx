@@ -14,7 +14,7 @@ export const metadata = {
 export default function GraduacaoPage() {
   return (
     <div className="min-h-screen bg-stone-50 font-sans text-stone-800">
-      <Header variant="solid" />
+      <Header />
       <GraduacaoHero />
       <AdmissionProcess />
       <Differentiators />

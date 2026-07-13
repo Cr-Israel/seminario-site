@@ -19,7 +19,11 @@ import { coordinators } from "@/data/coordinators";
 type Params = Promise<{ slug: string }>;
 
 export function generateStaticParams() {
-  return efalCourses.map((course) => ({ slug: course.slug }));
+  // O CIT tem landing dedicada em src/app/efal/cit/page.tsx (rota estática, com
+  // precedência sobre este [slug]). Excluímos aqui para evitar conflito no build.
+  return efalCourses
+    .filter((course) => course.slug !== "cit")
+    .map((course) => ({ slug: course.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Params }) {
@@ -57,10 +61,10 @@ export default async function EfalCoursePage({
       <section className="bg-brand-950 py-20">
         <div className="mx-auto max-w-3xl px-6">
           <Link
-            href="/efal"
+            href="/cursos-online"
             className="inline-flex items-center gap-2 text-sm text-brand-200 transition-colors hover:text-white"
           >
-            <ArrowLeft size={16} /> Voltar para a EFAL
+            <ArrowLeft size={16} /> Voltar para os Cursos Online
           </Link>
 
           <div className="mt-6 flex flex-wrap items-center gap-3">

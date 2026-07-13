@@ -45,10 +45,10 @@ export default async function PosCoursePage({ params }: { params: Params }) {
       <section className="bg-brand-950 py-20">
         <div className="mx-auto max-w-3xl px-6">
           <Link
-            href="/pos"
+            href="/cursos-online"
             className="inline-flex items-center gap-2 text-sm text-brand-200 transition-colors hover:text-white"
           >
-            <ArrowLeft size={16} /> Voltar para a Pós-graduação
+            <ArrowLeft size={16} /> Voltar para os Cursos Online
           </Link>
 
           <div className="mt-6 flex flex-wrap items-center gap-3">

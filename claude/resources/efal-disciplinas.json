@@ -1,0 +1,523 @@
+{
+  "fonte": "2026.2 - EFAL - Calendário Disciplinas v.1.0",
+  "periodo": "2026.2",
+  "cursos": [
+    {
+      "codigo": "CIT",
+      "nome": "Curso Introdutório de Teologia",
+      "disciplinas": [
+        {
+          "ordem": 1,
+          "nome": "Introdução à Teologia Reformada 1",
+          "docente": "Rev. Diego Maia",
+          "dia": "2ª feira",
+          "ementa": [
+            "Aula 1 – O conceito reformado de revelação, revelação geral e especial",
+            "Aula 2 – Período Medieval (século X ao XV)",
+            "Aula 3 – A Teologia do Pacto",
+            "Aula 4 – Os três ofícios de Cristo"
+          ]
+        },
+        {
+          "ordem": 2,
+          "nome": "Panorama de História da Igreja",
+          "docente": "Rev. Nilson Santos",
+          "dia": "4ª feira",
+          "ementa": [
+            "Aula 1 – Patrística (século I ao V)",
+            "Aula 2 – A doutrina da Trindade e os atributos comunicáveis e incomunicáveis",
+            "Aula 3 – Reformas religiosas e o escolasticismo protestante (séculos XVI a XVIII)",
+            "Aula 4 – Período moderno e contemporâneo (séculos XVIII a XXI)"
+          ]
+        },
+        {
+          "ordem": 3,
+          "nome": "Introdução à Teologia Reformada 2",
+          "docente": "Rev. Diego Maia",
+          "dia": "2ª feira",
+          "ementa": [
+            "Aula 1 – A pessoa e a obra do Espírito Santo",
+            "Aula 2 – Os \"cinco\" pontos do calvinismo",
+            "Aula 3 – Os sacramentos na visão calvinista",
+            "Aula 4 – Introdução às correntes escatológicas"
+          ]
+        },
+        {
+          "ordem": 4,
+          "nome": "Panorama do Antigo Testamento",
+          "docente": "Rev. Renato Prates",
+          "dia": "4ª feira",
+          "ementa": [
+            "Aula 1 – Pentateuco",
+            "Aula 2 – Livros Históricos",
+            "Aula 3 – Livros Poéticos",
+            "Aula 4 – Livros Proféticos"
+          ]
+        },
+        {
+          "ordem": 5,
+          "nome": "Princípios de Interpretação Bíblica",
+          "docente": "Rev. Jayro Alves",
+          "dia": "2ª feira",
+          "ementa": [
+            "Aula 1 – Definição, pressupostos e a interpretação gramatical",
+            "Aula 2 – Interpretação Histórica",
+            "Aula 3 – Interpretação Teológica",
+            "Aula 4 – Interpretação de Profecias e Salmos"
+          ]
+        },
+        {
+          "ordem": 6,
+          "nome": "Panorama do Novo Testamento",
+          "docente": "Rev. Leonard Neumann",
+          "dia": "4ª feira",
+          "ementa": [
+            "Aula 1 – Evangelho e Atos",
+            "Aula 2 – As cartas de Paulo 1",
+            "Aula 3 – As cartas de Paulo 2",
+            "Aula 4 – Cartas Gerais e Apocalipse"
+          ]
+        },
+        {
+          "ordem": 7,
+          "nome": "Noções de Aconselhamento Cristão",
+          "docente": "Rev. Orlando Ferreira",
+          "dia": "2ª feira",
+          "ementa": [
+            "Aula 1 – O que é o Aconselhamento Cristão e qual sua importância",
+            "Aula 2 – O Conselheiro e o Aconselhamento",
+            "Aula 3 – A capacidade de escuta",
+            "Aula 4 – Princípios para intervenção e encaminhamento"
+          ]
+        },
+        {
+          "ordem": 8,
+          "nome": "Evangelização Prática",
+          "docente": "Rev. Carlos Vitor",
+          "dia": "4ª feira",
+          "ementa": [
+            "Aula 1 – Pressupostos do Evangelismo",
+            "Aula 2 – Identificação do público-alvo do evangelismo",
+            "Aula 3 – Evangelismo como agente gerador de saúde e estudo de caso",
+            "Aula 4 – Elaboração de um Projeto Evangelístico"
+          ]
+        }
+      ]
+    },
+    {
+      "codigo": "CAL",
+      "nome": "Curso de Aperfeiçoamento de Líderes",
+      "disciplinas": [
+        {
+          "ordem": 1,
+          "nome": "Preparação de Estudos e Mensagens 1",
+          "docente": "Rev. Adenilson Moura",
+          "dia": "2ª feira",
+          "ementa": [
+            "Aula 1 – Elementos básicos: observação, interpretação, correlação e aplicação",
+            "Aula 2 – Método de análise do versículo no estudo da Bíblia",
+            "Aula 3 – Métodos Analítico e Sintético de Estudo da Bíblia",
+            "Aula 4 – Métodos Tópico e Biográfico do Estudo da Bíblia"
+          ]
+        },
+        {
+          "ordem": 2,
+          "nome": "Fundamentos de Liderança 1",
+          "docente": "Rev. Ricardo Narciso",
+          "dia": "4ª feira",
+          "ementa": [
+            "Aula 1 – Teologia Bíblica do Ministério Eclesiástico",
+            "Aula 2 – Teologia Bíblica da Vocação",
+            "Aula 3 – Uma abordagem sobre Liderança",
+            "Aula 4 – Liderança Cristã"
+          ]
+        },
+        {
+          "ordem": 3,
+          "nome": "Preparação de Estudos e Mensagens 2",
+          "docente": "Rev. Adenilson Moura",
+          "dia": "2ª feira",
+          "ementa": [
+            "Aula 1 – Introdução a Homilética",
+            "Aula 2 – A essência e a classificação dos sermões",
+            "Aula 3 – Partes constitutivas do sermão",
+            "Aula 4 – Exemplo de preparação de um sermão"
+          ]
+        },
+        {
+          "ordem": 4,
+          "nome": "Fundamentos de Liderança 2",
+          "docente": "Rev. Ricardo Narciso",
+          "dia": "4ª feira",
+          "ementa": [
+            "Aula 1 – Origens da Liderança",
+            "Aula 2 – Qualidades da Liderança",
+            "Aula 3 – As Tentações e os problemas da Liderança",
+            "Aula 4 – O futuro da liderança"
+          ]
+        },
+        {
+          "ordem": 5,
+          "nome": "Inclusão na Igreja (Necessidades Especiais)",
+          "docente": "Profª Arina Martins",
+          "dia": "2ª feira",
+          "ementa": [
+            "Aula 1 – Introdução ao Tema",
+            "Aula 2 – Direito das pessoas com deficiência",
+            "Aula 3 – Caracterização das deficiências",
+            "Aula 4 – Adaptando-se para acolher"
+          ]
+        },
+        {
+          "ordem": 6,
+          "nome": "Discipulado",
+          "docente": "Rev. Carlos Vitor",
+          "dia": "4ª feira",
+          "ementa": [
+            "Aula 1 – Conceituando Discipulado",
+            "Aula 2 – Discipulado como uma ordem vocacional",
+            "Aula 3 – Criando a cultura do discipulado",
+            "Aula 4 – Ferramentas para prática do discipulado"
+          ]
+        },
+        {
+          "ordem": 7,
+          "nome": "Cuidando do Ser (Introdução a Capelania e Visitação)",
+          "docente": "Rev. Bruno Taioli",
+          "dia": "2ª feira",
+          "ementa": [
+            "Aula 1 – Capelania: definição e sua relevância hoje",
+            "Aula 2 – A responsabilidade da igreja na assistência ao enfermo e a criação de uma rede de apoio",
+            "Aula 3 – Normas e condutas na visitação (hospitalar e domiciliar)",
+            "Aula 4 – Capelania de rua"
+          ]
+        },
+        {
+          "ordem": 8,
+          "nome": "Princípios Práticos de Liturgia",
+          "docente": "Rev. Nilson Santos",
+          "dia": "4ª feira",
+          "ementa": [
+            "Aula 1 – Introdução ao Culto Cristão (ordem e desenvolvimento)",
+            "Aula 2 – O Culto Reformado",
+            "Aula 3 – Liturgia e direção do culto",
+            "Aula 4 – Orientações práticas"
+          ]
+        }
+      ]
+    },
+    {
+      "codigo": "CFP",
+      "nome": "Curso de Formação de Professores",
+      "disciplinas": [
+        {
+          "ordem": 1,
+          "nome": "Preparação de Estudos e Mensagens 1",
+          "docente": "Rev. Adenilson Moura",
+          "dia": "2ª feira",
+          "ementa": [
+            "Aula 1 – Elementos básicos: observação, interpretação, correlação e aplicação",
+            "Aula 2 – Método de análise do versículo no estudo da Bíblia",
+            "Aula 3 – Métodos Analítico e Sintético de Estudo da Bíblia",
+            "Aula 4 – Métodos Tópico e Biográfico do Estudo da Bíblia"
+          ]
+        },
+        {
+          "ordem": 2,
+          "nome": "Ferramentas Digitais Aplicadas ao Ensino",
+          "docente": "Rev. Ailton Ferreira",
+          "dia": "4ª feira",
+          "ementa": [
+            "Aula 1 – Introdução: refletindo sobre a inovação do ensino Família Google",
+            "Aula 2 – Ferramentas Digitais: redes sociais",
+            "Aula 3 – Preparando apresentações de Slides",
+            "Aula 4 – Ferramentas de transmissão e gravação de aula e Ferramentas Digitais de Edição de Áudio e Vídeo"
+          ]
+        },
+        {
+          "ordem": 3,
+          "nome": "Preparação de Estudos e Mensagens 2",
+          "docente": "Rev. Adenilson Moura",
+          "dia": "2ª feira",
+          "ementa": [
+            "Aula 1 – Introdução à Homilética",
+            "Aula 2 – A essência e a classificação dos sermões",
+            "Aula 3 – Partes constitutivas do sermão",
+            "Aula 4 – Exemplo de preparação de um sermão"
+          ]
+        },
+        {
+          "ordem": 4,
+          "nome": "Fundamentos de Didática",
+          "docente": "Profª. Simone Xavier",
+          "dia": "4ª feira",
+          "ementa": [
+            "Aula 1 – Fundamentos da Educação e seus principais conceitos, autores e obras",
+            "Aula 2 – Os quatro pilares da educação: o aprender a conhecer; aprender a fazer; aprender a conviver; aprender a ser",
+            "Aula 3 – As sete leis do ensino (Howard Hendricksen)",
+            "Aula 4 – Ferramentas para avaliação do ensino-aprendizado"
+          ]
+        },
+        {
+          "ordem": 5,
+          "nome": "Introdução à Educação Cristã",
+          "docente": "Professor em aberto",
+          "dia": "2ª feira",
+          "ementa": [
+            "Aula 1 – Definição de conceitos (educação secular, educação religiosa, educação cristã)",
+            "Aula 2 – Fundamentos bíblicos teológicos da Educação Cristã",
+            "Aula 3 – Panorama de história da Educação Cristã",
+            "Aula 4 – A pedagogia de Jesus"
+          ]
+        },
+        {
+          "ordem": 6,
+          "nome": "Noções de Psicologia da Educação",
+          "docente": "Professor em aberto",
+          "dia": "4ª feira",
+          "ementa": [
+            "Aula 1 – Definição de Psicologia da Educação, síntese das abordagens psicológicas e as 8 fases do desenvolvimento (Erik Erikson)",
+            "Aula 2 – Teorias do aprendizado em Rogers e Vygotsky",
+            "Aula 3 – Distúrbios no desenvolvimento humano e aprendizado",
+            "Aula 4 – Aprendizagem e desenvolvimento: interações sociais"
+          ]
+        },
+        {
+          "ordem": 7,
+          "nome": "Preparação de Plano de Curso e Plano de Aula",
+          "docente": "Profª Julimar Ferreira",
+          "dia": "2ª feira",
+          "ementa": [
+            "Aula 1 – Definição de conceitos: a importância do planejamento escolar e critérios básicos de avaliação do planejamento",
+            "Aula 2 – Taxonomia de Bloom e métodos no processo-ensino aprendizagem",
+            "Aula 3 – Como elaborar um plano de curso e um plano de aula",
+            "Aula 4 – Exemplos de planos de aula por segmento"
+          ]
+        },
+        {
+          "ordem": 8,
+          "nome": "Noções de Técnicas de Comunicação",
+          "docente": "Rev. João Batista",
+          "dia": "4ª feira",
+          "ementa": [
+            "Aula 1 – Introdução às Técnicas de Comunicação",
+            "Aula 2 – O público-alvo: conhecendo, conquistando e lidando com o público",
+            "Aula 3 – Linguagem corporal",
+            "Aula 4 – Planejando e realizando uma apresentação em público"
+          ]
+        }
+      ]
+    },
+    {
+      "codigo": "CFO",
+      "nome": "Curso de Formação de Oficiais",
+      "disciplinas": [
+        {
+          "ordem": 1,
+          "nome": "Panorama de História da IPB 1",
+          "docente": "Rev. Sérgio Kitagawa",
+          "dia": "2ª feira",
+          "ementa": [
+            "Aula 1 – Implantação (1859-1869)",
+            "Aula 2 – Consolidação (1869-1888)",
+            "Aula 3 – Dissensão (1888-1903)",
+            "Aula 4 – Reconstituição (1903-1917)"
+          ]
+        },
+        {
+          "ordem": 2,
+          "nome": "Fundamentos de Liderança 1",
+          "docente": "Rev. Ricardo Narciso",
+          "dia": "4ª feira",
+          "ementa": [
+            "Aula 1 – Teologia Bíblica do Ministério Eclesiástico",
+            "Aula 2 – Teologia Bíblica da Vocação",
+            "Aula 3 – Uma abordagem sobre Liderança",
+            "Aula 4 – Liderança Cristã"
+          ]
+        },
+        {
+          "ordem": 3,
+          "nome": "Panorama de História da IPB 2",
+          "docente": "Rev. Sérgio Kitagawa",
+          "dia": "2ª feira",
+          "ementa": [
+            "Aula 1 – Cooperação (1917-1932)",
+            "Aula 2 – Organização (1932-1966)",
+            "Aula 3 – Era Boanerges Ribeiro (1966-1982)",
+            "Aula 4 – Era contemporânea (1982-2002)"
+          ]
+        },
+        {
+          "ordem": 4,
+          "nome": "Fundamentos de Liderança 2",
+          "docente": "Rev. Ricardo Narciso",
+          "dia": "4ª feira",
+          "ementa": [
+            "Aula 1 – Origens da Liderança",
+            "Aula 2 – Qualidades da Liderança",
+            "Aula 3 – As Tentações e os problemas da Liderança",
+            "Aula 4 – O futuro da liderança"
+          ]
+        },
+        {
+          "ordem": 5,
+          "nome": "Fundamentos de Constituição e Ordem 1",
+          "docente": "Rev. João Batista",
+          "dia": "2ª feira",
+          "ementa": [
+            "Aula 1 – O sistema conciliar da IPB: concílios e ofícios",
+            "Aula 2 – O ofício do presbítero",
+            "Aula 3 – O ofício do diácono",
+            "Aula 4 – O ofício do pastor"
+          ]
+        },
+        {
+          "ordem": 6,
+          "nome": "Símbolos de Fé da IPB 1",
+          "docente": "Rev. Wladyslaw Kreinski",
+          "dia": "4ª feira",
+          "ementa": [
+            "Aula 1 – Introdução: confessionalidade e ortopraxia; breve história dos Símbolos de Fé",
+            "Aula 2 – As Escrituras Sagradas e o Deus que se revela Criador e Provedor",
+            "Aula 3 – A Teologia Federal",
+            "Aula 4 – A Ordem da Salvação"
+          ]
+        },
+        {
+          "ordem": 7,
+          "nome": "Fundamentos de Constituição e Ordem 2",
+          "docente": "Rev. João Batista",
+          "dia": "2ª feira",
+          "ementa": [
+            "Aula 1 – A assembleia da Igreja local (atribuições e procedimentos)",
+            "Aula 2 – Como fazer reuniões (Conselho e Junta Diaconal)",
+            "Aula 3 – Como fazer documentos (atas, relatórios, credenciais, propostas de resolução)",
+            "Aula 4 – Introdução à disciplina eclesiástica (o papel pastoral dos oficiais e tipos de processo)"
+          ]
+        },
+        {
+          "ordem": 8,
+          "nome": "Símbolos de Fé da IPB 2",
+          "docente": "Rev. Wladyslaw Kreinski",
+          "dia": "4ª feira",
+          "ementa": [
+            "Aula 1 – A Igreja e os Sacramentos",
+            "Aula 2 – A piedade confessional: introdução aos mandamentos e a oração do Senhor",
+            "Aula 3 – O poder da Igreja (concílios) e o poder temporal (o magistrado)",
+            "Aula 4 – Escatologia à luz da Confissão"
+          ]
+        }
+      ]
+    },
+    {
+      "codigo": "CAP",
+      "nome": "Curso de Capelania",
+      "observacao": "O layout desta página do PDF é mais complexo (3 colunas e datas intercaladas). Revisar contra o PDF antes de publicar.",
+      "disciplinas": [
+        {
+          "ordem": 1,
+          "nome": "Introdução a Capelania",
+          "docente": "Rev. Adelino",
+          "dia": "2ª feira",
+          "ementa": [
+            "Aula 1 – Definição de Capelania, seus tipos e sua relevância hoje – Parte I",
+            "Aula 2 – Definição de Capelania, seus tipos e sua relevância hoje – Parte II",
+            "Aula 3 – A responsabilidade da igreja na assistência ao enfermo e a criação de uma rede de apoio",
+            "Aula 4 – A Legislação Brasileira acerca do tema; A atuação da IPB e o conselho de capelania"
+          ]
+        },
+        {
+          "ordem": 2,
+          "nome": "Ética na Capelania",
+          "docente": "Professor",
+          "dia": "4ª feira",
+          "ementa": [
+            "Aula 1 – Conceitos gerais e ethos, moral, ética, alteridade",
+            "Aula 2 – O evangelismo feito pela capelania e a mensagem a transmitir; O relacionamento do capelão com outros religiosos"
+          ]
+        },
+        {
+          "ordem": 3,
+          "nome": "Teologia Bíblica da Capelania",
+          "docente": "Professor",
+          "dia": "6ª feira",
+          "ementa": [
+            "Aula 1 – A resposta Cristã à existência do sofrimento. Jo 9 – \"Quem pecou para que este nascesse cego?\"",
+            "Aula 2 – A importância do cuidado com o que sofre e o aconselhamento no livro de Jó",
+            "Aula 3 – Cuidando do órfão, da viúva e do preso; Jesus e os enfermos e aflitos (Mt 9.35-38)",
+            "Aula 4 – O caráter cuidador da redenção de Cristo: Morte e ressurreição; O Espírito Santo como o Consolador: As lágrimas enxugadas hoje"
+          ]
+        },
+        {
+          "ordem": 4,
+          "nome": "Capelania Hospitalar",
+          "docente": "Professor",
+          "dia": "2ª feira",
+          "ementa": [
+            "Aula 1 – A importância da visitação em hospitais e requisitos básicos do visitador",
+            "Aula 2 – O relacionamento do capelão com a administração hospitalar, médicos e enfermeiros",
+            "Aula 3 – O relacionamento do capelão com os pacientes e seus familiares; A sensibilidade à dor do paciente e da família",
+            "Aula 4 – O aconselhamento e a doença; A visão secular da morte"
+          ]
+        },
+        {
+          "ordem": 5,
+          "nome": "Capelania Prisional",
+          "docente": "Professor",
+          "dia": "4ª feira",
+          "ementa": [
+            "Aula 1 – Apresentação e Estatística Carcerária",
+            "Aula 2 – O sistema prisional como Campo Missionário I",
+            "Aula 3 – O sistema prisional como Campo Missionário II",
+            "Aula 4 – Atuação na prática – Atrás e além das grades"
+          ]
+        },
+        {
+          "ordem": 6,
+          "nome": "Capelania Empresarial",
+          "docente": "Professor",
+          "dia": "6ª feira",
+          "ementa": [
+            "Aula 1 – O significado da dor e do sofrimento do trabalho em Gn 3; Burnout, distúrbios laborais e saúde mental no trabalho",
+            "Aula 2 – A ressignificação do trabalho na teologia reformada (Cl 4). Construindo um ambiente saudável (Fp 4)"
+          ]
+        },
+        {
+          "ordem": 7,
+          "nome": "Aconselhamento Cristão",
+          "docente": "Professor",
+          "dia": "2ª feira",
+          "ementa": [
+            "Aula 1 – O que é o Aconselhamento Cristão e qual sua importância",
+            "Aula 2 – O Conselheiro e o Aconselhamento",
+            "Aula 3 – A capacidade de escuta",
+            "Aula 4 – Princípios para intervenção e encaminhamento"
+          ]
+        },
+        {
+          "ordem": 8,
+          "nome": "Capelania Estudantil",
+          "docente": "Professor",
+          "dia": "4ª feira",
+          "ementa": [
+            "Aula 1 – Os dramas no processo de aprendizado e o sofrimento na socialização. Dilemas familiares e sua influência no desenvolvimento acadêmico",
+            "Aula 2 – Ensino infantil, bullying, acolhimento e gerenciamento de emoções",
+            "Aula 3 – O estudante universitário e os desafios do ensino superior",
+            "Aula 4 – Docentes, esgotamento mental, conflitos humanos e valorização profissional"
+          ]
+        },
+        {
+          "ordem": 9,
+          "nome": "Ministério da Misericórdia",
+          "docente": "Professor",
+          "dia": "6ª feira",
+          "ementa": [
+            "Aula 1 – O olhar bíblico diante da pobreza, o papel da Igreja diante dos sofrimentos da sociedade e a resposta da dignidade em Cristo",
+            "Aula 2 – A leitura dos sofrimentos em seus contextos sociais e identificação dos consolos possíveis. Os princípios bíblicos da atuação diaconal"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -2,8 +2,9 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
 import Stats from "@/components/sections/Stats";
+import GraduationHighlight from "@/components/sections/GraduationHighlight";
 import VideoIntro from "@/components/sections/VideoIntro";
-import CoursesGrid from "@/components/sections/CoursesGrid";
+import OnlineCoursesPreview from "@/components/sections/OnlineCoursesPreview";
 import ContactCta from "@/components/sections/ContactCta";
 
 export default function Home() {
@@ -12,8 +13,9 @@ export default function Home() {
       <Header />
       <Hero />
       <Stats />
+      <GraduationHighlight />
       <VideoIntro />
-      <CoursesGrid />
+      <OnlineCoursesPreview />
       <ContactCta />
       <Footer />
     </div>

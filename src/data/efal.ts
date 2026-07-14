@@ -666,7 +666,7 @@ export const efalCourses: EfalCourse[] = [
   {
     slug: "cfm",
     code: "CFM",
-    title: "Curso de Formação em Música",
+    title: "Curso de Formação Musical",
     tagline: "Lorem ipsum dolor sit amet",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
@@ -685,7 +685,7 @@ export const efalCourses: EfalCourse[] = [
     // fornecidos (não constam no calendário oficial).
     slug: "cfc",
     code: "CAP",
-    title: "Curso de Capelania",
+    title: "Curso de Formação em Capelania",
     tagline: "Lorem ipsum dolor sit amet",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",

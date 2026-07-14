@@ -1,7 +1,5 @@
 import Image from "next/image";
-import { Mail, MessageCircle } from "lucide-react";
-
-import { chaplaincyWhatsappHref } from "@/lib/whatsapp";
+import { Mail } from "lucide-react";
 
 /**
  * Capelania — suporte espiritual aos alunos, sob responsabilidade do
@@ -37,8 +35,8 @@ export default function SobreChaplaincy() {
           <p className="mt-6 text-base leading-relaxed text-stone-600">
             O Seminário oferece suporte integral aos alunos por meio da
             capelania, que realiza as atividades religiosas da casa e o
-            acompanhamento espiritual dos seminaristas — reforçando que, aqui,
-            a vivência da fé caminha junto com a formação acadêmica.
+            acompanhamento espiritual dos seminaristas, reforçando que, aqui, a
+            vivência da fé caminha junto com a formação acadêmica.
           </p>
           <p className="mt-4 text-base leading-relaxed text-stone-600">
             Sem devoção não há formação: o cuidado pastoral com cada aluno e
@@ -46,14 +44,6 @@ export default function SobreChaplaincy() {
           </p>
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <a
-              href={chaplaincyWhatsappHref()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-sm bg-brand-700 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-brand-800"
-            >
-              <MessageCircle size={16} /> Falar com o capelão no WhatsApp
-            </a>
             <a
               href="mailto:capelania.stps@ipb.org.br"
               className="inline-flex items-center justify-center gap-2 rounded-sm border border-brand-700 px-6 py-3 text-sm font-medium text-brand-800 transition-colors hover:bg-brand-700 hover:text-white"

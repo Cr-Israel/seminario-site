@@ -19,7 +19,7 @@ export default function SobreHero() {
           Desde 1982 · Igreja Presbiteriana do Brasil
         </p>
         <h1 className="font-serif text-4xl font-extrabold leading-[1.15] text-white sm:text-5xl">
-          Uma história que começa com o pai do presbiterianismo brasileiro
+          Uma história que começa com o pioneiro do presbiterianismo brasileiro
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-brand-100/80 sm:text-lg">
           O Seminário Teológico Presbiteriano Rev. Ashbel Green Simonton é uma

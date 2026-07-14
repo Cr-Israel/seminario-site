@@ -29,9 +29,9 @@ export default function Hero() {
           empurra o bloco para o lado direito, e o texto ganha uma borda
           esquerda reta perto do centro — sem o aspecto "jogado". */}
       <div className="relative z-10 px-6 md:px-10 lg:px-16">
-        <div className="ml-auto flex max-w-2xl flex-col items-start text-left">
-          <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-brand-200/90">
-            Tradição Reformada · Igreja Presbiteriana do Brasil
+        <div className="ml-auto flex max-w-2xl flex-col items-start text-left md:mr-20 lg:mr-44">
+          <p className="mb-6 inline-flex items-center gap-2 self-center rounded-full border border-white/15 px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-brand-200/90">
+            O Seminário Reformado do Rio de Janeiro
           </p>
 
           <h1 className="font-serif text-4xl font-extrabold leading-[1.15] text-white sm:text-5xl md:text-6xl">

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, Home } from "lucide-react";
-import Footer from "@/components/layout/Footer";
 
 export default function NotFound() {
   return (
@@ -54,7 +53,6 @@ export default function NotFound() {
         </div>
       </main>
 
-      <Footer />
     </div>
   );
 }

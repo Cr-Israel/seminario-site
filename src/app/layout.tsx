@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import Footer from "@/components/layout/Footer";
 import WhatsappFab from "@/components/layout/WhatsappFab";
 
 const montserrat = Montserrat({
@@ -37,6 +38,7 @@ export default function RootLayout({
       </head>
       <body>
         {children}
+        <Footer />
         <WhatsappFab />
       </body>
     </html>

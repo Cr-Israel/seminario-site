@@ -1,3 +1,5 @@
+import { whatsappHref } from "@/lib/whatsapp";
+
 export default function OnlineHero() {
   return (
     <section className="relative overflow-hidden bg-brand-950 py-24">
@@ -31,6 +33,23 @@ export default function OnlineHero() {
           primeira formação de líderes ao aprofundamento acadêmico, com
           inscrição direta pelo Simonton.
         </p>
+
+        <div className="mt-9 flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center">
+          <a
+            href="#cursos"
+            className="rounded-sm bg-brand-50 px-7 py-3.5 text-center text-sm font-medium text-brand-900 transition-colors hover:bg-white"
+          >
+            Encontre o seu curso
+          </a>
+          <a
+            href={whatsappHref()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-sm border border-white/25 px-7 py-3.5 text-center text-sm font-medium text-white transition-colors hover:bg-white/10"
+          >
+            Falar com a secretaria
+          </a>
+        </div>
       </div>
     </section>
   );

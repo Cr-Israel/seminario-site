@@ -1,5 +1,4 @@
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import About from "@/components/sections/About";
 import SobreHero from "@/components/sections/sobre/SobreHero";
 import SobreHistory from "@/components/sections/sobre/SobreHistory";
@@ -23,7 +22,6 @@ export default function SobrePage() {
       <SobreMissionValues />
       <SobreDirector />
       <SobreChaplaincy />
-      <Footer />
     </div>
   );
 }

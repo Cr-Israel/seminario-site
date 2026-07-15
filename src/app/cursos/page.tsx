@@ -1,5 +1,4 @@
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import Stats from "@/components/sections/Stats";
 import CoursesExplorer from "@/components/sections/CoursesExplorer";
 import Faq from "@/components/sections/Faq";
@@ -42,7 +41,6 @@ export default function CursosPage() {
       {/* FAQ */}
       <Faq />
 
-      <Footer />
     </div>
   );
 }

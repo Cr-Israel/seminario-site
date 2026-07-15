@@ -27,6 +27,8 @@ export type PosCourse = {
    * secretaria ou sistema de matrícula) assim que decidido.
    */
   enrollUrl: string;
+  /** Valor do curso (opcional) — exibido no card e perto do CTA quando presente. */
+  price?: { installments: string; total: string };
 };
 
 /**
@@ -61,6 +63,7 @@ export const posCourses: PosCourse[] = [
     ],
     isPlaceholder: true,
     enrollUrl: "#",
+    price: { installments: "12x de R$ 259,90", total: "R$ 3.118,80" },
   },
   {
     slug: "novo-testamento",
@@ -86,6 +89,7 @@ export const posCourses: PosCourse[] = [
     ],
     isPlaceholder: true,
     enrollUrl: "#",
+    price: { installments: "12x de R$ 259,90", total: "R$ 3.118,80" },
   },
   {
     slug: "cosmovisao-reformada",
@@ -111,6 +115,7 @@ export const posCourses: PosCourse[] = [
     ],
     isPlaceholder: true,
     enrollUrl: "#",
+    price: { installments: "12x de R$ 259,90", total: "R$ 3.118,80" },
   },
   {
     slug: "gestao-ministerial",
@@ -136,6 +141,7 @@ export const posCourses: PosCourse[] = [
     ],
     isPlaceholder: true,
     enrollUrl: "#",
+    price: { installments: "12x de R$ 259,90", total: "R$ 3.118,80" },
   },
 ];
 

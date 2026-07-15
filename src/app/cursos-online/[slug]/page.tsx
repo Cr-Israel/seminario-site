@@ -9,7 +9,6 @@ import {
   Monitor,
 } from "lucide-react";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import CourseCoordinator from "@/components/sections/CourseCoordinator";
 import CourseCurriculum from "@/components/sections/CourseCurriculum";
 import CourseProfessors from "@/components/sections/CourseProfessors";
@@ -177,16 +176,16 @@ export default async function OnlineCoursePage({
           coordinator={isEfal ? coordinators.efal : coordinators.pos}
         />
 
-        {efalCourse?.price && (
+        {course.price && (
           <div className="mt-12 rounded-sm border border-brand-900/10 bg-white p-6">
             <p className="text-xs uppercase tracking-wider text-stone-500">
               Investimento
             </p>
             <p className="mt-2 font-serif text-3xl font-bold text-brand-950">
-              {efalCourse.price.installments}
+              {course.price.installments}
             </p>
             <p className="mt-1 text-sm text-stone-500">
-              Total: {efalCourse.price.total}
+              Total: {course.price.total}
             </p>
           </div>
         )}
@@ -211,7 +210,6 @@ export default async function OnlineCoursePage({
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 }

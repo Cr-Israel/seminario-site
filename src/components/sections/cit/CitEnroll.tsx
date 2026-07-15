@@ -22,12 +22,24 @@ export default function CitEnroll() {
             dê o primeiro passo na sua formação teológica reformada.
           </p>
         </div>
-        <a
-          href={enrollUrl}
-          className="inline-flex shrink-0 items-center gap-2 rounded-sm bg-brand-50 px-8 py-4 text-sm font-medium text-brand-900 transition-colors hover:bg-white"
-        >
-          Quero me inscrever <ArrowRight size={16} />
-        </a>
+        <div className="flex shrink-0 flex-col items-start gap-4 sm:items-end">
+          {course?.price && (
+            <div className="text-left sm:text-right">
+              <p className="font-serif text-2xl font-extrabold text-white">
+                {course.price.installments}
+              </p>
+              <p className="mt-0.5 text-sm text-brand-100/70">
+                Total: {course.price.total}
+              </p>
+            </div>
+          )}
+          <a
+            href={enrollUrl}
+            className="inline-flex items-center gap-2 rounded-sm bg-brand-50 px-8 py-4 text-sm font-medium text-brand-900 transition-colors hover:bg-white"
+          >
+            Quero me inscrever <ArrowRight size={16} />
+          </a>
+        </div>
       </div>
     </section>
   );

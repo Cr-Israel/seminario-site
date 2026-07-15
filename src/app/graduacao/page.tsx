@@ -1,5 +1,4 @@
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import GraduacaoHero from "@/components/sections/graduacao/GraduacaoHero";
 import AdmissionProcess from "@/components/sections/graduacao/AdmissionProcess";
 import Differentiators from "@/components/sections/Differentiators";
@@ -19,7 +18,6 @@ export default function GraduacaoPage() {
       <AdmissionProcess />
       <Differentiators />
       <Faculty />
-      <Footer />
     </div>
   );
 }

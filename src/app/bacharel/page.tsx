@@ -1,6 +1,5 @@
 import { GraduationCap } from "lucide-react";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import CourseCoordinator from "@/components/sections/CourseCoordinator";
 import { coordinators } from "@/data/coordinators";
 
@@ -51,7 +50,6 @@ export default function BacharelPage() {
         </p>
       </section>
 
-      <Footer />
     </div>
   );
 }

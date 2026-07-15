@@ -1,8 +1,8 @@
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import OnlineHero from "@/components/sections/online/OnlineHero";
 import OnlineStats from "@/components/sections/online/OnlineStats";
 import OnlineCourses from "@/components/sections/online/OnlineCourses";
+import OnlineMotto from "@/components/sections/online/OnlineMotto";
 import OnlineFaq from "@/components/sections/online/OnlineFaq";
 import InterestForm from "@/components/sections/online/InterestForm";
 
@@ -19,9 +19,9 @@ export default function CursosOnlinePage() {
       <OnlineHero />
       <OnlineStats />
       <OnlineCourses />
+      <OnlineMotto />
       <OnlineFaq />
       <InterestForm />
-      <Footer />
     </div>
   );
 }

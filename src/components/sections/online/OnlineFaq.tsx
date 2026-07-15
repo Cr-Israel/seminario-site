@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Clock, MessageCircle, Phone } from "lucide-react";
+import { whatsappHref } from "@/lib/whatsapp";
 
 type FaqItem = { question: string; answer: string };
 
@@ -46,17 +47,51 @@ export default function OnlineFaq() {
 
   return (
     <section id="faq" className="bg-brand-50/60 py-24">
-      <div className="mx-auto max-w-3xl px-6">
-        <div className="text-center">
+      <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
+        <div className="lg:sticky lg:top-28 lg:self-start">
           <span className="text-xs font-medium uppercase tracking-[0.2em] text-brand-700">
             Dúvidas frequentes
           </span>
           <h2 className="mt-4 font-serif text-3xl font-extrabold text-brand-950 sm:text-4xl">
-            Perguntas frequentes
+            Alguma dúvida?
           </h2>
+          <p className="mt-5 max-w-md text-base leading-relaxed text-stone-600">
+            Reunimos aqui as perguntas mais comuns sobre a EFAL e a
+            Pós-graduação. Não achou a sua? A secretaria responde direto no
+            WhatsApp.
+          </p>
+
+          <div className="mt-9 rounded-xl bg-brand-950 p-7">
+            <span className="text-xs font-medium uppercase tracking-[0.2em] text-brand-200/90">
+              Central de atendimento
+            </span>
+            <p className="mt-3 text-sm leading-relaxed text-brand-100/80">
+              Estamos aqui para ajudar você a escolher o curso certo.
+            </p>
+            <div className="mt-5 flex flex-col gap-2.5 text-sm text-brand-100/85">
+              <span className="flex items-center gap-2.5">
+                <Phone size={15} className="shrink-0 text-brand-200" />
+                (21) 2201-6734
+              </span>
+              <span className="flex items-center gap-2.5">
+                <Clock size={15} className="shrink-0 text-brand-200" />
+                Segunda a sexta, das 13h às 20h
+              </span>
+            </div>
+            <a
+              href={whatsappHref(
+                "Olá! Tenho uma dúvida sobre os cursos online do Seminário Simonton.",
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center gap-2 rounded-sm bg-brand-50 px-6 py-3 text-sm font-medium text-brand-900 transition-colors hover:bg-white"
+            >
+              <MessageCircle size={16} /> Chamar no WhatsApp
+            </a>
+          </div>
         </div>
 
-        <div className="mt-12 divide-y divide-brand-900/10 overflow-hidden rounded-sm border border-brand-900/10 bg-white">
+        <div className="divide-y divide-brand-900/10 self-start overflow-hidden rounded-sm border border-brand-900/10 bg-white">
           {faqItems.map((item, index) => {
             const open = openIndex === index;
             return (

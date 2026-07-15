@@ -1,5 +1,4 @@
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import CitHero from "@/components/sections/cit/CitHero";
 import CitObjections from "@/components/sections/cit/CitObjections";
 import CitCtaBand from "@/components/sections/cit/CitCtaBand";
@@ -30,7 +29,6 @@ export default function CitLandingPage() {
       <CitInstructors />
       <CitFaq />
       <CitEnroll />
-      <Footer />
     </div>
   );
 }

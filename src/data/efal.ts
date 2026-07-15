@@ -581,6 +581,7 @@ export const efalCourses: EfalCourse[] = [
     curriculum: citDisciplines,
     isNew: false,
     enrollUrl: "#",
+    price: { installments: "6x de R$ 159,90", total: "R$ 959,40" },
   },
   {
     slug: "cal",
@@ -597,6 +598,7 @@ export const efalCourses: EfalCourse[] = [
     curriculum: calDisciplines,
     isNew: false,
     enrollUrl: "#",
+    price: { installments: "6x de R$ 159,90", total: "R$ 959,40" },
   },
   {
     slug: "cfo",
@@ -613,6 +615,7 @@ export const efalCourses: EfalCourse[] = [
     curriculum: [...citDisciplines, ...cfoDisciplines],
     isNew: false,
     enrollUrl: "#",
+    price: { installments: "12x de R$ 159,90", total: "R$ 1.918,80" },
   },
   {
     slug: "cfp",
@@ -629,6 +632,7 @@ export const efalCourses: EfalCourse[] = [
     curriculum: [...citDisciplines, ...cfpDisciplines],
     isNew: false,
     enrollUrl: "#",
+    price: { installments: "12x de R$ 159,90", total: "R$ 1.918,80" },
   },
   {
     slug: "cfl",
@@ -677,6 +681,7 @@ export const efalCourses: EfalCourse[] = [
     curriculum: [],
     isNew: true,
     enrollUrl: "#",
+    price: { installments: "6x de R$ 159,90", total: "R$ 959,40" },
   },
   {
     // Slot histórico "CFC" mantido para preservar a URL /cursos-online/cfc. O curso real
@@ -696,6 +701,7 @@ export const efalCourses: EfalCourse[] = [
     curriculum: capDisciplines,
     isNew: true,
     enrollUrl: "#",
+    price: { installments: "6x de R$ 159,90", total: "R$ 959,40" },
   },
 ];
 

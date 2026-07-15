@@ -16,6 +16,7 @@ type CourseCard = {
   title: string;
   description: string;
   meta: string;
+  price?: string;
   isNew?: boolean;
   isPlaceholder?: boolean;
 };
@@ -28,6 +29,7 @@ const efalCards: CourseCard[] = efalCourses.map((c) => ({
   title: c.title,
   description: c.tagline,
   meta: c.duration !== "A definir" ? c.duration : c.format,
+  price: c.price?.installments,
   isNew: c.isNew,
 }));
 
@@ -39,6 +41,7 @@ const posCards: CourseCard[] = posCourses.map((c) => ({
   title: c.title,
   description: c.tagline,
   meta: c.format,
+  price: c.price?.installments,
   isPlaceholder: c.isPlaceholder,
 }));
 
@@ -52,8 +55,12 @@ function Card({ card }: { card: CourseCard }) {
   return (
     <Link
       href={card.href}
-      className="group flex h-full flex-col rounded-sm border border-brand-900/10 bg-white p-7 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+      className="group relative flex h-full flex-col overflow-hidden rounded-sm border border-brand-900/10 bg-white p-7 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
     >
+      <span
+        aria-hidden
+        className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-gradient-to-r from-brand-700 to-brand-400 transition-transform duration-300 group-hover:scale-x-100"
+      />
       <div className="flex items-center justify-between">
         <div className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-50 text-brand-800">
           <Icon size={20} strokeWidth={1.75} />
@@ -80,8 +87,15 @@ function Card({ card }: { card: CourseCard }) {
       <p className="mt-3 flex-1 text-sm leading-relaxed text-stone-600">
         {card.description}
       </p>
-      <div className="mt-5 flex items-center justify-between border-t border-stone-100 pt-4">
-        <span className="text-xs text-stone-500">{card.meta}</span>
+      <div className="mt-5 flex items-end justify-between border-t border-stone-100 pt-4">
+        <div className="flex flex-col gap-0.5">
+          {card.price && (
+            <span className="text-sm font-bold text-brand-900">
+              {card.price}
+            </span>
+          )}
+          <span className="text-xs text-stone-500">{card.meta}</span>
+        </div>
         <span className="flex items-center gap-1 text-sm font-medium text-brand-800 transition-transform group-hover:translate-x-1">
           Ver curso <ArrowRight size={14} />
         </span>

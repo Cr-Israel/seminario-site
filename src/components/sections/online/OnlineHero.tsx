@@ -29,7 +29,7 @@ export default function OnlineHero() {
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-brand-100/80 sm:text-lg">
           São 7 cursos na EFAL e programas de pós-graduação, 100% online e com
-          aula ao vivo — professor em tempo real, não gravação assíncrona. Da
+          aula ao vivo, professor em tempo real, não gravação assíncrona. Da
           primeira formação de líderes ao aprofundamento acadêmico, com
           inscrição direta pelo Simonton.
         </p>

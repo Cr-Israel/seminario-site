@@ -76,7 +76,7 @@ export default function OnlineFaculty() {
             </h2>
             <p className="mt-4 text-base leading-relaxed text-brand-100/80">
               Cada disciplina tem um rosto: pastores e professores que unem
-              vida, ministério e sala de aula — da EFAL à Pós-graduação.
+              vida, ministério e sala de aula, da EFAL à Pós-graduação.
             </p>
           </div>
 

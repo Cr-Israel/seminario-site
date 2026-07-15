@@ -1,29 +1,8 @@
 import { ArrowRight } from "lucide-react";
 import { efalCourses } from "@/data/efal";
 import { posCourses } from "@/data/pos";
+import { onlineProfessors } from "@/data/professors";
 import { whatsappHref } from "@/lib/whatsapp";
-
-/** Remove títulos honoríficos para deduplicar docentes citados com e sem eles. */
-function stripTitle(name: string) {
-  return name.replace(/^(Rev\.|Profª\.?|Prof\.)\s*/i, "").trim();
-}
-
-const professorNames = new Set<string>();
-for (const course of efalCourses) {
-  for (const discipline of course.curriculum) {
-    if (!/^Professor( em aberto)?$/.test(discipline.docente)) {
-      professorNames.add(stripTitle(discipline.docente));
-    }
-  }
-  for (const professor of course.professors ?? []) {
-    professorNames.add(stripTitle(professor.name));
-  }
-}
-for (const course of posCourses) {
-  for (const discipline of course.curriculum) {
-    if (discipline.professor) professorNames.add(stripTitle(discipline.professor));
-  }
-}
 
 const seenDisciplines = new Set<string>();
 let liveClassCount = 0;
@@ -47,7 +26,7 @@ const stats = [
     label: "aulas ao vivo nas grades da EFAL",
   },
   {
-    value: `+${floor5(professorNames.size)}`,
+    value: `+${floor5(onlineProfessors.length)}`,
     label: "professores e preletores nos cursos online",
   },
   {
@@ -64,35 +43,35 @@ const stats = [
  */
 export default function OnlineMotto() {
   return (
-    <section className="relative overflow-hidden bg-brand-900 py-20 sm:py-24">
+    <section className="relative overflow-hidden border-y border-brand-900/10 bg-white py-20 sm:py-24">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.06]"
+        className="pointer-events-none absolute inset-0 opacity-[0.05]"
         style={{
           backgroundImage:
-            "repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 1px, transparent 14px)",
+            "repeating-linear-gradient(45deg, #004117 0, #004117 1px, transparent 1px, transparent 14px)",
         }}
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-brand-700/50 blur-3xl"
+        className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-brand-200/50 blur-3xl"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-20 bottom-0 h-72 w-72 rounded-full bg-brand-400/15 blur-3xl"
+        className="pointer-events-none absolute -left-20 bottom-0 h-72 w-72 rounded-full bg-brand-400/20 blur-3xl"
       />
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
-        <p className="font-serif text-5xl font-extrabold leading-[1.08] text-white sm:text-6xl">
+        <p className="font-serif text-5xl font-extrabold leading-[1.08] text-brand-950 sm:text-6xl">
           Ensinar.
           <br />
-          <span className="text-brand-200">Formar.</span>
+          <span className="text-brand-700">Formar.</span>
           <br />
           Servir.
         </p>
 
         <div>
-          <p className="max-w-xl text-base leading-relaxed text-brand-100/85 sm:text-lg">
+          <p className="max-w-xl text-base leading-relaxed text-stone-600 sm:text-lg">
             Do primeiro contato com a teologia reformada ao aprofundamento na
             pós-graduação, cada curso existe para capacitar quem serve à igreja
             local — com professor ao vivo, do início ao fim.
@@ -104,10 +83,10 @@ export default function OnlineMotto() {
                 key={stat.label}
                 className="border-l-2 border-brand-400/60 pl-4"
               >
-                <span className="block font-serif text-3xl font-extrabold text-white sm:text-4xl">
+                <span className="block font-serif text-3xl font-extrabold text-brand-950 sm:text-4xl">
                   {stat.value}
                 </span>
-                <span className="mt-1 block text-sm leading-snug text-brand-100/75">
+                <span className="mt-1 block text-sm leading-snug text-stone-600">
                   {stat.label}
                 </span>
               </div>
@@ -120,7 +99,7 @@ export default function OnlineMotto() {
             )}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-10 inline-flex items-center gap-2 rounded-sm bg-brand-50 px-7 py-3.5 text-sm font-medium text-brand-900 transition-colors hover:bg-white"
+            className="mt-10 inline-flex items-center gap-2 rounded-sm bg-brand-900 px-7 py-3.5 text-sm font-medium text-white transition-colors hover:bg-brand-800"
           >
             Inscreva-se agora <ArrowRight size={16} />
           </a>

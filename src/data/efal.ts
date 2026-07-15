@@ -398,8 +398,8 @@ const calDisciplines: EfalDiscipline[] = [
   },
 ];
 
-/** Grade do Curso de Capelania (CAP), 9 disciplinas. */
-const capDisciplines: EfalDiscipline[] = [
+/** Grade do Curso de Formação em Capelania (CFC), 9 disciplinas. */
+const cfcDisciplines: EfalDiscipline[] = [
   {
     name: "Introdução a Capelania",
     docente: "Rev. Adelino",
@@ -684,12 +684,11 @@ export const efalCourses: EfalCourse[] = [
     price: { installments: "6x de R$ 159,90", total: "R$ 959,40" },
   },
   {
-    // Slot histórico "CFC" mantido para preservar a URL /cursos-online/cfc. O curso real
-    // é o CAP — Curso de Capelania (calendário 2026.2), cuja grade já está
-    // definida abaixo. Tagline/descrição/público seguem placeholder até serem
-    // fornecidos (não constam no calendário oficial).
+    // CFC — Curso de Formação em Capelania (calendário 2026.2), com a grade
+    // já definida abaixo. Tagline/descrição/público seguem placeholder até
+    // serem fornecidos (não constam no calendário oficial).
     slug: "cfc",
-    code: "CAP",
+    code: "CFC",
     title: "Curso de Formação em Capelania",
     tagline: "Lorem ipsum dolor sit amet",
     description:
@@ -698,7 +697,7 @@ export const efalCourses: EfalCourse[] = [
     format: "A definir",
     duration: "A definir",
     disciplines: "9 disciplinas",
-    curriculum: capDisciplines,
+    curriculum: cfcDisciplines,
     isNew: true,
     enrollUrl: "#",
     price: { installments: "6x de R$ 159,90", total: "R$ 959,40" },

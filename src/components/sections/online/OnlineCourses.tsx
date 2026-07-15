@@ -1,8 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, BookOpen, ScrollText, type LucideIcon } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  Mail,
+  ScrollText,
+  type LucideIcon,
+} from "lucide-react";
+import { coordinators, type Coordinator } from "@/data/coordinators";
 import { efalCourses } from "@/data/efal";
 import { posCourses } from "@/data/pos";
 
@@ -49,6 +57,11 @@ const tabs: { label: Tab; count: number }[] = [
   { label: "EFAL", count: efalCards.length },
   { label: "Pós-graduação", count: posCards.length },
 ];
+
+const coordinatorByTab: Record<Tab, Coordinator> = {
+  EFAL: coordinators.efal,
+  "Pós-graduação": coordinators.pos,
+};
 
 function Card({ card }: { card: CourseCard }) {
   const { icon: Icon } = card;
@@ -107,6 +120,7 @@ function Card({ card }: { card: CourseCard }) {
 export default function OnlineCourses() {
   const [active, setActive] = useState<Tab>("EFAL");
   const cards = active === "EFAL" ? efalCards : posCards;
+  const coordinator = coordinatorByTab[active];
 
   return (
     <section id="cursos" className="mx-auto max-w-6xl px-6 py-24">
@@ -157,6 +171,39 @@ export default function OnlineCourses() {
         {cards.map((card) => (
           <Card key={card.key} card={card} />
         ))}
+      </div>
+
+      {/* Coordenador do núcleo ativo — acompanha a aba selecionada. */}
+      <div className="mt-10 flex flex-col items-start gap-6 rounded-sm border border-brand-900/10 bg-white p-7 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center">
+          {coordinator.photo && (
+            <Image
+              src={coordinator.photo}
+              alt={coordinator.name}
+              width={80}
+              height={80}
+              className="h-20 w-20 shrink-0 rounded-full object-cover"
+            />
+          )}
+          <div>
+            <span className="text-xs font-medium uppercase tracking-[0.2em] text-brand-700">
+              {coordinator.role}
+            </span>
+            <h3 className="mt-1 font-serif text-xl font-bold text-brand-950">
+              {coordinator.name}
+            </h3>
+            <p className="mt-1 text-sm leading-relaxed text-stone-600">
+              Dúvidas sobre {active === "EFAL" ? "os cursos da EFAL" : "a Pós-graduação"}?
+              Fale direto com quem coordena o núcleo.
+            </p>
+          </div>
+        </div>
+        <a
+          href={`mailto:${coordinator.email}`}
+          className="inline-flex shrink-0 items-center gap-2 rounded-sm bg-brand-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-brand-800"
+        >
+          <Mail size={15} /> Falar com a coordenação
+        </a>
       </div>
     </section>
   );

@@ -74,7 +74,7 @@ export default function OnlineMotto() {
           <p className="max-w-xl text-base leading-relaxed text-stone-600 sm:text-lg">
             Do primeiro contato com a teologia reformada ao aprofundamento na
             pós-graduação, cada curso existe para capacitar quem serve à igreja
-            local — com professor ao vivo, do início ao fim.
+            local, com professor ao vivo, do início ao fim.
           </p>
 
           <div className="mt-9 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3">

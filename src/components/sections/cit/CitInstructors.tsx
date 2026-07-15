@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { professorPhoto } from "@/data/professors";
 
 type Instructor = {
   name: string;
@@ -17,6 +18,8 @@ type Instructor = {
 const BIO_PLACEHOLDER =
   "Reverendo da Igreja Presbiteriana do Brasil, com experiência pastoral e docente na formação de líderes. Dedica-se ao ensino teológico reformado e ao discipulado na igreja local. Biografia completa em breve.";
 
+// Fotos vêm do mapa central em data/professors.ts (professorPhoto) — nova
+// foto em /public/images só precisa ser registrada lá para aparecer aqui.
 const instructors: Instructor[] = [
   {
     name: "Rev. Diego Maia",
@@ -60,7 +63,7 @@ const instructors: Instructor[] = [
     discipline: "Evangelização Prática",
     bio: BIO_PLACEHOLDER,
   },
-];
+].map((person) => ({ ...person, photo: professorPhoto(person.name) }));
 
 function initials(name: string) {
   const parts = name

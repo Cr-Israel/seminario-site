@@ -1,7 +1,7 @@
 const stats = [
   { value: "+40", label: "Anos formando pastores" },
   { value: "7", label: "Cursos na EFAL" },
-  { value: "JURET/IPB", label: "Certificação denominacional" },
+  { value: "JET/IPB", label: "Certificação denominacional" },
   { value: "100%", label: "Aulas ao vivo" },
 ];
 

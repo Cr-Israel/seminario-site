@@ -109,7 +109,7 @@ export default function OnlineCoursesPreview() {
           </h2>
           <p className="mt-4 text-base leading-relaxed text-stone-600">
             Aulas 100% online e ao vivo, com inscrição direta pelo Simonton e
-            certificação pela JURET/IPB. Escolha o curso que corresponde ao seu
+            certificação pela JET/IPB. Escolha o curso que corresponde ao seu
             momento e ao seu chamado.
           </p>
         </div>

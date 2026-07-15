@@ -32,7 +32,32 @@ const photoByName: Record<string, string> = {
   "Sérgio Kitagawa": "/images/rev-sergio-kitagawa.png",
   Adelino: "/images/rev-adelino.png",
   "João Batista": "/images/rev-joao.jpg",
+  "Arina Martins": "/images/prof-arina.png",
+  "Cláudio Larieira": "/images/prof-claudio-larieira.png",
+  "Simone Xavier": "/images/prof-simone-xavier.png",
+  "André Monteiro": "/images/rev-andre-monteiro.jpeg",
+  "Bruno Taioli": "/images/rev-bruno-taioli.png",
+  "Jeferson Alvarenga": "/images/rev-jeferson-alvarenga.jpeg",
+  "Júnio Cesar": "/images/rev-junio-cesar.jpeg",
+  "Pedro Dulci": "/images/rev-pedro-dulci.png",
+  "Renato Prates": "/images/rev-renato-prates.png",
+  "Ricardo Narciso": "/images/rev-ricardo-narciso.jpeg",
+  // Nilson Carneiro dos Santos — aparece nas grades como "Rev. Nilson Santos".
+  "Nilson Santos": "/images/rev-nilson-carneiro.jpeg",
+  // Docentes da Pós ainda SEM nome nas grades (NT, Cosmovisão, Plantação).
+  // Quando entrarem em pos.ts com estes nomes, a foto conecta sozinha:
+  "Alessandra Viegas": "/images/prof-alessandra-viegas.jpeg",
+  "Jeane Cavalier": "/images/prof-jeane-cavalier.jpeg",
+  "Ivo Cesar": "/images/rev-ivo-cesar.jpeg",
+  "José Mirabeau": "/images/rev-jose-mirabeau.jpeg",
+  "Paulo Won": "/images/rev-paulo-won.jpeg",
+  "Vinicius Jordão": "/images/rev-vinicius-jordao.jpeg",
 };
+
+/** Foto de um docente pelo nome (com ou sem título) — undefined se não houver. */
+export function professorPhoto(name: string) {
+  return photoByName[stripTitle(name)];
+}
 
 function buildProfessors(): OnlineProfessor[] {
   const byKey = new Map<string, OnlineProfessor>();

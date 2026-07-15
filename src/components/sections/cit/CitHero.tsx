@@ -34,7 +34,7 @@ export default function CitHero() {
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-brand-100/80 sm:text-lg">
             Uma formação sólida, 100% online e ao vivo, para líderes e cristãos
-            que querem ir além da Escola Dominical — o degrau anterior ao Curso
+            que querem ir além da Escola Dominical, o degrau anterior ao Curso
             Livre de Bacharel em Teologia.
           </p>
 

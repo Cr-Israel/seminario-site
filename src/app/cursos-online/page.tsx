@@ -10,7 +10,7 @@ import InterestForm from "@/components/sections/online/InterestForm";
 export const metadata = {
   title: "Cursos Online — EFAL & Pós-graduação | Seminário Simonton",
   description:
-    "Formação teológica 100% online, com aula ao vivo: 7 cursos na EFAL e programas de pós-graduação do Seminário Simonton, com inscrição direta e certificação pela JURET/IPB.",
+    "Formação teológica 100% online, com aula ao vivo: 7 cursos na EFAL e programas de pós-graduação do Seminário Simonton, com inscrição direta e certificação pela JET/IPB.",
 };
 
 export default function CursosOnlinePage() {

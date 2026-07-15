@@ -572,7 +572,7 @@ export const efalCourses: EfalCourse[] = [
     title: "Curso Introdutório de Teologia",
     tagline: "O primeiro contato com a teologia reformada",
     description:
-      "Oferece uma formação sólida em Teologia Reformada, com ênfase na prática, e visa equipar líderes para desempenharem suas funções com excelência. É o primeiro contato do aluno com os conhecimentos produzidos e discutidos no ambiente acadêmico do Seminário — vai além da Escola Dominical local e é o degrau anterior ao Curso Livre de Bacharel em Teologia.",
+      "Oferece uma formação sólida em Teologia Reformada, com ênfase na prática, e visa equipar líderes para desempenharem suas funções com excelência. É o primeiro contato do aluno com os conhecimentos produzidos e discutidos no ambiente acadêmico do Seminário, vai além da Escola Dominical local e é o degrau anterior ao Curso Livre de Bacharel em Teologia.",
     audience:
       "Líderes já envolvidos nas igrejas e cristãos em geral interessados em serem capacitados no exercício de seus dons e ministérios.",
     format: "100% online, aulas ao vivo (remoto)",

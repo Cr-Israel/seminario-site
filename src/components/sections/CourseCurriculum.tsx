@@ -1,7 +1,9 @@
 "use client";
 
 import { useId, useState } from "react";
-import { BadgeCheck, Calendar, ChevronDown, Clock } from "lucide-react";
+import Image from "next/image";
+import { BadgeCheck, Calendar, ChevronDown, Clock, UserRound } from "lucide-react";
+import { professorPhoto } from "@/data/professors";
 
 type Discipline = {
   name: string;
@@ -23,6 +25,40 @@ const DOCENTE_INDEFINIDO = new Set(["Professor", "Professor em aberto"]);
 function docenteLabel(docente?: string) {
   if (!docente || DOCENTE_INDEFINIDO.has(docente)) return "Docente a definir";
   return docente;
+}
+
+/**
+ * Avatar redondo do docente ao lado do nome — foto real quando registrada em
+ * data/professors.ts; sem foto (ou docente a definir), ícone de pessoa.
+ */
+function DocenteAvatar({ docente, size }: { docente?: string; size: number }) {
+  const photo =
+    docente && !DOCENTE_INDEFINIDO.has(docente)
+      ? professorPhoto(docente)
+      : undefined;
+  const dimension = { width: size, height: size };
+
+  if (photo) {
+    return (
+      <Image
+        src={photo}
+        alt=""
+        aria-hidden="true"
+        {...dimension}
+        className="shrink-0 rounded-full object-cover"
+        style={dimension}
+      />
+    );
+  }
+  return (
+    <span
+      aria-hidden="true"
+      className="flex shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-700"
+      style={dimension}
+    >
+      <UserRound size={size * 0.55} strokeWidth={1.75} />
+    </span>
+  );
 }
 
 /** Balãozinho numerado da disciplina, reutilizado nas duas variantes. */
@@ -147,7 +183,8 @@ export default function CourseCurriculum({
                       <p className="text-[11px] font-semibold uppercase tracking-wider text-stone-500">
                         Docente
                       </p>
-                      <p className="mt-0.5 text-sm font-semibold text-brand-800">
+                      <p className="mt-1.5 flex items-center gap-2.5 text-sm font-semibold text-brand-800">
+                        <DocenteAvatar docente={discipline.docente} size={32} />
                         {docenteLabel(discipline.docente)}
                       </p>
 
@@ -188,7 +225,8 @@ export default function CourseCurriculum({
                   {discipline.name}
                 </p>
                 {discipline.professor && (
-                  <p className="mt-1 text-xs text-brand-700">
+                  <p className="mt-1.5 flex items-center gap-2 text-xs text-brand-700">
+                    <DocenteAvatar docente={discipline.professor} size={24} />
                     {discipline.professor}
                   </p>
                 )}

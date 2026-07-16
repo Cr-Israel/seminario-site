@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Send } from "lucide-react";
+import { Check, LoaderCircle, Send } from "lucide-react";
 import { efalCourses } from "@/data/efal";
 import { posCourses } from "@/data/pos";
+import { submitInterestForm, type InterestFormData } from "@/lib/forms";
 
 const textFields = [
   {
@@ -37,16 +38,36 @@ export default function InterestForm() {
     name: string;
     email: string;
   } | null>(null);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // TODO: conectar a um endpoint/serviço de e-mail (o back-end é feito
-    // separadamente). Por ora só confirmamos a interação na interface.
     const data = new FormData(e.currentTarget);
-    setSubmitted({
-      name: String(data.get("name") ?? "").trim().split(/\s+/)[0] ?? "",
-      email: String(data.get("email") ?? ""),
-    });
+    const payload: InterestFormData = {
+      name: String(data.get("name") ?? "").trim(),
+      phone: String(data.get("phone") ?? "").trim(),
+      email: String(data.get("email") ?? "").trim(),
+      course: String(data.get("course") ?? ""),
+    };
+    setError(null);
+    setSending(true);
+    try {
+      // Envio centralizado em src/lib/forms.ts (mock até o back-end existir).
+      const result = await submitInterestForm(payload);
+      if (result.ok) {
+        setSubmitted({
+          name: payload.name.split(/\s+/)[0] ?? "",
+          email: payload.email,
+        });
+      } else {
+        setError("Não foi possível enviar. Tente novamente.");
+      }
+    } catch {
+      setError("Não foi possível enviar. Tente novamente.");
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
@@ -135,11 +156,26 @@ export default function InterestForm() {
               </select>
             </div>
 
+            {error && (
+              <p role="alert" className="text-sm text-red-300">
+                {error}
+              </p>
+            )}
+
             <button
               type="submit"
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-sm bg-brand-50 px-7 py-3.5 text-sm font-medium text-brand-900 transition-colors hover:bg-white"
+              disabled={sending}
+              className="mt-2 inline-flex items-center justify-center gap-2 rounded-sm bg-brand-50 px-7 py-3.5 text-sm font-medium text-brand-900 transition-colors hover:bg-white disabled:cursor-not-allowed disabled:opacity-70"
             >
-              <Send size={15} /> Avise-me
+              {sending ? (
+                <>
+                  <LoaderCircle size={15} className="animate-spin" /> Enviando…
+                </>
+              ) : (
+                <>
+                  <Send size={15} /> Avise-me
+                </>
+              )}
             </button>
           </form>
         )}

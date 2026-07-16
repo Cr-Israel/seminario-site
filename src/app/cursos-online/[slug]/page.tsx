@@ -12,6 +12,8 @@ import Header from "@/components/layout/Header";
 import CourseCoordinator from "@/components/sections/CourseCoordinator";
 import CourseCurriculum from "@/components/sections/CourseCurriculum";
 import CourseProfessors from "@/components/sections/CourseProfessors";
+import SeloIPB from "@/components/sections/SeloIPB";
+import ModalidadeBadge from "@/components/ui/ModalidadeBadge";
 import { efalCourses, getEfalCourse } from "@/data/efal";
 import { posCourses, getPosCourse } from "@/data/pos";
 import { coordinators } from "@/data/coordinators";
@@ -95,6 +97,11 @@ export default async function OnlineCoursePage({
           </Link>
 
           <div className="mt-6 flex flex-wrap items-center gap-3">
+            <ModalidadeBadge
+              nivel={efalCourse ? "curso-livre" : "pos-graduacao"}
+              modalidade="online"
+              tone="dark"
+            />
             {efalCourse?.isNew && (
               <span className="rounded-full bg-brand-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-brand-900">
                 Novo curso
@@ -190,6 +197,8 @@ export default async function OnlineCoursePage({
           </div>
         )}
 
+        <SeloIPB className="mt-12" />
+
         <div className="mt-12 flex flex-col items-center gap-4 rounded-sm bg-brand-950 p-10 text-center sm:flex-row sm:justify-between sm:text-left">
           <div>
             <h3 className="font-serif text-lg font-bold text-white">
@@ -198,7 +207,7 @@ export default async function OnlineCoursePage({
                 : "Quer se especializar?"}
             </h3>
             <p className="mt-1 text-sm text-brand-100/75">
-              Garanta sua vaga na próxima turma.
+              A secretaria orienta você em cada passo da matrícula.
             </p>
           </div>
           <a

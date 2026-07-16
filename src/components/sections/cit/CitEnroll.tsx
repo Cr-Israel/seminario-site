@@ -18,7 +18,7 @@ export default function CitEnroll() {
             Pronto para começar?
           </h2>
           <p className="mt-4 text-base leading-relaxed text-brand-100/80">
-            Garanta sua vaga na próxima turma do Curso Introdutório de Teologia e
+            Inscreva-se na próxima turma do Curso Introdutório de Teologia e
             dê o primeiro passo na sua formação teológica reformada.
           </p>
         </div>

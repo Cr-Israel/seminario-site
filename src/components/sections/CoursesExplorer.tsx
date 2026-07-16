@@ -35,8 +35,7 @@ type Entry = {
 /**
  * Bacharel: o processo seletivo é unificado da IPB (funciona como um "Enem"
  * denominacional) e a inscrição é feita direto no site da IPB, fora do
- * controle do Simonton. O card leva à página interna /bacharel (que hoje traz
- * a coordenação e receberá o passo a passo, docentes, etc.).
+ * controle do Simonton. O card leva à página do curso, /graduacao.
  */
 const bacharel: Entry = {
   key: "bacharelado",
@@ -46,7 +45,7 @@ const bacharel: Entry = {
   description:
     "Nossa formação teológica completa, o carro-chefe do Seminário. O ingresso é pelo processo seletivo unificado da IPB, que habilita o candidato a escolher entre os seminários da denominação.",
   meta: "Presencial · Rio de Janeiro",
-  href: "/bacharel",
+  href: "/graduacao",
 };
 
 const efalEntries: Entry[] = efalCourses.map((c) => ({

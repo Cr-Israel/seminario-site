@@ -1,3 +1,6 @@
+import ModalidadeBadge from "@/components/ui/ModalidadeBadge";
+import { whatsappHref } from "@/lib/whatsapp";
+
 export default function GraduacaoHero() {
   return (
     <section className="relative overflow-hidden bg-brand-950 py-24">
@@ -15,9 +18,12 @@ export default function GraduacaoHero() {
       />
 
       <div className="relative mx-auto max-w-4xl px-6 text-center">
-        <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-brand-200/90">
-          Formação Presbiteriana Reformada · Presencial · Rio de Janeiro
-        </p>
+        <div className="mb-6 flex flex-wrap items-center justify-center gap-2">
+          <ModalidadeBadge nivel="bacharelado" modalidade="presencial" tone="dark" />
+          <span className="text-xs font-medium uppercase tracking-[0.2em] text-brand-200/90">
+            Formação Presbiteriana Reformada · Rio de Janeiro
+          </span>
+        </div>
         <h1 className="font-serif text-4xl font-extrabold leading-[1.15] text-white sm:text-5xl">
           Uma formação teológica completa, para quem foi chamado ao ministério
           pastoral
@@ -28,6 +34,25 @@ export default function GraduacaoHero() {
           curricular aprovada pelo Supremo Concílio da Igreja Presbiteriana do
           Brasil.
         </p>
+
+        <div className="mt-9 flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center">
+          <a
+            href="#processo-seletivo"
+            className="rounded-sm bg-brand-50 px-7 py-3.5 text-center text-sm font-medium text-brand-900 transition-colors hover:bg-white"
+          >
+            Como ingressar
+          </a>
+          <a
+            href={whatsappHref(
+              "Olá! Gostaria de informações sobre o Bacharelado em Teologia."
+            )}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-sm border border-white/25 px-7 py-3.5 text-center text-sm font-medium text-white transition-colors hover:bg-white/10"
+          >
+            Falar com a secretaria
+          </a>
+        </div>
       </div>
     </section>
   );

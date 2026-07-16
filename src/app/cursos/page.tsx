@@ -1,6 +1,7 @@
 import Header from "@/components/layout/Header";
 import Stats from "@/components/sections/Stats";
 import CoursesExplorer from "@/components/sections/CoursesExplorer";
+import SeloIPB from "@/components/sections/SeloIPB";
 import Faq from "@/components/sections/Faq";
 
 export const metadata = {
@@ -37,6 +38,11 @@ export default function CursosPage() {
 
       {/* Explorador de cursos com filtro por trilha */}
       <CoursesExplorer />
+
+      {/* Legitimação eclesiástica logo abaixo dos cards, como na Home. */}
+      <section className="px-6 pb-20">
+        <SeloIPB />
+      </section>
 
       {/* FAQ */}
       <Faq />

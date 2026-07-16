@@ -4,6 +4,7 @@ import SobreHero from "@/components/sections/sobre/SobreHero";
 import SobreHistory from "@/components/sections/sobre/SobreHistory";
 import SobreMissionValues from "@/components/sections/sobre/SobreMissionValues";
 import SobreDirector from "@/components/sections/sobre/SobreDirector";
+import SobreJuret from "@/components/sections/sobre/SobreJuret";
 import SobreChaplaincy from "@/components/sections/sobre/SobreChaplaincy";
 import { ogMetadata } from "@/lib/seo";
 
@@ -26,6 +27,7 @@ export default function SobrePage() {
       <SobreHistory />
       <SobreMissionValues />
       <SobreDirector />
+      <SobreJuret />
       <SobreChaplaincy />
     </div>
   );

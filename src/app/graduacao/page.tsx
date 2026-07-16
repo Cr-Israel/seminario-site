@@ -44,9 +44,13 @@ export default function GraduacaoPage() {
       <Differentiators />
       <Faculty />
 
-      {/* Coordenação do curso */}
+      {/* Coordenação do curso e coordenação pedagógica */}
       <section className="mx-auto max-w-3xl px-6 py-16">
         <CourseCoordinator coordinator={coordinators.bacharel} />
+        <CourseCoordinator
+          coordinator={coordinators.pedagogico}
+          title="Coordenação Pedagógica"
+        />
       </section>
 
       {depoimentosBacharel.length > 0 && (

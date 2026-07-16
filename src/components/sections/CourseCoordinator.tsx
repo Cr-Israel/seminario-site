@@ -3,7 +3,11 @@ import { Mail, UserRound } from "lucide-react";
 import type { Coordinator } from "@/data/coordinators";
 
 function initials(name: string) {
-  const parts = name.replace(/^Rev\.?\s+/i, "").trim().split(/\s+/).filter(Boolean);
+  const parts = name
+    .replace(/^(Rev\.|Profª\.?|Prof\.)\s*/i, "")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
   const first = parts[0]?.[0] ?? "";
   const last = parts.length > 1 ? parts[parts.length - 1][0] ?? "" : "";
   return (first + last).toUpperCase() || "?";
@@ -11,17 +15,20 @@ function initials(name: string) {
 
 /**
  * Bloco "Coordenação" das páginas de curso — mostra o coordenador do núcleo
- * e um contato direto por e-mail.
+ * e um contato direto por e-mail. O título é configurável para cursos com
+ * mais de uma coordenação (ex.: Bacharelado tem também a pedagógica).
  */
 export default function CourseCoordinator({
   coordinator,
+  title = "Coordenação do Curso",
 }: {
   coordinator: Coordinator;
+  title?: string;
 }) {
   return (
     <div className="mt-10">
       <h2 className="font-serif text-xl font-bold text-brand-950">
-        Coordenação
+        {title}
       </h2>
       <div className="mt-4 flex flex-col gap-5 rounded-sm border border-brand-900/10 bg-white p-6 sm:flex-row sm:items-center">
         {coordinator.photo ? (

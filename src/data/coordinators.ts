@@ -21,6 +21,12 @@ export const coordinators = {
     email: "coordenacao.stps@ipb.org.br",
     photo: "/images/rev-joao.jpg",
   },
+  pedagogico: {
+    name: "Profª. Simone Xavier",
+    role: "Coordenação Pedagógica",
+    email: "pedagogico.stps@ipb.org.br",
+    photo: "/images/prof-simone-xavier.png",
+  },
   efal: {
     name: "Rev. Jerson Neto",
     role: "Coordenação da EFAL",

@@ -31,9 +31,21 @@ export const faqItems: FaqItem[] = [
       "O ingresso é feito por um processo seletivo unificado da Igreja Presbiteriana do Brasil — uma prova que habilita o candidato a escolher entre os seminários da IPB, incluindo o Simonton. A inscrição é feita diretamente pela IPB; acompanhe as datas no site oficial da denominação.",
   },
   {
+    question: "Qual a duração dos cursos?",
+    answer:
+      "Os cursos da EFAL duram de 6 a 12 meses, conforme o curso; o Curso de Libras é uma trilha em 3 níveis, com aulas semanais. [PLACEHOLDER] A duração do Bacharelado e das pós-graduações será confirmada pela secretaria.",
+    // TODO(conteúdo): confirmar duração oficial do Bacharelado e da Pós.
+  },
+  {
     question: "Os cursos têm mensalidade?",
     answer:
       "Os valores variam conforme o curso e a turma. Para informações atualizadas sobre investimento e formas de pagamento, fale com a secretaria.",
+  },
+  {
+    question: "Existem bolsas de estudo ou descontos?",
+    answer:
+      "[PLACEHOLDER] A política de bolsas e descontos está em consolidação. Fale com a secretaria para conhecer as condições vigentes para cada curso.",
+    // TODO(conteúdo): confirmar política oficial de bolsas/descontos com a secretaria.
   },
   {
     question: "Como funcionam as aulas online ao vivo?",

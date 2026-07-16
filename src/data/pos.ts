@@ -37,6 +37,9 @@ export type PosCourse = {
  * ainda são PLACEHOLDER (isPlaceholder: true) — substituir pelo texto oficial
  * antes de divulgar. Os títulos e as taglines refletem o conteúdo real das
  * disciplinas.
+ *
+ * TODO(conteúdo): substituir descrição, público-alvo e duração de cada
+ * programa pelo texto oficial do Núcleo de Pós-graduação.
  */
 export const posCourses: PosCourse[] = [
   {
@@ -45,8 +48,8 @@ export const posCourses: PosCourse[] = [
     tagline:
       "Formação estratégica para plantar e revitalizar igrejas segundo a teologia reformada.",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. (Descrição oficial a confirmar com o Núcleo de Pós-graduação.)",
-    audience: "A confirmar com o Núcleo de Pós-graduação.",
+      "[PLACEHOLDER] Descrição oficial do programa a confirmar com o Núcleo de Pós-graduação. A grade curricular abaixo já é a oficial.",
+    audience: "[PLACEHOLDER] Público-alvo a confirmar com o Núcleo de Pós-graduação.",
     format: "100% online · Ao vivo",
     duration: "A definir",
     disciplines: "9 disciplinas",
@@ -71,8 +74,8 @@ export const posCourses: PosCourse[] = [
     tagline:
       "Aprofundamento exegético e teológico do Novo Testamento, à luz da tradição reformada.",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. (Descrição oficial a confirmar com o Núcleo de Pós-graduação.)",
-    audience: "A confirmar com o Núcleo de Pós-graduação.",
+      "[PLACEHOLDER] Descrição oficial do programa a confirmar com o Núcleo de Pós-graduação. A grade curricular abaixo já é a oficial.",
+    audience: "[PLACEHOLDER] Público-alvo a confirmar com o Núcleo de Pós-graduação.",
     format: "100% online · Ao vivo",
     duration: "A definir",
     disciplines: "9 disciplinas",
@@ -97,8 +100,8 @@ export const posCourses: PosCourse[] = [
     tagline:
       "O calvinismo aplicado à cultura, à política, à economia e à vida social.",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. (Descrição oficial a confirmar com o Núcleo de Pós-graduação.)",
-    audience: "A confirmar com o Núcleo de Pós-graduação.",
+      "[PLACEHOLDER] Descrição oficial do programa a confirmar com o Núcleo de Pós-graduação. A grade curricular abaixo já é a oficial.",
+    audience: "[PLACEHOLDER] Público-alvo a confirmar com o Núcleo de Pós-graduação.",
     format: "100% online · Ao vivo",
     duration: "A definir",
     disciplines: "9 disciplinas",
@@ -123,8 +126,8 @@ export const posCourses: PosCourse[] = [
     tagline:
       "Liderança, gestão e estratégia a serviço do ministério, com professores convidados.",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. (Descrição oficial a confirmar com o Núcleo de Pós-graduação.)",
-    audience: "A confirmar com o Núcleo de Pós-graduação.",
+      "[PLACEHOLDER] Descrição oficial do programa a confirmar com o Núcleo de Pós-graduação. A grade curricular abaixo já é a oficial.",
+    audience: "[PLACEHOLDER] Público-alvo a confirmar com o Núcleo de Pós-graduação.",
     format: "100% online · Ao vivo",
     duration: "A definir",
     disciplines: "9 disciplinas",

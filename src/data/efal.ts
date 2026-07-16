@@ -671,10 +671,12 @@ export const efalCourses: EfalCourse[] = [
     slug: "cfm",
     code: "CFM",
     title: "Curso de Formação Musical",
-    tagline: "Lorem ipsum dolor sit amet",
+    // TODO(conteúdo): substituir pela apresentação oficial do CFM (coordenação da EFAL).
+    tagline: "[PLACEHOLDER] Apresentação do curso em elaboração",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    audience: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "[PLACEHOLDER] Descrição do Curso de Formação Musical a ser fornecida pela coordenação da EFAL — objetivos, conteúdo e proposta de formação para o ministério de música da igreja local.",
+    audience:
+      "[PLACEHOLDER] Público-alvo a confirmar com a coordenação da EFAL.",
     format: "A definir",
     duration: "A definir",
     disciplines: "A definir",
@@ -690,10 +692,12 @@ export const efalCourses: EfalCourse[] = [
     slug: "cfc",
     code: "CFC",
     title: "Curso de Formação em Capelania",
-    tagline: "Lorem ipsum dolor sit amet",
+    // TODO(conteúdo): substituir pela apresentação oficial do CFC (coordenação da EFAL).
+    tagline: "[PLACEHOLDER] Apresentação do curso em elaboração",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    audience: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "[PLACEHOLDER] Descrição do Curso de Formação em Capelania a ser fornecida pela coordenação da EFAL. A grade curricular abaixo já é a oficial do calendário 2026.2.",
+    audience:
+      "[PLACEHOLDER] Público-alvo a confirmar com a coordenação da EFAL.",
     format: "A definir",
     duration: "A definir",
     disciplines: "9 disciplinas",

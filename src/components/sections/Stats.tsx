@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { cursos } from "@/data/cursos";
 
 const stats = [
   { value: 1982, suffix: "", label: "Ano de fundação" },
   { value: 40, suffix: "+", label: "Anos formando pastores" },
-  { value: 8, suffix: "", label: "Cursos e programas ativos" },
+  // Derivado da fonte única de cursos — Bacharelado + EFAL + Pós-graduação.
+  { value: cursos.length, suffix: "", label: "Cursos e programas ativos" },
   { value: 100, suffix: "%", label: "Aulas acompanhadas por professores" },
 ];
 

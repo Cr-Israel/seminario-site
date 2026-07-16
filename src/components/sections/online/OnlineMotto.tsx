@@ -101,7 +101,7 @@ export default function OnlineMotto() {
             rel="noopener noreferrer"
             className="mt-10 inline-flex items-center gap-2 rounded-sm bg-brand-900 px-7 py-3.5 text-sm font-medium text-white transition-colors hover:bg-brand-800"
           >
-            Inscreva-se agora <ArrowRight size={16} />
+            Quero me inscrever <ArrowRight size={16} />
           </a>
         </div>
       </div>

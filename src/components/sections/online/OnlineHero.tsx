@@ -28,15 +28,14 @@ export default function OnlineHero() {
           Um caminho de formação para cada etapa do seu chamado
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-brand-100/80 sm:text-lg">
-          São 7 cursos na EFAL e programas de pós-graduação, 100% online e com
-          aula ao vivo, professor em tempo real, não gravação assíncrona. Da
-          primeira formação de líderes ao aprofundamento acadêmico, com
-          inscrição direta pelo Simonton.
+          Do primeiro contato com a teologia à pós-graduação: escolha sua
+          trilha, estude de qualquer lugar do Brasil com aulas ao vivo, e
+          inscreva-se direto — sem vestibular.
         </p>
 
         <div className="mt-9 flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center">
           <a
-            href="#cursos"
+            href="#trilhas"
             className="rounded-sm bg-brand-50 px-7 py-3.5 text-center text-sm font-medium text-brand-900 transition-colors hover:bg-white"
           >
             Encontre o seu curso

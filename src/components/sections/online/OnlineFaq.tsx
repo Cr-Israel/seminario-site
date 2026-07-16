@@ -8,6 +8,11 @@ type FaqItem = { question: string; answer: string };
 
 const faqItems: FaqItem[] = [
   {
+    question: "Preciso fazer vestibular para me inscrever?",
+    answer:
+      "Não. Os cursos online da EFAL e a Pós-graduação têm inscrição direta pelo Simonton — diferente do Bacharelado presencial, que passa pelo processo seletivo unificado da IPB.",
+  },
+  {
     question: "Os cursos da EFAL dão certificado?",
     answer:
       "Sim. Os cursos da EFAL são certificados pela Junta Regional de Educação Teológica (JURET) da Igreja Presbiteriana do Brasil.",

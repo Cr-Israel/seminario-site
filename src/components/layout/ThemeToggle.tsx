@@ -1,44 +1,46 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useSyncExternalStore } from "react";
 import { Moon, Sun } from "lucide-react";
 
 const STORAGE_KEY = "theme";
-type Theme = "light" | "dark";
 
 /**
- * Pílula de troca de tema (claro/escuro).
- *
  * O tema "de verdade" mora no atributo `data-theme` do <html>, aplicado antes
- * da primeira pintura pelo script inline em layout.tsx (evita flash). Aqui o
- * estado começa em "light" — igual ao SSR — e sincroniza com o DOM no primeiro
- * effect, então não há mismatch de hidratação; só o botão se ajusta.
+ * da primeira pintura pelo script inline em layout.tsx (evita flash). O botão
+ * lê esse estado externo via useSyncExternalStore: no servidor assume "light"
+ * (igual ao SSR) e, no cliente, sincroniza com o DOM sem mismatch de
+ * hidratação nem setState em effect.
  */
-export default function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>("light");
+function subscribe(onChange: () => void) {
+  const observer = new MutationObserver(onChange);
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["data-theme"],
+  });
+  return () => observer.disconnect();
+}
 
-  useEffect(() => {
-    setTheme(
-      document.documentElement.getAttribute("data-theme") === "dark"
-        ? "dark"
-        : "light",
-    );
-  }, []);
+function getSnapshot() {
+  return document.documentElement.getAttribute("data-theme") === "dark";
+}
+
+function getServerSnapshot() {
+  return false;
+}
+
+export default function ThemeToggle() {
+  const isDark = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   const toggle = useCallback(() => {
-    setTheme((prev) => {
-      const next: Theme = prev === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", next);
-      try {
-        localStorage.setItem(STORAGE_KEY, next);
-      } catch {
-        /* localStorage indisponível (modo privado etc.) — ignora */
-      }
-      return next;
-    });
+    const next = getSnapshot() ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    try {
+      localStorage.setItem(STORAGE_KEY, next);
+    } catch {
+      /* localStorage indisponível (modo privado etc.) — ignora */
+    }
   }, []);
-
-  const isDark = theme === "dark";
 
   return (
     <button

@@ -17,7 +17,7 @@ export default function Testimonials({
   kicker?: string;
 }) {
   return (
-    <section id="depoimentos" className="bg-white py-24">
+    <section id="depoimentos" className="bg-brand-50/60 py-24">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-xs font-medium uppercase tracking-[0.2em] text-brand-700">
@@ -32,7 +32,7 @@ export default function Testimonials({
           {items.map((depoimento) => (
             <figure
               key={depoimento.context}
-              className="flex h-full flex-col rounded-sm border border-brand-900/10 bg-brand-50/40 p-7 shadow-sm"
+              className="flex h-full flex-col rounded-sm border border-brand-900/10 bg-white p-7 shadow-sm"
             >
               <Quote size={22} className="text-brand-400" aria-hidden />
               <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-stone-600">

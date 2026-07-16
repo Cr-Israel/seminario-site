@@ -12,7 +12,7 @@ const preview = onlineProfessors.filter((p) => p.photo).slice(0, 4);
  */
 export default function FacultyPreview() {
   return (
-    <section className="bg-brand-50/60 py-24">
+    <section className="bg-white py-24">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-xs font-medium uppercase tracking-[0.2em] text-brand-700">

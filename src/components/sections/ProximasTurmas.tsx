@@ -63,7 +63,7 @@ const ingressos: Ingresso[] = [
  */
 export default function ProximasTurmas() {
   return (
-    <section id="ingresso" className="bg-brand-50/60 py-24">
+    <section id="ingresso" className="bg-white py-24">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-xs font-medium uppercase tracking-[0.2em] text-brand-700">

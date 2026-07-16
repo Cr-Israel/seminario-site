@@ -11,11 +11,17 @@ import Testimonials from "@/components/sections/Testimonials";
 import { coordinators } from "@/data/coordinators";
 import { depoimentos } from "@/data/depoimentos";
 import { whatsappHref } from "@/lib/whatsapp";
+import { ogMetadata } from "@/lib/seo";
+
+const title =
+  "Bacharelado em Teologia — Graduação Presencial | Seminário Simonton";
+const description =
+  "O Bacharelado em Teologia do Seminário Simonton é a formação presencial completa em teologia reformada. O ingresso é pelo Vestibular Unificado da Igreja Presbiteriana do Brasil, organizado pela JET.";
 
 export const metadata = {
-  title: "Bacharelado em Teologia — Graduação Presencial | Seminário Simonton",
-  description:
-    "O Bacharelado em Teologia do Seminário Simonton é a formação presencial completa em teologia reformada. O ingresso é pelo Vestibular Unificado da Igreja Presbiteriana do Brasil, organizado pela JET.",
+  title,
+  description,
+  openGraph: ogMetadata(title, description),
 };
 
 /** Depoimentos do curso — egressos do Bacharelado (placeholders por ora). */

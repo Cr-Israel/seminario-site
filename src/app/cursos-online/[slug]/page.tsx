@@ -17,6 +17,7 @@ import ModalidadeBadge from "@/components/ui/ModalidadeBadge";
 import { efalCourses, getEfalCourse } from "@/data/efal";
 import { posCourses, getPosCourse } from "@/data/pos";
 import { coordinators } from "@/data/coordinators";
+import { ogMetadata } from "@/lib/seo";
 
 type Params = Promise<{ slug: string }>;
 
@@ -42,16 +43,20 @@ export async function generateMetadata({ params }: { params: Params }) {
   const { slug } = await params;
   const efalCourse = getEfalCourse(slug);
   if (efalCourse) {
+    const title = `${efalCourse.title} (${efalCourse.code}) — EFAL | Seminário Simonton`;
     return {
-      title: `${efalCourse.title} (${efalCourse.code}) — EFAL | Seminário Simonton`,
+      title,
       description: efalCourse.tagline,
+      openGraph: ogMetadata(title, efalCourse.tagline),
     };
   }
   const posCourse = getPosCourse(slug);
   if (posCourse) {
+    const title = `${posCourse.title} — Pós-graduação | Seminário Simonton`;
     return {
-      title: `${posCourse.title} — Pós-graduação | Seminário Simonton`,
+      title,
       description: posCourse.tagline,
+      openGraph: ogMetadata(title, posCourse.tagline),
     };
   }
   return {};

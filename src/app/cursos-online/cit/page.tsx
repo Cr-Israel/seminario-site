@@ -6,11 +6,17 @@ import CitCurriculum from "@/components/sections/cit/CitCurriculum";
 import CitInstructors from "@/components/sections/cit/CitInstructors";
 import CitFaq from "@/components/sections/cit/CitFaq";
 import CitEnroll from "@/components/sections/cit/CitEnroll";
+import { ogMetadata } from "@/lib/seo";
+
+const title =
+  "Curso Introdutório de Teologia (CIT) — EFAL | Seminário Simonton";
+const description =
+  "Formação teológica reformada 100% online e ao vivo: 8 disciplinas, 32 aulas com reverendos. O primeiro passo além da Escola Dominical e o degrau anterior ao Curso Livre de Bacharel em Teologia.";
 
 export const metadata = {
-  title: "Curso Introdutório de Teologia (CIT) — EFAL | Seminário Simonton",
-  description:
-    "Formação teológica reformada 100% online e ao vivo: 8 disciplinas, 32 aulas com reverendos. O primeiro passo além da Escola Dominical e o degrau anterior ao Curso Livre de Bacharel em Teologia.",
+  title,
+  description,
+  openGraph: ogMetadata(title, description),
 };
 
 /**

@@ -10,11 +10,16 @@ import OnlineFaq from "@/components/sections/online/OnlineFaq";
 import InterestForm from "@/components/sections/online/InterestForm";
 import SeloIPB from "@/components/sections/SeloIPB";
 import { depoimentos } from "@/data/depoimentos";
+import { ogMetadata } from "@/lib/seo";
+
+const title = "Cursos Online — EFAL & Pós-graduação | Seminário Simonton";
+const description =
+  "Formação teológica 100% online, com aula ao vivo: 7 cursos na EFAL e programas de pós-graduação do Seminário Simonton, com inscrição direta — sem vestibular — e certificação pela JURET/IPB.";
 
 export const metadata = {
-  title: "Cursos Online — EFAL & Pós-graduação | Seminário Simonton",
-  description:
-    "Formação teológica 100% online, com aula ao vivo: 7 cursos na EFAL e programas de pós-graduação do Seminário Simonton, com inscrição direta — sem vestibular — e certificação pela JURET/IPB.",
+  title,
+  description,
+  openGraph: ogMetadata(title, description),
 };
 
 /** Depoimentos de alunos dos cursos online/EFAL (placeholders por ora). */

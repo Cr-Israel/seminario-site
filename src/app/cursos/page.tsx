@@ -3,11 +3,16 @@ import Stats from "@/components/sections/Stats";
 import CoursesExplorer from "@/components/sections/CoursesExplorer";
 import SeloIPB from "@/components/sections/SeloIPB";
 import Faq from "@/components/sections/Faq";
+import { ogMetadata } from "@/lib/seo";
+
+const title = "Cursos e formação | Seminário Simonton";
+const description =
+  "Um caminho de formação para cada etapa do seu chamado — Graduação, EFAL e Pós-graduação no Seminário Teológico Presbiteriano Rev. Ashbel Green Simonton.";
 
 export const metadata = {
-  title: "Cursos e formação | Seminário Simonton",
-  description:
-    "Um caminho de formação para cada etapa do seu chamado — Graduação, EFAL e Pós-graduação no Seminário Teológico Presbiteriano Rev. Ashbel Green Simonton.",
+  title,
+  description,
+  openGraph: ogMetadata(title, description),
 };
 
 export default function CursosPage() {

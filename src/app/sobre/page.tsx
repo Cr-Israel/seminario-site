@@ -5,11 +5,16 @@ import SobreHistory from "@/components/sections/sobre/SobreHistory";
 import SobreMissionValues from "@/components/sections/sobre/SobreMissionValues";
 import SobreDirector from "@/components/sections/sobre/SobreDirector";
 import SobreChaplaincy from "@/components/sections/sobre/SobreChaplaincy";
+import { ogMetadata } from "@/lib/seo";
+
+const title = "Sobre o Seminário | Seminário Simonton";
+const description =
+  "Conheça a história do Seminário Teológico Presbiteriano Rev. Ashbel Green Simonton — de 1867 aos dias de hoje —, sua direção e o trabalho da capelania.";
 
 export const metadata = {
-  title: "Sobre o Seminário | Seminário Simonton",
-  description:
-    "Conheça a história do Seminário Teológico Presbiteriano Rev. Ashbel Green Simonton — de 1867 aos dias de hoje —, sua direção e o trabalho da capelania.",
+  title,
+  description,
+  openGraph: ogMetadata(title, description),
 };
 
 export default function SobrePage() {

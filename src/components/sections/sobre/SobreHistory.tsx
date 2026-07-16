@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 /**
  * Linha do tempo institucional — marcos extraídos da página "Sobre nós" do
@@ -9,12 +10,25 @@ import { useEffect, useRef, useState } from "react";
  * Timeline horizontal scroll-driven: o wrapper é alto (N × 55vh) e o conteúdo
  * fica sticky ocupando a tela; o progresso do scroll dentro do wrapper define
  * qual marco está ativo — a bolinha ativa preenche em verde e o texto dela é
- * revelado, enquanto as demais voltam ao estado neutro.
+ * revelado, enquanto as demais voltam ao estado neutro. Marcos com foto do
+ * acervo exibem-na ao lado do texto (só em telas largas, para não estourar a
+ * altura da seção sticky).
  */
-const milestones = [
+type Milestone = {
+  year: string;
+  text: string;
+  image?: { src: string; alt: string; caption: string };
+};
+
+const milestones: Milestone[] = [
   {
     year: "1867",
     text: "O Rev. Ashbel Green Simonton, pioneiro do presbiterianismo no Brasil, funda no Rio de Janeiro o “Seminário Primitivo”, dando início à formação teológica presbiteriana no país.",
+    image: {
+      src: "/images/primeiro-seminario.jpeg",
+      alt: "Reprodução histórica da fachada do Seminário Primitivo do Rio de Janeiro",
+      caption: "O Seminário Primitivo do Rio de Janeiro",
+    },
   },
   {
     year: "1888",
@@ -35,14 +49,29 @@ const milestones = [
   {
     year: "1992",
     text: "O Seminário passa a funcionar na Rua Joaquina Rosa, 199, no Méier, onde realiza seus vestibulares desde então.",
+    image: {
+      src: "/images/antiga-sede.jpeg",
+      alt: "Fachada da antiga sede do Seminário, na Rua Joaquina Rosa, 199, com o letreiro Seminário Teológico Presbiteriano do Rio de Janeiro",
+      caption: "A sede da Rua Joaquina Rosa, 199, no Méier",
+    },
   },
   {
     year: "2006",
     text: "A instituição recebe o nome atual, em homenagem ao Rev. Ashbel Green Simonton.",
+    image: {
+      src: "/images/ashbel-green-simonton.png",
+      alt: "Retrato do Rev. Ashbel Green Simonton",
+      caption: "Rev. Ashbel Green Simonton, pioneiro do presbiterianismo no Brasil",
+    },
   },
   {
     year: "2022",
     text: "Inauguração da nova sede — o Edifício Rev. Roberto Brasileiro Silva, na Rua Isolina, 151, Méier.",
+    image: {
+      src: "/images/seminario-frente.jpeg",
+      alt: "Fachada de vidro da nova sede do Seminário Simonton, o Edifício Rev. Roberto Brasileiro Silva",
+      caption: "O Edifício Rev. Roberto Brasileiro Silva, na Rua Isolina, 151",
+    },
   },
 ];
 
@@ -152,8 +181,9 @@ export default function SobreHistory() {
           </div>
 
           {/* Texto do marco ativo — todos empilhados na mesma célula do grid
-              (altura = maior texto, sem layout shift); só o ativo é visível. */}
-          <div className="mt-14 grid max-w-3xl">
+              (altura = maior texto, sem layout shift); só o ativo é visível.
+              Quando o marco tem foto do acervo, ela aparece à direita (lg+). */}
+          <div className="mt-14 grid">
             {milestones.map((item, i) => (
               <div
                 key={item.year}
@@ -164,12 +194,32 @@ export default function SobreHistory() {
                     : "pointer-events-none translate-y-4 opacity-0"
                 }`}
               >
-                <p className="font-serif text-4xl font-extrabold text-brand-700 sm:text-5xl">
-                  {item.year}
-                </p>
-                <p className="mt-4 text-lg leading-relaxed text-stone-600">
-                  {item.text}
-                </p>
+                <div className="flex items-start gap-12">
+                  <div className="max-w-3xl flex-1">
+                    <p className="font-serif text-4xl font-extrabold text-brand-700 sm:text-5xl">
+                      {item.year}
+                    </p>
+                    <p className="mt-4 text-lg leading-relaxed text-stone-600">
+                      {item.text}
+                    </p>
+                  </div>
+                  {item.image && (
+                    <figure className="hidden w-60 shrink-0 lg:block xl:w-72">
+                      <div className="relative aspect-[3/4] max-h-[38vh] w-full overflow-hidden rounded-sm border border-brand-900/10 bg-white">
+                        <Image
+                          src={item.image.src}
+                          alt={item.image.alt}
+                          fill
+                          sizes="288px"
+                          className="object-cover"
+                        />
+                      </div>
+                      <figcaption className="mt-2 text-xs leading-snug text-stone-500">
+                        {item.image.caption}
+                      </figcaption>
+                    </figure>
+                  )}
+                </div>
               </div>
             ))}
           </div>

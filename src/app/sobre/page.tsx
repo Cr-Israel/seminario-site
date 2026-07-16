@@ -2,6 +2,7 @@ import Header from "@/components/layout/Header";
 import About from "@/components/sections/About";
 import SobreHero from "@/components/sections/sobre/SobreHero";
 import SobreHistory from "@/components/sections/sobre/SobreHistory";
+import SobreCampus from "@/components/sections/sobre/SobreCampus";
 import SobreMissionValues from "@/components/sections/sobre/SobreMissionValues";
 import SobreDirector from "@/components/sections/sobre/SobreDirector";
 import SobreJuret from "@/components/sections/sobre/SobreJuret";
@@ -25,6 +26,7 @@ export default function SobrePage() {
       <SobreHero />
       <About />
       <SobreHistory />
+      <SobreCampus />
       <SobreMissionValues />
       <SobreDirector />
       <SobreJuret />

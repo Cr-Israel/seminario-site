@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Header from "@/components/layout/Header";
@@ -51,6 +52,24 @@ export default function GraduacaoPage() {
           coordinator={coordinators.pedagogico}
           title="Coordenação Pedagógica"
         />
+      </section>
+
+      {/* Formatura — registro do acervo, ponte para os depoimentos de egressos. */}
+      <section className="bg-white py-16">
+        <figure className="mx-auto max-w-6xl px-6">
+          <div className="relative aspect-[2/1] overflow-hidden rounded-sm border border-brand-900/10">
+            <Image
+              src="/images/formatura-2025.jpeg"
+              alt="Formandos do Seminário Simonton de beca e capelo, erguendo seus diplomas durante o culto de formatura"
+              fill
+              sizes="(max-width: 1152px) 100vw, 1104px"
+              className="object-cover"
+            />
+          </div>
+          <figcaption className="mt-3 text-center text-sm text-stone-500">
+            Culto de formatura da turma de 2025
+          </figcaption>
+        </figure>
       </section>
 
       {depoimentosBacharel.length > 0 && (

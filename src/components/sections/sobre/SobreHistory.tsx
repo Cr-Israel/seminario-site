@@ -136,9 +136,10 @@ export default function SobreHistory() {
               Mais de um século e meio de formação teológica
             </h2>
             <p className="mt-4 text-base leading-relaxed text-stone-600">
-              Estabelecido em 1982 como ramificação do Seminário Presbiteriano
-              do Sul, o Simonton é herdeiro de uma trajetória que remonta ao
-              próprio fundador do presbiterianismo brasileiro.
+              Fundado em 1986 pelo Supremo Concílio da IPB, a partir de uma
+              extensão do Seminário Presbiteriano do Sul, o Simonton é herdeiro
+              de uma trajetória que remonta ao próprio fundador do
+              presbiterianismo brasileiro.
             </p>
           </div>
 

@@ -1,4 +1,26 @@
 import Image from "next/image";
+import Link from "next/link";
+import { contato } from "@/data/contato";
+
+const footerColumns = [
+  {
+    title: "Institucional",
+    links: [
+      { label: "Sobre", href: "/sobre" },
+      { label: "JURET-Rio", href: "/juret-rio" },
+      { label: "LGPD", href: "/lgpd" },
+      { label: "Contato", href: "/#contato" },
+    ],
+  },
+  {
+    title: "Cursos",
+    links: [
+      { label: "Bacharelado em Teologia", href: "/graduacao" },
+      { label: "Pós-graduação", href: "/cursos-online#pos" },
+      { label: "EFAL", href: "/cursos-online" },
+    ],
+  },
+];
 
 const socialLinks = [
   {
@@ -36,44 +58,89 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-brand-950 py-10">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 sm:flex-row">
-        <Image
-          src="/images/logo-branca-trim.png"
-          alt="Seminário Teológico Presbiteriano Rev. Ashbel Green Simonton"
-          width={269}
-          height={91}
-          className="h-16 w-auto opacity-90"
-        />
+    <footer className="bg-brand-950 py-14">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="grid gap-10 md:grid-cols-[minmax(0,1.4fr)_1fr_1fr_1.2fr]">
+          {/* Marca + redes */}
+          <div>
+            <Image
+              src="/images/logo-branca-trim.png"
+              alt="Seminário Teológico Presbiteriano Rev. Ashbel Green Simonton"
+              width={269}
+              height={91}
+              className="h-16 w-auto opacity-90"
+            />
+            <div className="mt-6 flex items-center gap-3">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="flex h-9 w-9 items-center justify-center rounded-full text-brand-100/80 ring-1 ring-white/15 transition-colors hover:bg-white/10 hover:text-white"
+                >
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    {social.path}
+                  </svg>
+                </a>
+              ))}
+            </div>
+          </div>
 
-        <div className="flex items-center gap-3">
-          {socialLinks.map((social) => (
-            <a
-              key={social.label}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={social.label}
-              className="flex h-9 w-9 items-center justify-center rounded-full text-brand-100/80 ring-1 ring-white/15 transition-colors hover:bg-white/10 hover:text-white"
-            >
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                {social.path}
-              </svg>
-            </a>
+          {/* Colunas de links */}
+          {footerColumns.map((column) => (
+            <div key={column.title}>
+              <h3 className="text-xs font-medium uppercase tracking-[0.2em] text-brand-200/70">
+                {column.title}
+              </h3>
+              <ul className="mt-4 flex flex-col gap-2.5">
+                {column.links.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-brand-100/80 transition-colors hover:text-white"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
+
+          {/* Contato */}
+          <div>
+            <h3 className="text-xs font-medium uppercase tracking-[0.2em] text-brand-200/70">
+              Contato
+            </h3>
+            <ul className="mt-4 flex flex-col gap-2.5 text-sm text-brand-100/80">
+              <li>{contato.endereco}</li>
+              <li>{contato.telefone}</li>
+              <li>
+                <a
+                  href={`mailto:${contato.email}`}
+                  className="transition-colors hover:text-white"
+                >
+                  {contato.email}
+                </a>
+              </li>
+              <li>{contato.horario}</li>
+            </ul>
+          </div>
         </div>
 
-        <div className="flex flex-col items-center gap-1 text-xs text-brand-200/70 sm:items-end">
+        <div className="mt-12 flex flex-col items-center gap-1 border-t border-white/10 pt-6 text-center text-xs text-brand-200/70">
           <span>
             © {new Date().getFullYear()} Seminário Teológico Presbiteriano
             Rev. Ashbel Green Simonton

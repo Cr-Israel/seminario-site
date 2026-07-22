@@ -16,7 +16,7 @@ export default function SobreHero() {
 
       <div className="relative mx-auto max-w-4xl px-6 text-center">
         <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-brand-200/90">
-          Desde 1982 · Igreja Presbiteriana do Brasil
+          Desde 1986 · Igreja Presbiteriana do Brasil
         </p>
         <h1 className="font-serif text-4xl font-extrabold leading-[1.15] text-white sm:text-5xl">
           Uma história que começa com o pioneiro do presbiterianismo brasileiro

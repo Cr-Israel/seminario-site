@@ -10,22 +10,16 @@ import {
   Clock,
   LoaderCircle,
 } from "lucide-react";
+import { contato } from "@/data/contato";
 import { cursos } from "@/data/cursos";
 import { submitContactForm, type ContactFormData } from "@/lib/forms";
 import { whatsappHref } from "@/lib/whatsapp";
 
 const contactInfo = [
-  {
-    icon: MapPin,
-    text: "Rua Isolina, nº 151, Méier, Rio de Janeiro, RJ, CEP 20710-080",
-  },
-  { icon: Phone, text: "(21) 2201-6734" },
-  {
-    icon: Mail,
-    text: "secretaria.stps@ipb.org.br",
-    href: "mailto:secretaria.stps@ipb.org.br",
-  },
-  { icon: Clock, text: "Segunda a sexta-feira, das 13h às 20h" },
+  { icon: MapPin, text: contato.endereco },
+  { icon: Phone, text: contato.telefone },
+  { icon: Mail, text: contato.email, href: `mailto:${contato.email}` },
+  { icon: Clock, text: contato.horario },
 ];
 
 const textFields = [

@@ -32,7 +32,7 @@ export default function Differentiators() {
           <div className="absolute -bottom-6 -right-6 hidden h-28 w-28 items-center justify-center rounded-full bg-brand-50 text-center font-serif text-sm font-semibold text-brand-900 shadow-lg sm:flex">
             Desde
             <br />
-            1982
+            1986
           </div>
         </div>
 

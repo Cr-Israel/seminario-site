@@ -16,7 +16,7 @@ const SITE_URL = "https://seminariosimonton.com.br";
 
 const SITE_TITLE = "Seminário Simonton | Formação Teológica Reformada";
 const SITE_DESCRIPTION =
-  "Seminário Teológico Presbiteriano Rev. Ashbel Green Simonton — formando pastores e líderes para a glória de Deus desde 1982.";
+  "Seminário Teológico Presbiteriano Rev. Ashbel Green Simonton — formando pastores e líderes para a glória de Deus desde 1986.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -44,7 +44,7 @@ const organizationJsonLd = {
   alternateName: "Seminário Simonton",
   url: SITE_URL,
   logo: `${SITE_URL}/images/logo-verde-trim.png`,
-  foundingDate: "1982",
+  foundingDate: "1986",
   telephone: "+55-21-2201-6734",
   email: "secretaria.stps@ipb.org.br",
   address: {

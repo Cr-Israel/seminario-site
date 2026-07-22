@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Check, LoaderCircle, Send } from "lucide-react";
 import { efalCourses } from "@/data/efal";
 import { posCourses } from "@/data/pos";
-import { submitInterestForm, type InterestFormData } from "@/lib/forms";
+import { enviarContato } from "@/app/actions/contato";
 
 const textFields = [
   {
@@ -44,21 +44,25 @@ export default function InterestForm() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-    const payload: InterestFormData = {
-      name: String(data.get("name") ?? "").trim(),
-      phone: String(data.get("phone") ?? "").trim(),
-      email: String(data.get("email") ?? "").trim(),
-      course: String(data.get("course") ?? ""),
-    };
+    const name = String(data.get("name") ?? "").trim();
+    const email = String(data.get("email") ?? "").trim();
     setError(null);
     setSending(true);
     try {
-      // Envio centralizado em src/lib/forms.ts (mock até o back-end existir).
-      const result = await submitInterestForm(payload);
+      // Mesma planilha do formulário de contato da Home; a mensagem fixa
+      // identifica a origem "avise-me" na coluna mensagem.
+      const result = await enviarContato({
+        nome: name,
+        telefone: String(data.get("phone") ?? "").trim(),
+        email,
+        cursoInteresse: String(data.get("course") ?? ""),
+        mensagem: "Avise-me quando abrirem novas turmas.",
+        website: String(data.get("website") ?? "") || undefined,
+      });
       if (result.ok) {
         setSubmitted({
-          name: payload.name.split(/\s+/)[0] ?? "",
-          email: payload.email,
+          name: name.split(/\s+/)[0] ?? "",
+          email,
         });
       } else {
         setError("Não foi possível enviar. Tente novamente.");
@@ -155,6 +159,17 @@ export default function InterestForm() {
                 <option value="Ainda não decidi">Ainda não decidi</option>
               </select>
             </div>
+
+            {/* Honeypot anti-spam: invisível e fora do fluxo de teclado. */}
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              defaultValue=""
+              className="absolute -left-[9999px] h-0 w-0 opacity-0"
+            />
 
             {error && (
               <p role="alert" className="text-sm text-red-300">

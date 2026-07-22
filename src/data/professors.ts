@@ -30,7 +30,7 @@ const photoByName: Record<string, string> = {
   "Vívian Vianna Breder": "/images/professoras/foto-prof-vivian.png",
   "Letícia Muniz Magalhães da Cunha": "/images/professoras/foto-prof-leticia.png",
   "Sérgio Kitagawa": "/images/rev-sergio-kitagawa.png",
-  Adelino: "/images/rev-adelino.png",
+  Adelino: "/images/rev-adelino.jpg",
   "João Batista": "/images/rev-joao.jpg",
   "Arina Martins": "/images/prof-arina.png",
   "Cláudio Larieira": "/images/prof-claudio-larieira.png",

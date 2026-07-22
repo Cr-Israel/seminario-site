@@ -9,6 +9,7 @@ import {
   Monitor,
 } from "lucide-react";
 import Header from "@/components/layout/Header";
+import InscricaoButton from "@/components/inscricao/InscricaoButton";
 import CourseCoordinator from "@/components/sections/CourseCoordinator";
 import CourseCurriculum from "@/components/sections/CourseCurriculum";
 import CourseProfessors from "@/components/sections/CourseProfessors";
@@ -128,6 +129,13 @@ export default async function OnlineCoursePage({
           <p className="mt-4 max-w-xl text-base leading-relaxed text-brand-100/80">
             {course.tagline}
           </p>
+          <InscricaoButton
+            curso={course.title}
+            codigo={course.codigo}
+            className="mt-8 inline-flex items-center gap-2 rounded-sm bg-brand-50 px-7 py-3.5 text-sm font-medium text-brand-900 transition-colors hover:bg-white"
+          >
+            Inscrever-se
+          </InscricaoButton>
         </div>
       </section>
 
@@ -215,12 +223,23 @@ export default async function OnlineCoursePage({
               A secretaria orienta você em cada passo da matrícula.
             </p>
           </div>
-          <a
-            href={course.enrollUrl}
-            className="inline-flex shrink-0 items-center gap-2 rounded-sm bg-brand-50 px-7 py-3.5 text-sm font-medium text-brand-900 transition-colors hover:bg-white"
-          >
-            Quero me inscrever <ArrowRight size={16} />
-          </a>
+          {course.enrollUrl !== "#" ? (
+            // Curso com formulário externo próprio (ex.: Libras) — mantém.
+            <a
+              href={course.enrollUrl}
+              className="inline-flex shrink-0 items-center gap-2 rounded-sm bg-brand-50 px-7 py-3.5 text-sm font-medium text-brand-900 transition-colors hover:bg-white"
+            >
+              Quero me inscrever <ArrowRight size={16} />
+            </a>
+          ) : (
+            <InscricaoButton
+              curso={course.title}
+              codigo={course.codigo}
+              className="inline-flex shrink-0 items-center gap-2 rounded-sm bg-brand-50 px-7 py-3.5 text-sm font-medium text-brand-900 transition-colors hover:bg-white"
+            >
+              Quero me inscrever <ArrowRight size={16} />
+            </InscricaoButton>
+          )}
         </div>
       </section>
 

@@ -1,14 +1,13 @@
 import { ArrowRight } from "lucide-react";
 import { getEfalCourse } from "@/data/efal";
+import InscricaoButton from "@/components/inscricao/InscricaoButton";
 
 /**
- * CTA final / matrícula do CIT — faixa centralizada sobre brand-950. Usa o
- * enrollUrl real do curso (getEfalCourse("cit")). Server Component.
+ * CTA final / matrícula do CIT — faixa centralizada sobre brand-950. Abre o
+ * modal de inscrição (Google Sheets, aba CIT). Server Component.
  */
 export default function CitEnroll() {
   const course = getEfalCourse("cit");
-  // TODO: trocar pelo link real de matrícula/secretaria (enrollUrl hoje é "#")
-  const enrollUrl = course?.enrollUrl ?? "#";
 
   return (
     <section id="matricula" className="scroll-mt-24 bg-brand-950">
@@ -33,12 +32,13 @@ export default function CitEnroll() {
               </p>
             </div>
           )}
-          <a
-            href={enrollUrl}
+          <InscricaoButton
+            curso={course?.title ?? "Curso Introdutório de Teologia"}
+            codigo={course?.codigo ?? "CIT"}
             className="inline-flex items-center gap-2 rounded-sm bg-brand-50 px-8 py-4 text-sm font-medium text-brand-900 transition-colors hover:bg-white"
           >
             Quero me inscrever <ArrowRight size={16} />
-          </a>
+          </InscricaoButton>
         </div>
       </div>
     </section>

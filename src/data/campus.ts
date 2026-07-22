@@ -1,24 +1,26 @@
 /**
- * Galeria "Nossa casa" (página Sobre) — os espaços da nova sede (Edifício
- * Rev. Roberto Brasileiro Silva, 2022) e registros da antiga sede, na Rua
- * Joaquina Rosa. Fotos reais do acervo da instituição.
+ * Galeria "Nossa casa" (página Sobre) — os espaços da sede atual (Edifício
+ * Rev. Roberto Brasileiro Silva, 2022, na Rua Isolina, 151, Méier). A primeira
+ * foto é a de destaque (fachada). Fotos reais do acervo da instituição.
  */
 export interface FotoCampus {
   src: string;
   /** Descrição acessível real da imagem. */
   alt: string;
-  /** Legenda discreta exibida sob a foto e no lightbox. */
+  /** Legenda discreta exibida sobre a foto e no lightbox. */
   legenda: string;
-  /** Ocupa duas colunas na grade (fotos panorâmicas de destaque). */
-  wide?: boolean;
 }
 
 export const fotosCampus: FotoCampus[] = [
   {
+    src: "/images/seminario-frente.jpeg",
+    alt: "Fachada de vidro espelhado da sede do Seminário Simonton, com o nome da instituição em letras metálicas",
+    legenda: "Fachada — Edifício Rev. Roberto Brasileiro Silva",
+  },
+  {
     src: "/images/capela.jpeg",
-    alt: "Capela da nova sede do Seminário Simonton, com fileiras de poltronas de madeira, púlpito e cruz ao fundo",
-    legenda: "Capela da nova sede",
-    wide: true,
+    alt: "Capela da sede do Seminário Simonton, com fileiras de poltronas de madeira, púlpito e cruz ao fundo",
+    legenda: "Capela",
   },
   {
     src: "/images/biblioteca.jpeg",
@@ -27,17 +29,7 @@ export const fotosCampus: FotoCampus[] = [
   },
   {
     src: "/images/sala-de-aula.jpeg",
-    alt: "Sala de aula da nova sede do Seminário Simonton, com carteiras estofadas e janelas amplas",
-    legenda: "Sala de aula da nova sede",
-  },
-  {
-    src: "/images/frente-antiga-stps.jpeg",
-    alt: "Fachada da antiga sede do Seminário Simonton, na Rua Joaquina Rosa, no Méier",
-    legenda: "Memória: a fachada da antiga sede, na Rua Joaquina Rosa",
-  },
-  {
-    src: "/images/aula-antiga-sede.jpeg",
-    alt: "Professor e alunos durante aula em uma sala da antiga sede do Seminário",
-    legenda: "Memória: aula na antiga sede",
+    alt: "Sala de aula da sede do Seminário Simonton, com carteiras estofadas e janelas amplas",
+    legenda: "Sala de aula",
   },
 ];

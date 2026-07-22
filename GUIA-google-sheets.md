@@ -1,16 +1,17 @@
 # Guia — Ligando os formulários do site ao Google Sheets
 
-O site envia dados de formulários para **duas planilhas separadas** do Google
+O site envia dados de formulários para **três planilhas separadas** do Google
 Sheets, por meio do Google Apps Script (sem servidor próprio):
 
 | Planilha | O que recebe | Variável de ambiente |
 | --- | --- | --- |
-| **Inscrições** | Botão "Inscrever-se" dos cursos (EFAL e Pós) | `SHEETS_WEBHOOK_URL` |
+| **Inscrições EFAL** | Botão "Inscrever-se" dos cursos da EFAL | `SHEETS_EFAL_WEBHOOK_URL` |
+| **Inscrições Pós** | Botão "Inscrever-se" dos cursos da Pós-graduação | `SHEETS_POS_WEBHOOK_URL` |
 | **Contatos** | Formulário "Quero receber contato" da Home **e** o "Avise-me" dos Cursos Online | `SHEETS_CONTATO_WEBHOOK_URL` |
 
-O passo a passo é o mesmo para as duas — muda apenas o código do script
-(seções 2A e 2B) e a variável de ambiente (seção 4). Faça tudo duas vezes,
-uma para cada planilha.
+O passo a passo é o mesmo para as três — muda apenas o código do script
+(seções 2A e 2B) e a variável de ambiente (seção 4). Faça tudo três vezes,
+uma para cada planilha (as duas de inscrições usam o MESMO script 2A).
 
 ---
 
@@ -18,17 +19,17 @@ uma para cada planilha.
 
 1. Acesse [sheets.google.com](https://sheets.google.com) com a conta do
    Seminário e crie uma planilha em branco.
-2. Dê um nome claro, por exemplo **"Site — Inscrições"** (ou **"Site —
-   Contatos"** na segunda vez).
+2. Dê um nome claro, por exemplo **"Site — Inscrições EFAL"**, **"Site —
+   Inscrições Pós"** e **"Site — Contatos"**.
 3. Não é preciso criar abas nem cabeçalhos: o script cria tudo sozinho na
    primeira vez que receber dados.
 
-Na planilha de **inscrições**, cada curso terá a própria aba, criada
+Nas planilhas de **inscrições**, cada curso terá a própria aba, criada
 automaticamente com o código do curso:
 
-`CIT`, `CAL`, `CFO`, `CFP`, `CFL`, `CFM`, `CFC` (EFAL) e
-`POS-PLANTACAO-E-REVITALIZACAO`, `POS-NOVO-TESTAMENTO`,
-`POS-COSMOVISAO-REFORMADA`, `POS-GESTAO-MINISTERIAL` (Pós).
+- Planilha da EFAL: `CIT`, `CAL`, `CFO`, `CFP`, `CFL`, `CFM`, `CFC`
+- Planilha da Pós: `POS-PLANTACAO-E-REVITALIZACAO`, `POS-NOVO-TESTAMENTO`,
+  `POS-COSMOVISAO-REFORMADA`, `POS-GESTAO-MINISTERIAL`
 
 *(Esses códigos vêm do campo `codigo` em `src/data/efal.ts` e
 `src/data/pos.ts` — se um dia criarem um curso novo, o script cria a aba nova
@@ -39,7 +40,7 @@ sozinho.)*
 Na planilha, abra **Extensões → Apps Script**. Apague o conteúdo do editor e
 cole o código da planilha correspondente:
 
-### 2A. Script da planilha de INSCRIÇÕES
+### 2A. Script das planilhas de INSCRIÇÕES (EFAL e Pós — o mesmo código nas duas)
 
 ```js
 const CABECALHO = ["Data/Hora", "Curso", "Nome", "Telefone", "E-mail", "Cupom"];
@@ -142,8 +143,9 @@ inscrições site").
 projeto (use o `.env.example` como modelo):
 
 ```
-SHEETS_WEBHOOK_URL=https://script.google.com/macros/s/AAAA.../exec
-SHEETS_CONTATO_WEBHOOK_URL=https://script.google.com/macros/s/BBBB.../exec
+SHEETS_EFAL_WEBHOOK_URL=https://script.google.com/macros/s/AAAA.../exec
+SHEETS_POS_WEBHOOK_URL=https://script.google.com/macros/s/BBBB.../exec
+SHEETS_CONTATO_WEBHOOK_URL=https://script.google.com/macros/s/CCCC.../exec
 ```
 
 Reinicie o `npm run dev` depois de editar (variáveis só carregam na

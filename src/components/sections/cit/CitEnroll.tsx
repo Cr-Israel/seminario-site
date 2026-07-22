@@ -34,6 +34,7 @@ export default function CitEnroll() {
           )}
           <InscricaoButton
             curso={course?.title ?? "Curso Introdutório de Teologia"}
+            origem={course?.origem ?? "efal"}
             codigo={course?.codigo ?? "CIT"}
             className="inline-flex items-center gap-2 rounded-sm bg-brand-50 px-8 py-4 text-sm font-medium text-brand-900 transition-colors hover:bg-white"
           >

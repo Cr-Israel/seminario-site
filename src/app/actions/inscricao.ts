@@ -3,18 +3,22 @@
 /**
  * Inscrição de curso (EFAL e Pós) → Google Sheets via Apps Script.
  *
- * A URL do webhook fica em SHEETS_WEBHOOK_URL (variável de ambiente do
- * servidor — nunca NEXT_PUBLIC_, para não expor no cliente). O campo `codigo`
- * identifica a aba da planilha que recebe a inscrição (CIT, CAL, POS-…),
- * padronizado no arquivo de dados de cada curso (src/data/efal.ts e pos.ts).
+ * São DUAS planilhas, uma por origem: SHEETS_EFAL_WEBHOOK_URL e
+ * SHEETS_POS_WEBHOOK_URL (variáveis de ambiente do servidor — nunca
+ * NEXT_PUBLIC_, para não expor no cliente). O campo `origem` escolhe a
+ * planilha; o campo `codigo` identifica a aba dentro dela (CIT, CAL,
+ * POS-…). Ambos vêm padronizados do arquivo de dados de cada curso
+ * (src/data/efal.ts e pos.ts).
  *
- * A planilha e o Apps Script são configurados manualmente pelo dono do
- * projeto (guia próprio); sem a variável, o site builda e roda normalmente e
- * o modal mostra o estado de erro amigável.
+ * As planilhas e os Apps Scripts são configurados manualmente pelo dono do
+ * projeto (GUIA-google-sheets.md); sem a variável de uma origem, o site
+ * builda e roda normalmente e o modal daquela origem mostra o erro amigável.
  */
 export interface InscricaoPayload {
   /** Nome completo do curso (ex.: "Curso Introdutório de Teologia"). */
   curso: string;
+  /** Origem da inscrição — define a planilha (webhook) de destino. */
+  origem: "efal" | "pos";
   /** Código/aba na planilha (ex.: "CIT", "CAL", "POS-NOVO-TESTAMENTO"). */
   codigo: string;
   nome: string;
@@ -47,9 +51,16 @@ export async function enviarInscricao(
     return { ok: false, error: "Informe um telefone válido com DDD." };
   }
 
-  const url = process.env.SHEETS_WEBHOOK_URL;
+  const urls = {
+    efal: process.env.SHEETS_EFAL_WEBHOOK_URL,
+    pos: process.env.SHEETS_POS_WEBHOOK_URL,
+  } as const;
+
+  const url = urls[payload.origem];
   if (!url) {
-    console.error("[inscricao] SHEETS_WEBHOOK_URL não configurada");
+    console.error(
+      `[inscricao] webhook não configurado para origem "${payload.origem}"`,
+    );
     return { ok: false, error: "Configuração pendente" };
   }
 

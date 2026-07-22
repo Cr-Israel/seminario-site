@@ -6,6 +6,8 @@ export type Discipline = {
 
 export type PosCourse = {
   slug: string;
+  /** Origem da inscrição — define a planilha (webhook) de destino. */
+  origem: "pos";
   /** Código de inscrição — nome da aba do Google Sheets que recebe as inscrições. */
   codigo: string;
   title: string;
@@ -46,6 +48,7 @@ export type PosCourse = {
 export const posCourses: PosCourse[] = [
   {
     slug: "plantacao-e-revitalizacao",
+    origem: "pos",
     codigo: "POS-PLANTACAO-E-REVITALIZACAO",
     title: "Pós-Graduação em Plantação e Revitalização de Igreja",
     tagline:
@@ -73,6 +76,7 @@ export const posCourses: PosCourse[] = [
   },
   {
     slug: "novo-testamento",
+    origem: "pos",
     codigo: "POS-NOVO-TESTAMENTO",
     title: "Pós-Graduação em Estudos do Novo Testamento",
     tagline:
@@ -100,6 +104,7 @@ export const posCourses: PosCourse[] = [
   },
   {
     slug: "cosmovisao-reformada",
+    origem: "pos",
     codigo: "POS-COSMOVISAO-REFORMADA",
     title: "Pós-Graduação em Cosmovisão Reformada",
     tagline:
@@ -127,6 +132,7 @@ export const posCourses: PosCourse[] = [
   },
   {
     slug: "gestao-ministerial",
+    origem: "pos",
     codigo: "POS-GESTAO-MINISTERIAL",
     title: "Pós-Graduação em Gestão Ministerial",
     tagline:

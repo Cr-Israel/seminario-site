@@ -7,6 +7,8 @@ import { enviarInscricao } from "@/app/actions/inscricao";
 type Props = {
   /** Nome completo do curso — título do modal e coluna na planilha. */
   curso: string;
+  /** Origem (campo `origem` em src/data/efal.ts | pos.ts) — define a planilha. */
+  origem: "efal" | "pos";
   /** Código/aba na planilha (campo `codigo` em src/data/efal.ts | pos.ts). */
   codigo: string;
   className?: string;
@@ -36,6 +38,7 @@ const inputClass =
  */
 export default function InscricaoButton({
   curso,
+  origem,
   codigo,
   className,
   children,
@@ -70,6 +73,7 @@ export default function InscricaoButton({
     setStatus("sending");
     const result = await enviarInscricao({
       curso,
+      origem,
       codigo,
       nome: form.nome,
       telefone: form.telefone,

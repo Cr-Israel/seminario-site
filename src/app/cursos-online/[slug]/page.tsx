@@ -131,6 +131,7 @@ export default async function OnlineCoursePage({
           </p>
           <InscricaoButton
             curso={course.title}
+            origem={course.origem}
             codigo={course.codigo}
             className="mt-8 inline-flex items-center gap-2 rounded-sm bg-brand-50 px-7 py-3.5 text-sm font-medium text-brand-900 transition-colors hover:bg-white"
           >
@@ -234,6 +235,7 @@ export default async function OnlineCoursePage({
           ) : (
             <InscricaoButton
               curso={course.title}
+              origem={course.origem}
               codigo={course.codigo}
               className="inline-flex shrink-0 items-center gap-2 rounded-sm bg-brand-50 px-7 py-3.5 text-sm font-medium text-brand-900 transition-colors hover:bg-white"
             >

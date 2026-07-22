@@ -27,6 +27,8 @@ export type EfalProfessor = {
 
 export type EfalCourse = {
   slug: string;
+  /** Origem da inscrição — define a planilha (webhook) de destino. */
+  origem: "efal";
   /** Código de inscrição — nome da aba do Google Sheets que recebe as inscrições. */
   codigo: string;
   code: string;
@@ -570,6 +572,7 @@ const librasLevels: EfalDiscipline[] = [
 export const efalCourses: EfalCourse[] = [
   {
     slug: "cit",
+    origem: "efal",
     codigo: "CIT",
     code: "CIT",
     title: "Curso Introdutório de Teologia",
@@ -588,6 +591,7 @@ export const efalCourses: EfalCourse[] = [
   },
   {
     slug: "cal",
+    origem: "efal",
     codigo: "CAL",
     code: "CAL",
     title: "Curso de Aperfeiçoamento de Líderes",
@@ -606,6 +610,7 @@ export const efalCourses: EfalCourse[] = [
   },
   {
     slug: "cfo",
+    origem: "efal",
     codigo: "CFO",
     code: "CFO",
     title: "Curso de Formação de Oficiais",
@@ -624,6 +629,7 @@ export const efalCourses: EfalCourse[] = [
   },
   {
     slug: "cfp",
+    origem: "efal",
     codigo: "CFP",
     code: "CFP",
     title: "Curso de Formação de Professores",
@@ -642,6 +648,7 @@ export const efalCourses: EfalCourse[] = [
   },
   {
     slug: "cfl",
+    origem: "efal",
     codigo: "CFL",
     code: "Libras",
     title: "Curso de Libras",
@@ -676,6 +683,7 @@ export const efalCourses: EfalCourse[] = [
   },
   {
     slug: "cfm",
+    origem: "efal",
     codigo: "CFM",
     code: "CFM",
     title: "Curso de Formação Musical",
@@ -698,6 +706,7 @@ export const efalCourses: EfalCourse[] = [
     // já definida abaixo. Tagline/descrição/público seguem placeholder até
     // serem fornecidos (não constam no calendário oficial).
     slug: "cfc",
+    origem: "efal",
     codigo: "CFC",
     code: "CFC",
     title: "Curso de Formação em Capelania",

@@ -36,7 +36,7 @@ export default function Testimonials({
           {items.map((depoimento) => (
             <figure
               key={depoimento.context}
-              className="flex h-full flex-col rounded-sm border border-brand-900/10 bg-white p-7 shadow-sm"
+              className="flex h-full flex-col rounded-sm border border-white/60 bg-white/50 p-7 shadow-[0_8px_30px_rgba(0,65,23,0.08)] backdrop-blur-xl"
             >
               <Quote size={22} className="text-brand-400" aria-hidden />
               <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-stone-600">

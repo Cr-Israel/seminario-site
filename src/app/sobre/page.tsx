@@ -28,8 +28,8 @@ export default function SobrePage() {
       <SobreHistory />
       <SobreCampus />
       <SobreMissionValues />
-      <SobreDirector />
       <SobreJuret />
+      <SobreDirector />
       <SobreChaplaincy />
     </div>
   );

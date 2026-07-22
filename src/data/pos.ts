@@ -6,6 +6,8 @@ export type Discipline = {
 
 export type PosCourse = {
   slug: string;
+  /** Código de inscrição — nome da aba do Google Sheets que recebe as inscrições. */
+  codigo: string;
   title: string;
   tagline: string;
   description: string;
@@ -44,6 +46,7 @@ export type PosCourse = {
 export const posCourses: PosCourse[] = [
   {
     slug: "plantacao-e-revitalizacao",
+    codigo: "POS-PLANTACAO-E-REVITALIZACAO",
     title: "Pós-Graduação em Plantação e Revitalização de Igreja",
     tagline:
       "Formação estratégica para plantar e revitalizar igrejas segundo a teologia reformada.",
@@ -70,6 +73,7 @@ export const posCourses: PosCourse[] = [
   },
   {
     slug: "novo-testamento",
+    codigo: "POS-NOVO-TESTAMENTO",
     title: "Pós-Graduação em Estudos do Novo Testamento",
     tagline:
       "Aprofundamento exegético e teológico do Novo Testamento, à luz da tradição reformada.",
@@ -96,6 +100,7 @@ export const posCourses: PosCourse[] = [
   },
   {
     slug: "cosmovisao-reformada",
+    codigo: "POS-COSMOVISAO-REFORMADA",
     title: "Pós-Graduação em Cosmovisão Reformada",
     tagline:
       "O calvinismo aplicado à cultura, à política, à economia e à vida social.",
@@ -122,6 +127,7 @@ export const posCourses: PosCourse[] = [
   },
   {
     slug: "gestao-ministerial",
+    codigo: "POS-GESTAO-MINISTERIAL",
     title: "Pós-Graduação em Gestão Ministerial",
     tagline:
       "Liderança, gestão e estratégia a serviço do ministério, com professores convidados.",

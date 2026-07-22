@@ -27,6 +27,8 @@ export type EfalProfessor = {
 
 export type EfalCourse = {
   slug: string;
+  /** Código de inscrição — nome da aba do Google Sheets que recebe as inscrições. */
+  codigo: string;
   code: string;
   title: string;
   tagline: string;
@@ -568,6 +570,7 @@ const librasLevels: EfalDiscipline[] = [
 export const efalCourses: EfalCourse[] = [
   {
     slug: "cit",
+    codigo: "CIT",
     code: "CIT",
     title: "Curso Introdutório de Teologia",
     tagline: "O primeiro contato com a teologia reformada",
@@ -585,6 +588,7 @@ export const efalCourses: EfalCourse[] = [
   },
   {
     slug: "cal",
+    codigo: "CAL",
     code: "CAL",
     title: "Curso de Aperfeiçoamento de Líderes",
     tagline: "Fundamentos do exercício ministerial aplicados à prática",
@@ -602,6 +606,7 @@ export const efalCourses: EfalCourse[] = [
   },
   {
     slug: "cfo",
+    codigo: "CFO",
     code: "CFO",
     title: "Curso de Formação de Oficiais",
     tagline: "Capacitação para o exercício consciente do oficialato",
@@ -619,6 +624,7 @@ export const efalCourses: EfalCourse[] = [
   },
   {
     slug: "cfp",
+    codigo: "CFP",
     code: "CFP",
     title: "Curso de Formação de Professores",
     tagline: "Prática docente à luz da Teologia Reformada",
@@ -636,6 +642,7 @@ export const efalCourses: EfalCourse[] = [
   },
   {
     slug: "cfl",
+    codigo: "CFL",
     code: "Libras",
     title: "Curso de Libras",
     tagline: "Do primeiro sinal à fluência.",
@@ -669,6 +676,7 @@ export const efalCourses: EfalCourse[] = [
   },
   {
     slug: "cfm",
+    codigo: "CFM",
     code: "CFM",
     title: "Curso de Formação Musical",
     // TODO(conteúdo): substituir pela apresentação oficial do CFM (coordenação da EFAL).
@@ -690,6 +698,7 @@ export const efalCourses: EfalCourse[] = [
     // já definida abaixo. Tagline/descrição/público seguem placeholder até
     // serem fornecidos (não constam no calendário oficial).
     slug: "cfc",
+    codigo: "CFC",
     code: "CFC",
     title: "Curso de Formação em Capelania",
     // TODO(conteúdo): substituir pela apresentação oficial do CFC (coordenação da EFAL).

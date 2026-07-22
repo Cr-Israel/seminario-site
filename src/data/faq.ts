@@ -21,6 +21,11 @@ export const faqItems: FaqItem[] = [
       "Sim. Ao concluir um curso da EFAL o aluno recebe certificado, com a chancela da Junta Regional de Educação Teológica (JURET) da IPB.",
   },
   {
+    question: "Os cursos são reconhecidos pelo MEC?",
+    answer:
+      "O Seminário é uma instituição eclesiástica: o currículo é aprovado pelo Supremo Concílio da IPB e a certificação vem da Junta Regional de Educação Teológica (JURET). É um reconhecimento da própria Igreja, para fins ministeriais e eclesiásticos. Os cursos livres da EFAL e o Bacharelado em Teologia não constituem graduação reconhecida pelo MEC — a formação é confessional, voltada ao preparo para o ministério e para o serviço na igreja local.",
+  },
+  {
     question: "Qual a diferença entre a EFAL e o Bacharelado em Teologia?",
     answer:
       "A EFAL oferece cursos de curta e média duração para capacitar líderes da igreja local (presbíteros, diáconos, professores, etc.). O Bacharelado é a formação teológica completa e mais longa, voltada principalmente ao preparo pastoral, e ingressa-se nele pelo processo seletivo unificado da IPB.",

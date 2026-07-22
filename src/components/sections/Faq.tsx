@@ -8,7 +8,7 @@ export default function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="bg-brand-50/60 py-24">
+    <section id="faq" className="bg-white py-24">
       <div className="mx-auto max-w-3xl px-6">
         <div className="text-center">
           <span className="text-xs font-medium uppercase tracking-[0.2em] text-brand-700">

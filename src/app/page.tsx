@@ -2,14 +2,10 @@ import Header from "@/components/layout/Header";
 import Hero from "@/components/sections/Hero";
 import { ogMetadata } from "@/lib/seo";
 import Stats from "@/components/sections/Stats";
-import Highlights from "@/components/sections/Highlights";
+import CoursesGateway from "@/components/sections/CoursesGateway";
 import VideoIntro from "@/components/sections/VideoIntro";
-import CoursesGrid from "@/components/sections/CoursesGrid";
-import ProximasTurmas from "@/components/sections/ProximasTurmas";
+import Highlights from "@/components/sections/Highlights";
 import Testimonials from "@/components/sections/Testimonials";
-import Differentiators from "@/components/sections/Differentiators";
-import News from "@/components/sections/News";
-import FacultyPreview from "@/components/sections/FacultyPreview";
 import Faq from "@/components/sections/Faq";
 import ContactCta from "@/components/sections/ContactCta";
 
@@ -24,9 +20,11 @@ export const metadata = {
 };
 
 /**
- * Home institucional — "uma casa só": instituição no topo e na base; no meio,
- * todos os cursos num único comparador (modalidade é badge, não marca),
- * costurados pela legitimação eclesiástica (IPB / Supremo Concílio / JURET).
+ * Home institucional. Ordem após o topo (Header/Hero/Stats): três portas de
+ * entrada para as trilhas de curso, apresentação da casa com a mensagem do
+ * diretor (fundo escuro), pilares institucionais, depoimentos, dúvidas
+ * frequentes e o contato com formulário e mapa. Fundos alternam claro/escuro
+ * para dar ritmo.
  */
 export default function Home() {
   return (
@@ -34,14 +32,10 @@ export default function Home() {
       <Header />
       <Hero />
       <Stats />
-      <Highlights />
+      <CoursesGateway />
       <VideoIntro />
-      <CoursesGrid />
-      <ProximasTurmas />
+      <Highlights />
       <Testimonials />
-      <Differentiators />
-      <News />
-      <FacultyPreview />
       <Faq />
       <ContactCta />
     </div>

@@ -31,7 +31,15 @@ const highlights = [
 
 export default function Highlights() {
   return (
-    <section className="mx-auto max-w-6xl px-6 pt-24">
+    <section className="mx-auto max-w-6xl px-6 py-24">
+      <div className="mx-auto mb-14 max-w-2xl text-center">
+        <span className="text-xs font-medium uppercase tracking-[0.2em] text-brand-700">
+          Por que estudar aqui
+        </span>
+        <h2 className="mt-4 font-serif text-3xl font-extrabold text-brand-950 sm:text-4xl">
+          Uma formação com raízes e propósito
+        </h2>
+      </div>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {highlights.map(({ icon: Icon, title, text }) => (
           <div

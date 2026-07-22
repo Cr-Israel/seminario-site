@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, ChevronRight, Menu, X } from "lucide-react";
 
 import ThemeToggle from "./ThemeToggle";
 
@@ -36,21 +36,26 @@ type NavEntry = {
  * descritivo pro bundle do client. Ao criar/renomear um curso, atualizar aqui.
  */
 const navEntries: NavEntry[] = [
-  { label: "Institucional", href: "/sobre" },
   {
-    label: "Teologia",
+    label: "Institucional",
     groups: [
       {
         items: [
+          { label: "Sobre", href: "/sobre" },
+          { label: "Nossos diferenciais", href: "/#diferenciais" },
+          { label: "Docentes", href: "/cursos-online#professores" },
+          { label: "Como chegar", href: "/#contato" },
+          { label: "JURET-Rio", href: "/juret-rio" },
           {
-            label: "Bacharelado em Teologia",
-            description: "Graduação presencial · Rio de Janeiro",
-            href: "/graduacao",
+            label: "LGPD",
+            description: "Lei Geral de Proteção de Dados",
+            href: "/lgpd",
           },
         ],
       },
     ],
   },
+  { label: "Teologia", href: "/graduacao" },
   {
     label: "Cursos",
     groups: [
@@ -110,8 +115,9 @@ const navEntries: NavEntry[] = [
     label: "Projetos",
     groups: [
       {
-        // TODO(conteúdo): criar as páginas dos projetos e trocar os "#".
+        // TODO(conteúdo): criar as páginas dos demais projetos e trocar os "#".
         items: [
+          { label: "Apoie um seminarista", href: "/apoie-um-seminarista" },
           { label: "Casa de Isabel", href: "#" },
           { label: "STPS vai às Igrejas", href: "#" },
           { label: "STPS apoia Missões", href: "#" },
@@ -127,7 +133,25 @@ const menuId = (label: string) =>
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  // Submenu lateral aberto dentro do dropdown (ex.: "EFAL" dentro de Cursos).
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
   const navRef = useRef<HTMLElement>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Abre no hover (estilo FTSA); o pequeno atraso pra fechar evita que o menu
+  // suma ao atravessar o vão entre o botão e o painel.
+  const openOnHover = (label: string) => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setOpenMenu(label);
+    setOpenGroup(null);
+  };
+  const closeOnLeave = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => {
+      setOpenMenu(null);
+      setOpenGroup(null);
+    }, 150);
+  };
 
   // Fecha o dropdown com Escape ou clique fora — navegação por teclado ok.
   useEffect(() => {
@@ -151,12 +175,9 @@ export default function Header() {
   const navLinkClass =
     "text-base font-medium text-brand-900 transition-colors hover:text-brand-700 dark:text-white/85 dark:hover:text-white";
 
-  const menuItemClass =
-    "block rounded-sm px-3 py-2 transition-colors hover:bg-brand-100 dark:hover:bg-white/10";
-
   return (
     <header className="sticky top-0 z-40 border-b border-brand-100 bg-brand-50/95 backdrop-blur supports-[backdrop-filter]:bg-brand-50/80 dark:border-brand-900 dark:bg-brand-950/95 dark:supports-[backdrop-filter]:bg-brand-950/80">
-      <div className="flex items-center gap-4 py-4 pl-6 pr-6 md:pl-10 md:pr-10 lg:pl-16 lg:pr-16">
+      <div className="mx-auto flex max-w-7xl items-center gap-4 px-6 py-4">
         {/* Logo — verde no tema claro, branca no escuro */}
         <Link href="/" className="shrink-0" aria-label="Página inicial">
           <Image
@@ -193,7 +214,12 @@ export default function Header() {
                 {entry.label}
               </Link>
             ) : (
-              <div key={entry.label} className="relative">
+              <div
+                key={entry.label}
+                className="relative"
+                onMouseEnter={() => openOnHover(entry.label)}
+                onMouseLeave={closeOnLeave}
+              >
                 <button
                   type="button"
                   onClick={() =>
@@ -212,53 +238,94 @@ export default function Header() {
                   />
                 </button>
                 {openMenu === entry.label && (
-                  <div
-                    id={menuId(entry.label)}
-                    role="menu"
-                    aria-label={entry.label}
-                    className={`absolute left-1/2 top-full mt-3 -translate-x-1/2 rounded-md border border-brand-100 bg-brand-50 p-3 shadow-lg dark:border-brand-900 dark:bg-brand-950 ${
-                      entry.groups!.length > 1
-                        ? "grid w-[34rem] grid-cols-2 gap-4"
-                        : "w-80"
-                    }`}
-                  >
-                    {entry.groups!.map((group, i) => (
-                      <div key={group.label ?? i}>
-                        {group.label &&
-                          (group.href ? (
-                            <Link
-                              role="menuitem"
-                              href={group.href}
-                              onClick={() => setOpenMenu(null)}
-                              className="mb-1 block rounded-sm px-3 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-brand-700 transition-colors hover:bg-brand-100 dark:text-white/60 dark:hover:bg-white/10"
-                            >
-                              {group.label}
-                            </Link>
-                          ) : (
-                            <p className="mb-1 px-3 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-brand-700 dark:text-white/60">
-                              {group.label}
-                            </p>
-                          ))}
-                        {group.items.map((item) => (
-                          <Link
-                            key={item.label}
-                            role="menuitem"
-                            href={item.href}
-                            onClick={() => setOpenMenu(null)}
-                            className={menuItemClass}
+                  // Ponte invisível até a base do header (folga da logo h-14 +
+                  // py-4 + borda) — hover contínuo e painel colado, estilo FTSA.
+                  <div className="absolute left-0 top-full z-50 pt-[33px]">
+                    <div
+                      id={menuId(entry.label)}
+                      role="menu"
+                      aria-label={entry.label}
+                      className="w-72 border border-brand-100 bg-white py-2 shadow-lg dark:border-brand-900 dark:bg-brand-950"
+                    >
+                      {entry.groups!.map((group, i) =>
+                        group.label ? (
+                          // Grupo com submenu: linha com seta que revela o
+                          // painel lateral no hover, estilo FTSA.
+                          <div
+                            key={group.label}
+                            className="relative"
+                            onMouseEnter={() => setOpenGroup(group.label!)}
                           >
-                            <span className="block text-sm font-medium text-brand-900 dark:text-white/90">
-                              {item.label}
-                            </span>
-                            {item.description && (
-                              <span className="mt-0.5 block text-xs text-stone-500 dark:text-white/60">
-                                {item.description}
-                              </span>
+                            {group.href ? (
+                              <Link
+                                role="menuitem"
+                                aria-haspopup="menu"
+                                aria-expanded={openGroup === group.label}
+                                href={group.href}
+                                onClick={() => setOpenMenu(null)}
+                                className="flex items-center justify-between gap-2 px-5 py-2.5 text-sm font-medium text-brand-900 transition-colors hover:bg-brand-100 dark:text-white/90 dark:hover:bg-white/10"
+                              >
+                                {group.label}
+                                <ChevronRight size={16} aria-hidden />
+                              </Link>
+                            ) : (
+                              <p className="flex items-center justify-between gap-2 px-5 py-2.5 text-sm font-medium text-brand-900 dark:text-white/90">
+                                {group.label}
+                                <ChevronRight size={16} aria-hidden />
+                              </p>
                             )}
-                          </Link>
-                        ))}
-                      </div>
-                    ))}
+                            {openGroup === group.label && (
+                              <div
+                                role="menu"
+                                aria-label={group.label}
+                                className="absolute left-full top-0 w-80 border border-brand-100 bg-white py-2 shadow-lg dark:border-brand-900 dark:bg-brand-950"
+                              >
+                                {group.items.map((item) => (
+                                  <Link
+                                    key={item.label}
+                                    role="menuitem"
+                                    href={item.href}
+                                    onClick={() => setOpenMenu(null)}
+                                    className="block px-5 py-2.5 transition-colors hover:bg-brand-100 dark:hover:bg-white/10"
+                                  >
+                                    <span className="block text-sm font-medium text-brand-900 dark:text-white/90">
+                                      {item.label}
+                                    </span>
+                                    {item.description && (
+                                      <span className="mt-0.5 block text-xs text-stone-500 dark:text-white/60">
+                                        {item.description}
+                                      </span>
+                                    )}
+                                  </Link>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        ) : (
+                          // Grupo simples: itens direto no painel.
+                          <div key={i} onMouseEnter={() => setOpenGroup(null)}>
+                            {group.items.map((item) => (
+                              <Link
+                                key={item.label}
+                                role="menuitem"
+                                href={item.href}
+                                onClick={() => setOpenMenu(null)}
+                                className="block px-5 py-2.5 transition-colors hover:bg-brand-100 dark:hover:bg-white/10"
+                              >
+                                <span className="block text-sm font-medium text-brand-900 dark:text-white/90">
+                                  {item.label}
+                                </span>
+                                {item.description && (
+                                  <span className="mt-0.5 block text-xs text-stone-500 dark:text-white/60">
+                                    {item.description}
+                                  </span>
+                                )}
+                              </Link>
+                            ))}
+                          </div>
+                        ),
+                      )}
+                    </div>
                   </div>
                 )}
               </div>
@@ -268,11 +335,12 @@ export default function Header() {
 
         {/* Ações à direita */}
         <div className="hidden items-center gap-3 md:flex">
+          {/* TODO(conteúdo): trocar pelo link real do portal do aluno. */}
           <Link
-            href="/#contato"
+            href="#"
             className="rounded-md bg-brand-700 px-5 py-2 text-base font-medium text-white transition-colors hover:bg-brand-800"
           >
-            Quero me matricular
+            Área do aluno
           </Link>
           <ThemeToggle />
         </div>
@@ -338,12 +406,13 @@ export default function Header() {
             ),
           )}
 
+          {/* TODO(conteúdo): trocar pelo link real do portal do aluno. */}
           <Link
-            href="/#contato"
+            href="#"
             onClick={() => setMenuOpen(false)}
             className="mt-3 rounded-md bg-brand-700 px-3 py-2.5 text-center text-sm font-medium text-white"
           >
-            Quero me matricular
+            Área do aluno
           </Link>
         </nav>
       )}

@@ -12,7 +12,8 @@ import {
 } from "lucide-react";
 import { contato } from "@/data/contato";
 import { cursos } from "@/data/cursos";
-import { submitContactForm, type ContactFormData } from "@/lib/forms";
+import { enviarContato } from "@/app/actions/contato";
+import { type ContactFormData } from "@/lib/forms";
 import { whatsappHref } from "@/lib/whatsapp";
 
 const contactInfo = [
@@ -80,6 +81,8 @@ type Status = "idle" | "loading" | "success" | "error";
 
 export default function ContactCta() {
   const [form, setForm] = useState<ContactFormData>(emptyForm);
+  // Honeypot anti-spam — humanos nunca preenchem.
+  const [website, setWebsite] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
 
@@ -98,7 +101,14 @@ export default function ContactCta() {
     setError(null);
     setStatus("loading");
     try {
-      const result = await submitContactForm(form);
+      const result = await enviarContato({
+        nome: form.name,
+        telefone: form.phone,
+        email: form.email,
+        cursoInteresse: form.course,
+        mensagem: form.message || undefined,
+        website: website || undefined,
+      });
       setStatus(result.ok ? "success" : "error");
       if (!result.ok) setError("Não foi possível enviar. Tente novamente.");
     } catch {
@@ -236,6 +246,18 @@ export default function ContactCta() {
                   className={`${inputClass} resize-y`}
                 />
               </div>
+
+              {/* Honeypot anti-spam: invisível e fora do fluxo de teclado. */}
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                value={website}
+                onChange={(e) => setWebsite(e.target.value)}
+                className="absolute -left-[9999px] h-0 w-0 opacity-0"
+              />
 
               {error && (
                 <p role="alert" className="text-sm text-red-300">

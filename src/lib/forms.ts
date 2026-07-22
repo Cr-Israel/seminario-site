@@ -1,11 +1,10 @@
 /**
- * Ponto único de envio dos formulários do site. O back-end será implementado
- * depois; os componentes já chamam estas funções com payloads tipados, então
- * ligar o envio real é trocar só este arquivo.
+ * Tipos e envio dos formulários do site. O formulário de contato da Home já
+ * envia de verdade via server action (src/app/actions/contato.ts) — daqui ele
+ * usa só o tipo ContactFormData.
  *
- * TODO(backend): implementar envio real (server action / API route) para
- * submitContactForm e submitInterestForm. Por ora, apenas loga e retorna
- * sucesso simulado.
+ * TODO(backend): implementar envio real para submitInterestForm ("avise-me"
+ * dos Cursos Online). Por ora, apenas loga e retorna sucesso simulado.
  */
 
 /** Formulário de contato da Home (seção #contato). */
@@ -24,13 +23,6 @@ export interface InterestFormData {
   phone: string;
   email: string;
   course: string;
-}
-
-export async function submitContactForm(
-  data: ContactFormData,
-): Promise<{ ok: boolean }> {
-  console.log("[form] contato", data);
-  return { ok: true };
 }
 
 export async function submitInterestForm(

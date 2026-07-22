@@ -1,9 +1,7 @@
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
 import {
   juretPresidente,
-  juretTitulares,
-  juretSuplentes,
+  juretMembros,
   type JuretMember,
 } from "@/data/juret";
 
@@ -40,11 +38,9 @@ function MemberCard({ member }: { member: JuretMember }) {
         <p className="font-serif text-sm font-bold leading-snug text-brand-950">
           {member.name}
         </p>
-        {member.role && (
-          <p className="mt-0.5 text-xs font-medium text-brand-700">
-            {member.role}
-          </p>
-        )}
+        <p className="mt-0.5 text-xs font-medium text-brand-700">
+          {member.role}
+        </p>
       </div>
     </div>
   );
@@ -53,8 +49,8 @@ function MemberCard({ member }: { member: JuretMember }) {
 /**
  * JURET-Rio — a Junta Regional de Educação Teológica que superintende o
  * Seminário, elo institucional entre a casa e a IPB. Presidente em destaque
- * (com foto), demais titulares e suplentes em cards; composição conforme a
- * página oficial da IPB (fonte em src/data/juret.ts).
+ * (com foto) e demais membros com seus cargos em cards (fonte em
+ * src/data/juret.ts).
  */
 export default function SobreJuret() {
   return (
@@ -70,10 +66,8 @@ export default function SobreJuret() {
           A Junta Regional de Educação Teológica (JURET) é o órgão da Igreja
           Presbiteriana do Brasil responsável por superintender a administração
           dos seminários de sua região, subordinado à Junta de Educação
-          Teológica (JET). É composta por cinco membros — três pastores e dois
-          presbíteros — eleitos pelo Supremo Concílio da IPB. A JURET-Rio
-          supervisiona o Seminário Simonton e outorga a certificação dos
-          cursos da EFAL.
+          Teológica (JET). É composta por cinco membros, três pastores e dois
+          presbíteros, eleitos pelo Supremo Concílio da IPB.
         </p>
 
         <div className="mt-12 grid items-start gap-10 lg:grid-cols-[minmax(0,20rem)_1fr] lg:gap-14">
@@ -101,31 +95,13 @@ export default function SobreJuret() {
           {/* Demais membros */}
           <div>
             <h3 className="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
-              Membros titulares
+              Membros da junta
             </h3>
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
-              {juretTitulares.map((member) => (
+              {juretMembros.map((member) => (
                 <MemberCard key={member.name} member={member} />
               ))}
             </div>
-
-            <h3 className="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
-              Membros suplentes
-            </h3>
-            <div className="mt-4 grid gap-4 sm:grid-cols-2">
-              {juretSuplentes.map((member) => (
-                <MemberCard key={member.name} member={member} />
-              ))}
-            </div>
-
-            <a
-              href="https://www.ipb.org.br/junta-regional-de-educacao-teologica"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-brand-800 transition-colors hover:text-brand-700"
-            >
-              Composição oficial no site da IPB <ArrowUpRight size={15} />
-            </a>
           </div>
         </div>
       </div>

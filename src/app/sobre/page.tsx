@@ -5,9 +5,8 @@ import SobreHistory from "@/components/sections/sobre/SobreHistory";
 import SobreCampus from "@/components/sections/sobre/SobreCampus";
 import SobreMissionValues from "@/components/sections/sobre/SobreMissionValues";
 import SobreConfession from "@/components/sections/sobre/SobreConfession";
-import SobreDirector from "@/components/sections/sobre/SobreDirector";
 import SobreFaculty from "@/components/sections/sobre/SobreFaculty";
-import SobreChaplaincy from "@/components/sections/sobre/SobreChaplaincy";
+import SobreLeadership from "@/components/sections/sobre/SobreLeadership";
 import { ogMetadata } from "@/lib/seo";
 
 const title = "Sobre o Seminário | Seminário Simonton";
@@ -30,9 +29,8 @@ export default function SobrePage() {
       <SobreCampus />
       <SobreMissionValues />
       <SobreConfession />
-      <SobreDirector />
       <SobreFaculty />
-      <SobreChaplaincy />
+      <SobreLeadership />
     </div>
   );
 }

@@ -1,20 +1,20 @@
-import { Church, ScrollText, HeartHandshake } from "lucide-react";
+import { Church, Heart, Earth } from "lucide-react";
 
 const pillars = [
   {
     icon: Church,
-    title: "Soberania de Deus e Escritura",
-    text: "A Bíblia como palavra de Deus inspirada, inerrante e suficiente — única regra de fé e prática.",
+    title: "Teologia Reformada",
+    text: "Como seminário confessional, zelamos pela Teologia Reformada, que reúne o melhor da reflexão e da sistematização teológica, sempre alicerçada na fidelidade às Escrituras Sagradas.",
   },
   {
-    icon: ScrollText,
-    title: "Confissão de Westminster",
-    text: "Fiéis exposições doutrinárias que orientam todo o currículo acadêmico do Seminário.",
+    icon: Heart,
+    title: "Piedade",
+    text: "Como parte da Igreja de Cristo, valorizamos a piedade, reconhecendo que o temor do Senhor é o princípio da sabedoria. Cremos que fomos irresistivelmente vocacionados pelo Espírito Santo para uma íntima comunhão com o Pai, mediante Jesus Cristo, o Filho.",
   },
   {
-    icon: HeartHandshake,
-    title: "Formação integral",
-    text: "Acolhimento de alunos e famílias, com projetos como a Casa de Isabel, cuidando de quem caminha ao lado do seminarista.",
+    icon: Earth,
+    title: "Proclamação do Evangelho",
+    text: "Como casa de profetas, dedicamo-nos à proclamação do Evangelho, anunciando, com tudo o que somos, falamos e fazemos — dentro e fora da sala de aula — que Jesus Cristo é o Senhor, para a glória de Deus Pai.",
   },
 ];
 
@@ -27,20 +27,21 @@ export default function About() {
             Quem somos
           </span>
           <h2 className="mt-4 font-serif text-3xl font-extrabold text-brand-950 sm:text-4xl">
-            Sem devoção não há formação
+            Sem devoção, não há formação.
           </h2>
           <p className="mt-6 text-base leading-relaxed text-stone-600">
             O Seminário Teológico Presbiteriano Rev. Ashbel Green Simonton é
             uma instituição cristã de ensino teológico e confissão de fé
             reformada, jurisdicionada à Igreja Presbiteriana do Brasil.
             Buscamos ser referência para o presbiterianismo, oferecendo
-            sólido conhecimento bíblico-teológico e formando pastores que
-            suprirão o sagrado ministério na IPB.
+            sólido conhecimento bíblico-teológico, formando pastores que
+            suprirão o sagrado ministério na IPB e aperfeiçoando
+            líderes para a igreja local.
           </p>
           <p className="mt-4 text-base leading-relaxed text-stone-600">
             Unimos piedade à reflexão acadêmica, sob o referencial da
             teologia reformada, e o compromisso com a expansão do evangelho
-            do Reino — cuidando também da formação integral de cada aluno e
+            do Reino, cuidando também da formação integral de cada aluno e
             de sua família.
           </p>
         </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -237,7 +237,12 @@ function FeaturedCard({ card }: { card: CourseCard }) {
 /** Slug do curso destacado como carro-chefe da aba EFAL. */
 const FEATURED_SLUG = "cit";
 
-export default function OnlineCourses() {
+/**
+ * `posFaculty` é um slot para a seção "Corpo docente da Pós-graduação",
+ * renderizada apenas na aba Pós. Vem como ReactNode do page.tsx para que
+ * a seção continue sendo um Server Component dentro deste Client Component.
+ */
+export default function OnlineCourses({ posFaculty }: { posFaculty?: ReactNode }) {
   const [active, setActive] = useState<Tab>("EFAL");
 
   // A âncora #pos (usada na seção "Qual curso é para você?") ativa a aba
@@ -313,6 +318,8 @@ export default function OnlineCourses() {
           <Card key={card.key} card={card} />
         ))}
       </div>
+
+      {active === "Pós-graduação" && posFaculty}
 
       {/* Coordenador do núcleo ativo — acompanha a aba selecionada. */}
       <div className="mt-10 flex flex-col items-start gap-6 rounded-sm border border-brand-900/10 bg-white p-7 shadow-sm sm:flex-row sm:items-center sm:justify-between">

@@ -7,54 +7,137 @@ import { ChevronDown, Menu, X } from "lucide-react";
 
 import ThemeToggle from "./ThemeToggle";
 
-const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "Sobre", href: "/sobre" },
-];
+type MenuItem = {
+  label: string;
+  href: string;
+  description?: string;
+};
+
+type MenuGroup = {
+  /** Título da coluna (ex.: "Pós-graduação"); quando tem href, o título linka pra trilha. */
+  label?: string;
+  href?: string;
+  items: MenuItem[];
+};
+
+type NavEntry = {
+  label: string;
+  /** Link direto (sem dropdown). */
+  href?: string;
+  /** Dropdown: um grupo = lista simples; vários grupos = painel em colunas. */
+  groups?: MenuGroup[];
+};
 
 /**
- * Dropdown "Cursos" — todas as trilhas da casa num lugar só; modalidade é
- * atributo (descrito no item), não uma marca separada no menu.
+ * Navegação principal: institucional | teologia | cursos | conteúdos | projetos.
+ *
+ * Os itens de curso são um espelho enxuto (rótulo + slug) de src/data/pos.ts e
+ * src/data/efal.ts — importar os arquivos inteiros puxaria todo o conteúdo
+ * descritivo pro bundle do client. Ao criar/renomear um curso, atualizar aqui.
  */
-const courseLinks = [
+const navEntries: NavEntry[] = [
+  { label: "Institucional", href: "/sobre" },
   {
-    label: "Bacharelado em Teologia",
-    description: "Graduação presencial · Rio de Janeiro",
-    href: "/graduacao",
+    label: "Teologia",
+    groups: [
+      {
+        items: [
+          {
+            label: "Bacharelado em Teologia",
+            description: "Graduação presencial · Rio de Janeiro",
+            href: "/graduacao",
+          },
+        ],
+      },
+    ],
   },
   {
-    label: "Cursos da EFAL",
-    description: "Cursos livres · 100% online, ao vivo",
-    href: "/cursos-online",
+    label: "Cursos",
+    groups: [
+      {
+        label: "Pós-graduação",
+        href: "/cursos-online#pos",
+        items: [
+          {
+            label: "Plantação e Revitalização de Igreja",
+            href: "/cursos-online/plantacao-e-revitalizacao",
+          },
+          {
+            label: "Estudos do Novo Testamento",
+            href: "/cursos-online/novo-testamento",
+          },
+          {
+            label: "Cosmovisão Reformada",
+            href: "/cursos-online/cosmovisao-reformada",
+          },
+          {
+            label: "Gestão Ministerial",
+            href: "/cursos-online/gestao-ministerial",
+          },
+        ],
+      },
+      {
+        label: "EFAL",
+        href: "/cursos-online",
+        items: [
+          { label: "Curso Introdutório de Teologia", href: "/cursos-online/cit" },
+          { label: "Aperfeiçoamento de Líderes", href: "/cursos-online/cal" },
+          { label: "Formação de Oficiais", href: "/cursos-online/cfo" },
+          { label: "Formação de Professores", href: "/cursos-online/cfp" },
+          { label: "Curso de Libras", href: "/cursos-online/cfl" },
+          { label: "Formação Musical", href: "/cursos-online/cfm" },
+          { label: "Formação em Capelania", href: "/cursos-online/cfc" },
+        ],
+      },
+    ],
   },
   {
-    label: "Pós-graduação",
-    description: "Especializações · 100% online, ao vivo",
-    href: "/cursos-online#pos",
+    label: "Conteúdos",
+    groups: [
+      {
+        items: [
+          {
+            label: "Revista Sementes",
+            description: "A revista do seminário · materiais para baixar",
+            // TODO(conteúdo): trocar pelo link real da Revista Sementes.
+            href: "#",
+          },
+        ],
+      },
+    ],
   },
   {
-    label: "Todos os cursos",
-    description: "Visão geral das trilhas de formação",
-    href: "/cursos",
+    label: "Projetos",
+    groups: [
+      {
+        // TODO(conteúdo): criar as páginas dos projetos e trocar os "#".
+        items: [
+          { label: "Casa de Isabel", href: "#" },
+          { label: "STPS vai às Igrejas", href: "#" },
+          { label: "STPS apoia Missões", href: "#" },
+        ],
+      },
+    ],
   },
 ];
 
-const contactLink = { label: "Contato", href: "/#contato" };
+const menuId = (label: string) =>
+  `menu-${label.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`;
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [coursesOpen, setCoursesOpen] = useState(false);
-  const coursesRef = useRef<HTMLDivElement>(null);
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const navRef = useRef<HTMLElement>(null);
 
   // Fecha o dropdown com Escape ou clique fora — navegação por teclado ok.
   useEffect(() => {
-    if (!coursesOpen) return;
+    if (!openMenu) return;
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setCoursesOpen(false);
+      if (e.key === "Escape") setOpenMenu(null);
     };
     const onPointerDown = (e: PointerEvent) => {
-      if (!coursesRef.current?.contains(e.target as Node)) {
-        setCoursesOpen(false);
+      if (!navRef.current?.contains(e.target as Node)) {
+        setOpenMenu(null);
       }
     };
     document.addEventListener("keydown", onKeyDown);
@@ -63,10 +146,13 @@ export default function Header() {
       document.removeEventListener("keydown", onKeyDown);
       document.removeEventListener("pointerdown", onPointerDown);
     };
-  }, [coursesOpen]);
+  }, [openMenu]);
 
   const navLinkClass =
     "text-base font-medium text-brand-900 transition-colors hover:text-brand-700 dark:text-white/85 dark:hover:text-white";
+
+  const menuItemClass =
+    "block rounded-sm px-3 py-2 transition-colors hover:bg-brand-100 dark:hover:bg-white/10";
 
   return (
     <header className="sticky top-0 z-40 border-b border-brand-100 bg-brand-50/95 backdrop-blur supports-[backdrop-filter]:bg-brand-50/80 dark:border-brand-900 dark:bg-brand-950/95 dark:supports-[backdrop-filter]:bg-brand-950/80">
@@ -92,60 +178,92 @@ export default function Header() {
         </Link>
 
         {/* Navegação central */}
-        <nav className="hidden flex-1 items-center justify-center gap-8 md:flex">
-          {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className={navLinkClass}>
-              {link.label}
-            </Link>
-          ))}
-
-          {/* Dropdown Cursos */}
-          <div ref={coursesRef} className="relative">
-            <button
-              type="button"
-              onClick={() => setCoursesOpen((v) => !v)}
-              aria-expanded={coursesOpen}
-              aria-haspopup="menu"
-              aria-controls="menu-cursos"
-              className={`inline-flex items-center gap-1.5 ${navLinkClass}`}
-            >
-              Cursos
-              <ChevronDown
-                size={16}
-                aria-hidden
-                className={`transition-transform ${coursesOpen ? "rotate-180" : ""}`}
-              />
-            </button>
-            {coursesOpen && (
-              <div
-                id="menu-cursos"
-                role="menu"
-                aria-label="Cursos"
-                className="absolute left-1/2 top-full mt-3 w-80 -translate-x-1/2 rounded-md border border-brand-100 bg-brand-50 p-2 shadow-lg dark:border-brand-900 dark:bg-brand-950"
+        <nav
+          ref={navRef}
+          className="hidden flex-1 items-center justify-center gap-7 md:flex"
+        >
+          {navEntries.map((entry) =>
+            entry.href ? (
+              <Link
+                key={entry.label}
+                href={entry.href}
+                onClick={() => setOpenMenu(null)}
+                className={navLinkClass}
               >
-                {courseLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    role="menuitem"
-                    href={link.href}
-                    onClick={() => setCoursesOpen(false)}
-                    className="block rounded-sm px-4 py-3 transition-colors hover:bg-brand-100 dark:hover:bg-white/10"
+                {entry.label}
+              </Link>
+            ) : (
+              <div key={entry.label} className="relative">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setOpenMenu((v) => (v === entry.label ? null : entry.label))
+                  }
+                  aria-expanded={openMenu === entry.label}
+                  aria-haspopup="menu"
+                  aria-controls={menuId(entry.label)}
+                  className={`inline-flex items-center gap-1.5 ${navLinkClass}`}
+                >
+                  {entry.label}
+                  <ChevronDown
+                    size={16}
+                    aria-hidden
+                    className={`transition-transform ${openMenu === entry.label ? "rotate-180" : ""}`}
+                  />
+                </button>
+                {openMenu === entry.label && (
+                  <div
+                    id={menuId(entry.label)}
+                    role="menu"
+                    aria-label={entry.label}
+                    className={`absolute left-1/2 top-full mt-3 -translate-x-1/2 rounded-md border border-brand-100 bg-brand-50 p-3 shadow-lg dark:border-brand-900 dark:bg-brand-950 ${
+                      entry.groups!.length > 1
+                        ? "grid w-[34rem] grid-cols-2 gap-4"
+                        : "w-80"
+                    }`}
                   >
-                    <span className="block text-sm font-medium text-brand-900 dark:text-white/90">
-                      {link.label}
-                    </span>
-                    <span className="mt-0.5 block text-xs text-stone-500 dark:text-white/60">
-                      {link.description}
-                    </span>
-                  </Link>
-                ))}
+                    {entry.groups!.map((group, i) => (
+                      <div key={group.label ?? i}>
+                        {group.label &&
+                          (group.href ? (
+                            <Link
+                              role="menuitem"
+                              href={group.href}
+                              onClick={() => setOpenMenu(null)}
+                              className="mb-1 block rounded-sm px-3 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-brand-700 transition-colors hover:bg-brand-100 dark:text-white/60 dark:hover:bg-white/10"
+                            >
+                              {group.label}
+                            </Link>
+                          ) : (
+                            <p className="mb-1 px-3 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-brand-700 dark:text-white/60">
+                              {group.label}
+                            </p>
+                          ))}
+                        {group.items.map((item) => (
+                          <Link
+                            key={item.label}
+                            role="menuitem"
+                            href={item.href}
+                            onClick={() => setOpenMenu(null)}
+                            className={menuItemClass}
+                          >
+                            <span className="block text-sm font-medium text-brand-900 dark:text-white/90">
+                              {item.label}
+                            </span>
+                            {item.description && (
+                              <span className="mt-0.5 block text-xs text-stone-500 dark:text-white/60">
+                                {item.description}
+                              </span>
+                            )}
+                          </Link>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-
-          <Link href={contactLink.href} className={navLinkClass}>
-            {contactLink.label}
-          </Link>
+            ),
+          )}
         </nav>
 
         {/* Ações à direita */}
@@ -178,50 +296,52 @@ export default function Header() {
         <nav
           id="menu-mobile"
           aria-label="Menu principal"
-          className="mx-6 mb-3 flex flex-col gap-1 rounded-md border border-brand-100 bg-brand-50 p-4 shadow-lg md:hidden dark:border-brand-900 dark:bg-brand-950"
+          className="mx-6 mb-3 flex max-h-[calc(100dvh-7rem)] flex-col gap-1 overflow-y-auto rounded-md border border-brand-100 bg-brand-50 p-4 shadow-lg md:hidden dark:border-brand-900 dark:bg-brand-950"
         >
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className="rounded-sm px-3 py-2.5 text-sm font-medium text-brand-900 hover:bg-brand-100 dark:text-white/90 dark:hover:bg-white/10"
-            >
-              {link.label}
-            </Link>
-          ))}
-
-          <p className="mt-2 px-3 text-xs font-medium uppercase tracking-[0.18em] text-brand-700 dark:text-white/60">
-            Cursos
-          </p>
-          {courseLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className="rounded-sm px-3 py-2.5 hover:bg-brand-100 dark:hover:bg-white/10"
-            >
-              <span className="block text-sm font-medium text-brand-900 dark:text-white/90">
-                {link.label}
-              </span>
-              <span className="mt-0.5 block text-xs text-stone-500 dark:text-white/60">
-                {link.description}
-              </span>
-            </Link>
-          ))}
-
-          <Link
-            href={contactLink.href}
-            onClick={() => setMenuOpen(false)}
-            className="mt-1 rounded-sm px-3 py-2.5 text-sm font-medium text-brand-900 hover:bg-brand-100 dark:text-white/90 dark:hover:bg-white/10"
-          >
-            {contactLink.label}
-          </Link>
+          {navEntries.map((entry) =>
+            entry.href ? (
+              <Link
+                key={entry.label}
+                href={entry.href}
+                onClick={() => setMenuOpen(false)}
+                className="rounded-sm px-3 py-2.5 text-sm font-medium text-brand-900 hover:bg-brand-100 dark:text-white/90 dark:hover:bg-white/10"
+              >
+                {entry.label}
+              </Link>
+            ) : (
+              <div key={entry.label} className="flex flex-col gap-1">
+                {entry.groups!.map((group, i) => (
+                  <div key={group.label ?? i} className="flex flex-col gap-1">
+                    <p className="mt-2 px-3 text-xs font-medium uppercase tracking-[0.18em] text-brand-700 dark:text-white/60">
+                      {group.label ? `${entry.label} · ${group.label}` : entry.label}
+                    </p>
+                    {group.items.map((item) => (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        onClick={() => setMenuOpen(false)}
+                        className="rounded-sm px-3 py-2 hover:bg-brand-100 dark:hover:bg-white/10"
+                      >
+                        <span className="block text-sm font-medium text-brand-900 dark:text-white/90">
+                          {item.label}
+                        </span>
+                        {item.description && (
+                          <span className="mt-0.5 block text-xs text-stone-500 dark:text-white/60">
+                            {item.description}
+                          </span>
+                        )}
+                      </Link>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            ),
+          )}
 
           <Link
             href="/#contato"
             onClick={() => setMenuOpen(false)}
-            className="mt-2 rounded-md bg-brand-700 px-3 py-2.5 text-center text-sm font-medium text-white"
+            className="mt-3 rounded-md bg-brand-700 px-3 py-2.5 text-center text-sm font-medium text-white"
           >
             Quero me matricular
           </Link>

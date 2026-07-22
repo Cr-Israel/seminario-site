@@ -3,6 +3,7 @@ import OnlineHero from "@/components/sections/online/OnlineHero";
 import OnlineStats from "@/components/sections/online/OnlineStats";
 import OnlineProfiles from "@/components/sections/online/OnlineProfiles";
 import OnlineCourses from "@/components/sections/online/OnlineCourses";
+import PosFaculty from "@/components/sections/online/PosFaculty";
 import OnlineFaculty from "@/components/sections/online/OnlineFaculty";
 import Testimonials from "@/components/sections/Testimonials";
 import OnlineMotto from "@/components/sections/online/OnlineMotto";
@@ -40,7 +41,7 @@ export default function CursosOnlinePage() {
       <OnlineHero />
       <OnlineStats />
       <OnlineProfiles />
-      <OnlineCourses />
+      <OnlineCourses posFaculty={<PosFaculty />} />
 
       {/* Legitimação eclesiástica logo abaixo do catálogo, como na Home. */}
       <section className="px-6 pb-20">

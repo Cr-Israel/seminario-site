@@ -35,7 +35,7 @@ export default function Home() {
       <CoursesGateway />
       <VideoIntro />
       <Highlights />
-      <Testimonials />
+      <Testimonials tone="dark" />
       <Faq />
       <ContactCta />
     </div>

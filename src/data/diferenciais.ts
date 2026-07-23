@@ -36,7 +36,7 @@ export const diferenciais: Diferencial[] = [
     label: "Confissão reformada",
     title: "Identidade confessional reformada",
     paragraphs: [
-      "Cremos que as Escrituras Sagradas são a nossa única e infalível regra de fé e prática. Como instituição da Igreja Presbiteriana do Brasil, adotamos os Símbolos de Fé de Westminster — a Confissão de Fé e os Catecismos Maior e Breve — como fiéis expressões do ensino bíblico.",
+      "Cremos que as Escrituras Sagradas são a nossa única e infalível regra de fé e prática. Como instituição da Igreja Presbiteriana do Brasil, adotamos os Símbolos de Fé de Westminster, a Confissão de Fé e os Catecismos Maior e Breve, como fiéis expressões do ensino bíblico.",
       "Aqui não se ensina teologia genérica: cada disciplina, das línguas originais à teologia pastoral, é lecionada sob o referencial da teologia reformada, com zelo confessional e honestidade acadêmica. Esse é o diferencial do qual todos os outros decorrem.",
     ],
     image: {
@@ -52,7 +52,7 @@ export const diferenciais: Diferencial[] = [
     title: "Vínculo e reconhecimento na IPB",
     paragraphs: [
       "O Simonton é jurisdicionado à Igreja Presbiteriana do Brasil: o currículo do Bacharelado é aprovado pelo Supremo Concílio da IPB e a certificação é outorgada pela JURET, a Junta Regional de Educação Teológica. O ingresso se dá pelo Vestibular Unificado da IPB, organizado pela JET.",
-      "Trata-se de reconhecimento eclesiástico — não de credenciamento junto ao MEC — e o afirmamos com transparência: é a chancela que importa para quem se prepara para o sagrado ministério na IPB e para o serviço na igreja local.",
+      "Trata-se de reconhecimento eclesiástico, não de credenciamento junto ao MEC, e o afirmamos com transparência: é a chancela que importa para quem se prepara para o sagrado ministério na IPB e para o serviço na igreja local.",
     ],
     image: {
       src: "/images/formatura-2025.jpeg",
@@ -66,8 +66,8 @@ export const diferenciais: Diferencial[] = [
     label: "Herança e tradição",
     title: "Uma herança que remonta a Simonton",
     paragraphs: [
-      "Fundado em 1986 pelo Supremo Concílio da IPB, a partir da extensão do Seminário Presbiteriano do Sul instalada no Rio de Janeiro em 1982, o Simonton é herdeiro de uma trajetória que remonta ao Rev. Ashbel Green Simonton — o pioneiro do presbiterianismo brasileiro, que fundou no Rio o Seminário Primitivo, em 1867.",
-      "Desde 2022 essa história tem sede própria: o Edifício Rev. Roberto Brasileiro Silva, na Rua Isolina, 151, no Méier — salas de aula, biblioteca e capela a serviço da formação teológica no Rio de Janeiro.",
+      "Fundado em 1986 pelo Supremo Concílio da IPB, a partir da extensão do Seminário Presbiteriano do Sul instalada no Rio de Janeiro em 1982, o Simonton é herdeiro de uma trajetória que remonta ao Rev. Ashbel Green Simonton, o pioneiro do presbiterianismo brasileiro, que fundou no Rio o Seminário Primitivo, em 1867.",
+      "Desde 2022 essa história tem sede própria: o Edifício Rev. Roberto Brasileiro Silva, na Rua Isolina, 151, no Méier, com salas de aula, biblioteca e capela a serviço da formação teológica no Rio de Janeiro.",
     ],
     image: {
       src: "/images/seminario-frente.jpeg",
@@ -96,7 +96,7 @@ export const diferenciais: Diferencial[] = [
     label: "Acompanhamento real",
     title: "Flexibilidade com acompanhamento real",
     paragraphs: [
-      "Oferecemos formação presencial e cursos online — da EFAL à pós-graduação — sempre com interação real entre aluno e professor. Nada de aula gravada sem suporte: há encontros, correção e orientação de quem conhece o aluno pelo nome.",
+      "Oferecemos formação presencial e cursos online, da EFAL à pós-graduação, sempre com interação real entre aluno e professor. Nada de aula gravada sem suporte: há encontros, correção e orientação de quem conhece o aluno pelo nome.",
       "A flexibilidade serve à vocação, não o contrário: cada modalidade preserva o acompanhamento que uma formação teológica séria exige.",
     ],
   },
@@ -106,7 +106,7 @@ export const diferenciais: Diferencial[] = [
     label: "Formação integral",
     title: "Formação integral: piedade e academia",
     paragraphs: [
-      "Sem devoção, não há formação. Unimos piedade à reflexão acadêmica, reconhecendo que o temor do Senhor é o princípio da sabedoria — e cuidamos da vida espiritual de cada aluno, e também de sua família.",
+      "Sem devoção, não há formação. Unimos piedade à reflexão acadêmica, reconhecendo que o temor do Senhor é o princípio da sabedoria, e cuidamos da vida espiritual de cada aluno, e também de sua família.",
       "Esse cuidado toma forma concreta na capelania e em iniciativas como o projeto Casa de Isabel, além do acompanhamento pastoral dos seminaristas ao longo de todo o curso.",
     ],
     image: {

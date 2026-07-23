@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { whatsappHref } from "@/lib/whatsapp";
 
 /**
  * CTA final da página de diferenciais — convite sóbrio para conhecer as
@@ -19,23 +18,13 @@ export default function DiferenciaisCta() {
             pós-graduação, há uma trilha de formação para a sua vocação.
           </p>
         </div>
-        <div className="flex shrink-0 flex-col gap-3 sm:items-end">
+        <div className="shrink-0">
           <Link
             href="/#cursos"
             className="inline-flex items-center gap-2 rounded-sm bg-brand-50 px-7 py-3.5 text-sm font-medium text-brand-900 transition-colors hover:bg-white"
           >
             Conheça nossos cursos <ArrowRight size={16} aria-hidden />
           </Link>
-          <a
-            href={whatsappHref(
-              "Olá! Gostaria de saber mais sobre o Seminário Simonton e seus cursos.",
-            )}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm text-brand-100/80 transition-colors hover:text-white"
-          >
-            Falar com a secretaria
-          </a>
         </div>
       </div>
     </section>

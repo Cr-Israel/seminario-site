@@ -29,7 +29,7 @@ export default function DiferenciaisHero() {
         <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-brand-100/80 sm:text-lg">
           O que distingue o Seminário Simonton não foi desenhado para o
           mercado: nasce da confissão que abraçamos, da igreja a que servimos e
-          da história que herdamos. São convicções — e é por elas que vale a
+          da história que herdamos. São convicções, e é por elas que vale a
           pena estudar aqui.
         </p>
       </div>

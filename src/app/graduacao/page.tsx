@@ -9,7 +9,9 @@ import GraduacaoCtaFinal from "@/components/sections/graduacao/GraduacaoCtaFinal
 import SeloIPB from "@/components/sections/SeloIPB";
 import Differentiators from "@/components/sections/Differentiators";
 import Faculty from "@/components/sections/graduacao/Faculty";
+import CourseCoordinator from "@/components/sections/CourseCoordinator";
 import Testimonials from "@/components/sections/Testimonials";
+import { coordinators } from "@/data/coordinators";
 import { depoimentos } from "@/data/depoimentos";
 import { ogMetadata } from "@/lib/seo";
 
@@ -51,6 +53,18 @@ export default function GraduacaoPage() {
 
       <GraduacaoStructure />
       <Faculty />
+
+      {/* Coordenação do curso e coordenação pedagógica — foto e contato. */}
+      <section className="mx-auto max-w-5xl px-6 pb-8">
+        <div className="grid gap-6 md:grid-cols-2">
+          <CourseCoordinator coordinator={coordinators.bacharel} />
+          <CourseCoordinator
+            coordinator={coordinators.pedagogico}
+            title="Coordenação Pedagógica"
+          />
+        </div>
+      </section>
+
       <Differentiators />
 
       {/* Formatura — registro do acervo, ponte para os depoimentos de egressos. */}

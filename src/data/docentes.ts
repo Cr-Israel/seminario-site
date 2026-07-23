@@ -101,6 +101,7 @@ export const docentes: Docente[] = [
   {
     name: "Rev. Ivo Mozart",
     credential: "Mestre em Estudos do Novo Testamento; pastor da IP do Méier",
+    photo: "/images/rev-ivo-cesar.jpeg",
   },
   {
     name: "Rev. Jayro Alves",

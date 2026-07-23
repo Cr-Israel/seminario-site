@@ -66,7 +66,7 @@ export const diferenciais: Diferencial[] = [
     label: "Herança e tradição",
     title: "Uma herança que remonta a Simonton",
     paragraphs: [
-      "Fundado em 1986 pelo Supremo Concílio da IPB, a partir da extensão do Seminário Presbiteriano do Sul instalada no Rio de Janeiro em 1982, o Simonton é herdeiro de uma trajetória que remonta ao Rev. Ashbel Green Simonton, o pioneiro do presbiterianismo brasileiro, que fundou no Rio o Seminário Primitivo, em 1867.",
+      "Fundado em 1986 pelo Supremo Concílio da IPB, a partir da extensão do Seminário Presbiteriano do Sul instalada no Rio de Janeiro em 1982, o STPS é herdeiro de uma trajetória que remonta ao Rev. Ashbel Green Simonton, o pioneiro do presbiterianismo brasileiro.",
       "Desde 2022 essa história tem sede própria: o Edifício Rev. Roberto Brasileiro Silva, na Rua Isolina, 151, no Méier, com salas de aula, biblioteca e capela a serviço da formação teológica no Rio de Janeiro.",
     ],
     image: {

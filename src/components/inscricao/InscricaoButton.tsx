@@ -120,7 +120,7 @@ export default function InscricaoButton({
           {status === "success" ? (
             <div className="mt-6">
               <p className="rounded-sm bg-brand-50 p-4 text-sm leading-relaxed text-brand-900">
-                Inscrição recebida! A secretaria entrará em contato.
+                Inscrição recebida! A secretaria entrará em contato em breve.
               </p>
               <button
                 type="button"
@@ -195,7 +195,7 @@ export default function InscricaoButton({
                   htmlFor={`${titleId}-cupom`}
                   className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-stone-500"
                 >
-                  Código de cupom{" "}
+                  Cupom de desconto{" "}
                   <span className="normal-case text-stone-400">(opcional)</span>
                 </label>
                 <input

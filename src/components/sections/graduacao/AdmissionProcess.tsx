@@ -1,18 +1,21 @@
-import { ArrowUpRight, MessageCircle } from "lucide-react";
-import { whatsappHref } from "@/lib/whatsapp";
+import { ArrowUpRight, FileText } from "lucide-react";
+import {
+  ADMISSAO_INSCRICAO_URL,
+  MANUAL_CANDIDATO_URL,
+} from "@/data/graduacao";
 
 const steps = [
   {
-    title: "Inscrição no Vestibular Unificado",
-    text: "O ingresso não é feito diretamente pelo Simonton. Você se inscreve no processo seletivo unificado da Igreja Presbiteriana do Brasil, organizado pela Junta de Educação Teológica (JET).",
+    title: "Inscrição no processo de admissão da JET",
+    text: "O ingresso não é feito diretamente pelo Simonton. Você se inscreve no processo de admissão da Igreja Presbiteriana do Brasil, organizado pela Junta de Educação Teológica (JET).",
   },
   {
-    title: "Prova única para toda a denominação",
-    text: "É um processo seletivo único, aplicado ao mesmo tempo para todos os seminários da IPB — funciona de forma parecida com um vestibular nacional da denominação.",
+    title: "Manual do Candidato 2027",
+    text: "O Manual do Candidato reúne as orientações, os requisitos e o calendário do processo de admissão. É a leitura obrigatória antes de se inscrever.",
   },
   {
     title: "Aprovação e escolha do seminário",
-    text: "Aprovado, o candidato fica habilitado a estudar em qualquer seminário da IPB — e pode escolher o Simonton como seu seminário de destino.",
+    text: "Aprovado, o candidato fica habilitado a estudar em qualquer seminário da IPB, e pode escolher o Simonton como seu seminário de destino.",
   },
 ];
 
@@ -30,29 +33,27 @@ export default function AdmissionProcess() {
           <p className="mt-6 text-base leading-relaxed text-stone-600">
             Diferente dos cursos online, o Bacharelado não tem matrícula direta.
             A seleção é conduzida pela própria Igreja Presbiteriana do Brasil,
-            por meio da Junta de Educação Teológica — um processo único para toda
+            por meio da Junta de Educação Teológica (JET): um processo para toda
             a denominação, cuja aprovação habilita o candidato a escolher entre
             os seminários da IPB, incluindo o Simonton.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
-              href="https://www.ipb.org.br"
+              href={ADMISSAO_INSCRICAO_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-sm bg-brand-900 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-brand-950"
             >
-              Entenda o processo seletivo <ArrowUpRight size={16} />
+              Fazer inscrição — Admissão 2027 <ArrowUpRight size={16} aria-hidden />
             </a>
             <a
-              href={whatsappHref(
-                "Olá! Gostaria de informações sobre o Bacharelado em Teologia e o processo seletivo da IPB."
-              )}
+              href={MANUAL_CANDIDATO_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-sm border border-brand-900/20 px-6 py-3.5 text-sm font-medium text-brand-900 transition-colors hover:bg-brand-50"
             >
-              <MessageCircle size={16} /> Fale com a secretaria
+              <FileText size={16} aria-hidden /> Manual do Candidato 2027
             </a>
           </div>
         </div>

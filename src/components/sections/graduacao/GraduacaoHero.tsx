@@ -1,6 +1,15 @@
+import { ArrowUpRight, FileText } from "lucide-react";
 import ModalidadeBadge from "@/components/ui/ModalidadeBadge";
-import { whatsappHref } from "@/lib/whatsapp";
+import {
+  ADMISSAO_INSCRICAO_URL,
+  MANUAL_CANDIDATO_URL,
+} from "@/data/graduacao";
 
+/**
+ * Hero da /graduacao — Curso Livre de Bacharelado em Teologia. Fundo escuro,
+ * badges de natureza (curso livre · presencial) e os dois CTAs reais do
+ * processo de admissão 2027 (inscrição na JET e Manual do Candidato).
+ */
 export default function GraduacaoHero() {
   return (
     <section className="relative overflow-hidden bg-brand-950 py-24">
@@ -19,38 +28,37 @@ export default function GraduacaoHero() {
 
       <div className="relative mx-auto max-w-4xl px-6 text-center">
         <div className="mb-6 flex flex-wrap items-center justify-center gap-2">
-          <ModalidadeBadge nivel="bacharelado" modalidade="presencial" tone="dark" />
+          <ModalidadeBadge nivel="curso-livre" modalidade="presencial" tone="dark" />
           <span className="text-xs font-medium uppercase tracking-[0.2em] text-brand-200/90">
             Formação Presbiteriana Reformada · Rio de Janeiro
           </span>
         </div>
         <h1 className="font-serif text-4xl font-extrabold leading-[1.15] text-white sm:text-5xl">
-          Uma formação teológica completa, para quem foi chamado ao ministério
-          pastoral
+          Curso Livre de Bacharelado em Teologia
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-brand-100/80 sm:text-lg">
-          O Bacharelado em Teologia é o carro-chefe do Seminário Simonton:
-          formação presencial e integral em teologia reformada, seguindo a grade
-          curricular aprovada pelo Supremo Concílio da Igreja Presbiteriana do
-          Brasil.
+          Uma sólida formação na teologia reformada, presencial e integral. O
+          currículo reflete o aprovado pela Igreja Presbiteriana do Brasil para
+          todos os seus seminários, e o ingresso se dá pelo processo de admissão
+          da JET, a Junta de Educação Teológica da IPB.
         </p>
 
         <div className="mt-9 flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center">
           <a
-            href="#processo-seletivo"
-            className="rounded-sm bg-brand-50 px-7 py-3.5 text-center text-sm font-medium text-brand-900 transition-colors hover:bg-white"
-          >
-            Como ingressar
-          </a>
-          <a
-            href={whatsappHref(
-              "Olá! Gostaria de informações sobre o Bacharelado em Teologia."
-            )}
+            href={ADMISSAO_INSCRICAO_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-sm border border-white/25 px-7 py-3.5 text-center text-sm font-medium text-white transition-colors hover:bg-white/10"
+            className="inline-flex items-center justify-center gap-2 rounded-sm bg-brand-50 px-7 py-3.5 text-center text-sm font-medium text-brand-900 transition-colors hover:bg-white"
           >
-            Falar com a secretaria
+            Fazer inscrição — Admissão 2027 <ArrowUpRight size={16} aria-hidden />
+          </a>
+          <a
+            href={MANUAL_CANDIDATO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 rounded-sm border border-white/25 px-7 py-3.5 text-center text-sm font-medium text-white transition-colors hover:bg-white/10"
+          >
+            <FileText size={16} aria-hidden /> Manual do Candidato 2027
           </a>
         </div>
       </div>

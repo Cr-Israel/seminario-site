@@ -57,11 +57,11 @@ export default function CitHero() {
         {/* Vídeo de apresentação — player responsivo 16:9 ao lado do texto */}
         <div className="overflow-hidden rounded-sm border border-white/10 bg-black/30 shadow-2xl shadow-brand-950/40">
           <div className="aspect-video">
-            {/* TODO: trocar pelo vídeo real de apresentação do CIT */}
             <iframe
-              src="https://www.youtube.com/embed/PLACEHOLDER"
+              src="https://www.youtube-nocookie.com/embed/aGtlMolMcnc"
               title="Vídeo de apresentação do Curso Introdutório de Teologia"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
               className="h-full w-full"
             />

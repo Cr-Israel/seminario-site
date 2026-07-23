@@ -4,7 +4,6 @@ import DiferenciaisNav from "@/components/sections/diferenciais/DiferenciaisNav"
 import DiferencialBlock from "@/components/sections/diferenciais/DiferencialBlock";
 import DiferenciaisQuote from "@/components/sections/diferenciais/DiferenciaisQuote";
 import DiferenciaisCta from "@/components/sections/diferenciais/DiferenciaisCta";
-import SobreFaculty from "@/components/sections/sobre/SobreFaculty";
 import { diferenciais } from "@/data/diferenciais";
 import { ogMetadata } from "@/lib/seo";
 
@@ -21,8 +20,8 @@ export const metadata = {
 /**
  * Página "Nossos Diferenciais": hero escuro com a tese, faixa de âncoras,
  * seis seções detalhadas em zigue-zague (dados em src/data/diferenciais.ts)
- * com um pull quote confessional no meio, resumo do corpo docente e CTA
- * final. Fundos alternam claro/escuro para dar ritmo.
+ * com um pull quote confessional no meio e CTA final. Fundos alternam
+ * claro/escuro para dar ritmo.
  */
 export default function DiferenciaisPage() {
   return (
@@ -37,7 +36,6 @@ export default function DiferenciaisPage() {
       {diferenciais.slice(3).map((item, i) => (
         <DiferencialBlock key={item.id} item={item} index={i + 3} />
       ))}
-      <SobreFaculty />
       <DiferenciaisCta />
     </div>
   );

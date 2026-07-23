@@ -42,7 +42,7 @@ const navEntries: NavEntry[] = [
       {
         items: [
           { label: "Sobre", href: "/sobre" },
-          { label: "Nossos diferenciais", href: "/#diferenciais" },
+          { label: "Nossos diferenciais", href: "/diferenciais" },
           { label: "Docentes", href: "/cursos-online#professores" },
           { label: "Como chegar", href: "/#contato" },
           { label: "JURET-Rio", href: "/juret-rio" },

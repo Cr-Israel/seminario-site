@@ -74,7 +74,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={montserrat.variable}
+      className={`${montserrat.variable} scroll-smooth motion-reduce:scroll-auto`}
       data-theme="light"
       suppressHydrationWarning
     >

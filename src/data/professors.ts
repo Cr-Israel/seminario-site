@@ -14,6 +14,8 @@ export type OnlineProfessor = {
   /** Foto em /public, quando já disponível — sem foto o card mostra as iniciais. */
   photo?: string;
   credential?: string;
+  /** Bio quando o curso já a fornece (ex.: professoras do Curso de Libras). */
+  bio?: string;
 };
 
 /** Remove títulos para deduplicar ("Profª Vívian…" ≡ "Vívian…"). */
@@ -62,7 +64,12 @@ export function professorPhoto(name: string) {
 function buildProfessors(): OnlineProfessor[] {
   const byKey = new Map<string, OnlineProfessor>();
 
-  const add = (rawName: string, courseCode: string, credential?: string) => {
+  const add = (
+    rawName: string,
+    courseCode: string,
+    credential?: string,
+    bio?: string,
+  ) => {
     // "Professor" / "Professor em aberto" são placeholders de docente a definir.
     if (/^Professor( em aberto)?$/.test(rawName)) return;
     const key = stripTitle(rawName);
@@ -72,12 +79,14 @@ function buildProfessors(): OnlineProfessor[] {
         existing.courses.push(courseCode);
       }
       if (credential && !existing.credential) existing.credential = credential;
+      if (bio && !existing.bio) existing.bio = bio;
     } else {
       byKey.set(key, {
         name: rawName,
         courses: [courseCode],
         photo: photoByName[key],
         credential,
+        bio,
       });
     }
   };
@@ -87,7 +96,7 @@ function buildProfessors(): OnlineProfessor[] {
       add(discipline.docente, course.code);
     }
     for (const professor of course.professors ?? []) {
-      add(professor.name, course.code, professor.credential);
+      add(professor.name, course.code, professor.credential, professor.bio);
     }
   }
   for (const course of posCourses) {

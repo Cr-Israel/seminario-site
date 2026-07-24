@@ -9,7 +9,8 @@ export type PosProfessor = {
   /** Titulação/credencial principal, exibida abaixo do nome. */
   credential: string;
   bio: string;
-  photo: string;
+  /** Foto oficial; ausente cai no avatar de iniciais no PosFaculty. */
+  photo?: string;
   /** Disciplinas da Pós que leciona. TODO: confirmar as que faltam. */
   disciplines?: string[];
 };
@@ -43,7 +44,6 @@ export const posProfessors: PosProfessor[] = [
     name: "Rev. Jeferson Carvalho Alvarenga",
     credential: "Doutor em Engenharia Civil — Gestão (UFF) · PMP",
     bio: "Professor da Pós-graduação em Plantação e Revitalização de Igrejas do Seminário Simonton na área de Planejamento Estratégico Ministerial, onde leciona desde 2018. Doutor e Mestre em Engenharia Civil com ênfase em Gestão pela Universidade Federal Fluminense, Profissional de Gerenciamento de Projetos (PMP) certificado pelo PMI, especialista em Gestão de Pessoas (UNIFEI), Bacharel em Administração (UNIP) e Bacharel em Teologia pela Universidade Presbiteriana Mackenzie e pelo Seminário Presbiteriano do Sul. Pastor plantador do projeto Jardim Aquarius, em São José dos Campos (SP), atua também na gestão de parcerias internacionais do Seminário Martin Bucer e é autor de livro e artigos acadêmicos nas áreas de liderança, gestão ministerial e gerenciamento de projetos.",
-    photo: "/images/professores-pos/jeferson-alvarenga.jpg",
     disciplines: ["Planejamento Estratégico Ministerial"],
   },
   {

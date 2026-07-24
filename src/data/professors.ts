@@ -39,7 +39,6 @@ const photoByName: Record<string, string> = {
   "Simone Xavier": "/images/prof-simone-xavier.png",
   "André Monteiro": "/images/rev-andre-monteiro.jpeg",
   "Bruno Taioli": "/images/rev-bruno-taioli.png",
-  "Jeferson Alvarenga": "/images/rev-jeferson-alvarenga.jpeg",
   "Júnio Cesar": "/images/rev-junio-cesar.jpeg",
   "Pedro Dulci": "/images/rev-pedro-dulci.png",
   "Renato Prates": "/images/rev-renato-prates.png",

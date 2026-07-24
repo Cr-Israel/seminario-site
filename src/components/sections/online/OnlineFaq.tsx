@@ -10,7 +10,7 @@ const faqItems: FaqItem[] = [
   {
     question: "Preciso fazer vestibular para me inscrever?",
     answer:
-      "Não. Os cursos online da EFAL e a Pós-graduação têm inscrição direta pelo Simonton — diferente do Bacharelado presencial, que passa pelo processo seletivo unificado da IPB.",
+      "Não. Os cursos online da EFAL e a Pós-graduação têm inscrição direta pelo Simonton — diferente do Bacharelado presencial, que passa pelo processo de admissão unificado da IPB.",
   },
   {
     question: "Os cursos da EFAL dão certificado?",
@@ -20,7 +20,7 @@ const faqItems: FaqItem[] = [
   {
     question: "Qual a diferença entre a EFAL e o Bacharelado?",
     answer:
-      "A EFAL oferece cursos de curta e média duração (6 a 12 meses) para capacitação pontual de líderes já atuantes na igreja local. O Bacharelado é uma formação teológica completa, presencial, que exige aprovação no processo seletivo unificado da IPB.",
+      "A EFAL oferece cursos de curta e média duração (6 a 12 meses) para capacitação pontual de líderes já atuantes na igreja local. O Bacharelado é uma formação teológica completa, presencial, que exige aprovação no processo de admissão unificado da IPB.",
   },
   {
     question: "Como funcionam as aulas ao vivo?",

@@ -17,6 +17,7 @@ function initials(name: string) {
 // A checagem roda no servidor (build): docente cujo arquivo de foto ainda não
 // foi salvo em /public cai no avatar de iniciais em vez de quebrar a imagem.
 function hasPhoto(professor: PosProfessor) {
+  if (!professor.photo) return false;
   return existsSync(join(process.cwd(), "public", professor.photo));
 }
 
@@ -48,7 +49,7 @@ export default function PosFaculty() {
             <div className="flex items-center gap-4">
               {hasPhoto(professor) ? (
                 <Image
-                  src={professor.photo}
+                  src={professor.photo!}
                   alt={professor.name}
                   width={72}
                   height={72}

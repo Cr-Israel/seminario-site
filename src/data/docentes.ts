@@ -5,8 +5,8 @@
  *
  * Fotos: reaproveitadas de /public/images quando o docente já tem retrato no
  * acervo; os demais mostram as iniciais até a foto real chegar.
- * TODO(conteúdo): completar as fotos que faltam (marcadas sem `photo`) e, se
- * quisermos "Ler mais", acrescentar a bio completa (hoje só o resumo).
+ * TODO(conteúdo): completar as fotos que faltam (marcadas sem `photo`) e
+ * preencher a `bio` de cada docente (o modal já está pronto para exibi-la).
  */
 export type Docente = {
   name: string;
@@ -16,6 +16,12 @@ export type Docente = {
   role?: string;
   /** Foto em /public; sem ela o card usa as iniciais. */
   photo?: string;
+  /**
+   * Biografia completa, exibida no modal ao clicar no professor. Aceita vários
+   * parágrafos separados por linha em branco (\n\n). Enquanto não houver, o
+   * modal mostra a credencial e um aviso de "biografia em breve".
+   */
+  bio?: string;
 };
 
 export const docentes: Docente[] = [
@@ -110,11 +116,13 @@ export const docentes: Docente[] = [
   {
     name: "Rev. Jeferson Alvarenga",
     credential: "Doutor em Engenharia Civil (UFF)",
-    photo: "/images/rev-jeferson-alvarenga.jpeg",
+    bio: "Professor da Pós-graduação em Plantação e Revitalização de Igrejas do Seminário Simonton na área de Planejamento Estratégico Ministerial, onde leciona desde 2018. Doutor e Mestre em Engenharia Civil com ênfase em Gestão pela Universidade Federal Fluminense, Profissional de Gerenciamento de Projetos (PMP) certificado pelo PMI, especialista em Gestão de Pessoas (UNIFEI), Bacharel em Administração (UNIP) e Bacharel em Teologia pela Universidade Presbiteriana Mackenzie e pelo Seminário Presbiteriano do Sul. Pastor plantador do projeto Jardim Aquarius, em São José dos Campos (SP), atua também na gestão de parcerias internacionais do Seminário Martin Bucer e é autor de livro e artigos acadêmicos nas áreas de liderança, gestão ministerial e gerenciamento de projetos.",
   },
   {
     name: "Rev. Jorge Luiz Patrocinio",
     credential: "Doutor em Estudos Reformados (Seminário Concórdia, EUA)",
+    photo: "/images/rev-jorge-patrocinio.jpeg",
+    bio: "Natural de São Cristóvão (RJ), é Bacharel em Teologia (Belo Horizonte, 1995), com Mestrado e Doutorado (Ph.D.) em História Teológica pelo Seminário Concórdia, em Saint Louis (EUA), onde residiu por oito anos. Possui pós-graduação em Gestão de Pessoas (FAEL), especialização pela Case Western Reserve University e graduação em Direito pela Faculdade Mackenzie-Rio, com registro ativo na OAB-RJ. Professor e escritor, é fluente em inglês, com ampla experiência internacional — atua ainda hoje como representante do Seminário Calvin no estado americano do Michigan.",
   },
   {
     name: "Rev. José Mirabeau",

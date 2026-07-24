@@ -28,7 +28,7 @@ export default function AdmissionProcess() {
             Como ingressar
           </span>
           <h2 className="mt-4 font-serif text-3xl font-extrabold text-brand-950 sm:text-4xl">
-            O ingresso é pelo processo seletivo da IPB
+            O ingresso é pelo processo de admissão da IPB
           </h2>
           <p className="mt-6 text-base leading-relaxed text-stone-600">
             Diferente dos cursos online, o Bacharelado não tem matrícula direta.

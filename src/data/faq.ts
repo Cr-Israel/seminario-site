@@ -6,14 +6,14 @@ export type FaqItem = {
 /**
  * RASCUNHO — revisar com a secretaria/direção antes de publicar.
  * As respostas foram redigidas com base no que já se sabe (EFAL online ao
- * vivo, certificação pela JURET, Bacharel via processo seletivo da IPB),
+ * vivo, certificação pela JURET, Bacharel via processo de admissão da IPB),
  * mas precisam de conferência oficial, especialmente valores e prazos.
  */
 export const faqItems: FaqItem[] = [
   {
     question: "Preciso ser membro da Igreja Presbiteriana do Brasil para estudar aqui?",
     answer:
-      "Não necessariamente. Os cursos da EFAL são abertos a todo cristão interessado em se capacitar para servir. Já o Curso Livre de Bacharelado em Teologia segue as normas do processo seletivo da IPB — confira os requisitos junto à secretaria.",
+      "Não necessariamente. Os cursos da EFAL são abertos a todo cristão interessado em se capacitar para servir. Já o Curso Livre de Bacharelado em Teologia segue as normas do processo de admissão da IPB — confira os requisitos junto à secretaria.",
   },
   {
     question: "Os cursos da EFAL dão certificado?",
@@ -28,12 +28,12 @@ export const faqItems: FaqItem[] = [
   {
     question: "Qual a diferença entre a EFAL e o Bacharelado em Teologia?",
     answer:
-      "A EFAL oferece cursos de curta e média duração para capacitar líderes da igreja local (presbíteros, diáconos, professores, etc.). O Bacharelado é a formação teológica completa e mais longa, voltada principalmente ao preparo pastoral, e ingressa-se nele pelo processo seletivo unificado da IPB.",
+      "A EFAL oferece cursos de curta e média duração para capacitar líderes da igreja local (presbíteros, diáconos, professores, etc.). O Bacharelado é a formação teológica completa e mais longa, voltada principalmente ao preparo pastoral, e ingressa-se nele pelo processo de admissão unificado da IPB.",
   },
   {
     question: "Como ingresso no Bacharelado em Teologia?",
     answer:
-      "O ingresso é feito por um processo seletivo unificado da Igreja Presbiteriana do Brasil — uma prova que habilita o candidato a escolher entre os seminários da IPB, incluindo o Simonton. A inscrição é feita diretamente pela IPB; acompanhe as datas no site oficial da denominação.",
+      "O ingresso é feito por um processo de admissão unificado da Igreja Presbiteriana do Brasil — uma prova que habilita o candidato a escolher entre os seminários da IPB, incluindo o Simonton. A inscrição é feita diretamente pela IPB; acompanhe as datas no site oficial da denominação.",
   },
   {
     question: "Qual a duração dos cursos?",

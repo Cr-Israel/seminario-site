@@ -33,7 +33,7 @@ type Entry = {
 };
 
 /**
- * Bacharel: o processo seletivo é unificado da IPB (funciona como um "Enem"
+ * Bacharel: o processo de admissão é unificado da IPB (funciona como um "Enem"
  * denominacional) e a inscrição é feita direto no site da IPB, fora do
  * controle do Simonton. O card leva à página do curso, /graduacao.
  */
@@ -43,7 +43,7 @@ const bacharel: Entry = {
   icon: GraduationCap,
   title: "Curso Livre de Bacharelado em Teologia",
   description:
-    "Nossa formação teológica completa, o carro-chefe do Seminário. O ingresso é pelo processo seletivo unificado da IPB, que habilita o candidato a escolher entre os seminários da denominação.",
+    "Nossa formação teológica completa, o carro-chefe do Seminário. O ingresso é pelo processo de admissão unificado da IPB, que habilita o candidato a escolher entre os seminários da denominação.",
   meta: "Presencial · Rio de Janeiro",
   href: "/graduacao",
 };

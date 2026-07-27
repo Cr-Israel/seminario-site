@@ -60,26 +60,39 @@ export default function GraduacaoPage() {
           <CourseCoordinator coordinator={coordinators.bacharel} />
           <CourseCoordinator
             coordinator={coordinators.pedagogico}
-            title="Coordenação Pedagógica"
+            title="Orientação Pedagógica"
           />
         </div>
       </section>
 
       <Differentiators />
 
-      {/* Formatura — registro do acervo, ponte para os depoimentos de egressos. */}
-      <section className="bg-white py-16">
-        <figure className="mx-auto max-w-6xl px-6">
-          <div className="relative aspect-[2/1] overflow-hidden rounded-sm border border-brand-900/10">
-            <Image
-              src="/images/formatura-2025.jpeg"
-              alt="Formandos do Seminário Simonton de beca e capelo, erguendo seus diplomas durante o culto de formatura"
-              fill
-              sizes="(max-width: 1152px) 100vw, 1104px"
-              className="object-cover"
-            />
+      {/* Formatura — registro do acervo sobre fundo verde, com a foto emoldurada
+          num painel de vidro (glassmorphism). Orbs desfocados dão profundidade
+          para o efeito de vidro ter o que borrar. */}
+      <section className="relative overflow-hidden bg-brand-950 py-20">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -left-32 top-8 h-80 w-80 rounded-full bg-brand-700/40 blur-3xl"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -bottom-24 -right-24 h-96 w-96 rounded-full bg-brand-800/50 blur-3xl"
+        />
+
+        <figure className="relative mx-auto max-w-6xl px-6">
+          <div className="rounded-3xl border border-white/20 bg-white/10 p-3 shadow-2xl backdrop-blur-md sm:p-4">
+            <div className="relative aspect-[2/1] overflow-hidden rounded-2xl">
+              <Image
+                src="/images/formatura-2025.jpeg"
+                alt="Formandos do Seminário Simonton de beca e capelo, erguendo seus diplomas durante o culto de formatura"
+                fill
+                sizes="(max-width: 1152px) 100vw, 1104px"
+                className="object-cover"
+              />
+            </div>
           </div>
-          <figcaption className="mt-3 text-center text-sm text-stone-500">
+          <figcaption className="mt-4 text-center text-sm text-brand-100/80">
             Culto de formatura da turma de 2025
           </figcaption>
         </figure>

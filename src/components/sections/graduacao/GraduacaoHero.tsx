@@ -15,14 +15,6 @@ export default function GraduacaoHero() {
     <section className="relative overflow-hidden bg-brand-950 py-24">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.06]"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 1px, transparent 14px)",
-        }}
-      />
-      <div
-        aria-hidden
         className="pointer-events-none absolute -right-40 -top-40 h-96 w-96 rounded-full bg-brand-800/40 blur-3xl"
       />
 

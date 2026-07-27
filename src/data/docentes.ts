@@ -34,7 +34,7 @@ export const docentes: Docente[] = [
   {
     name: "Rev. João Batista Borges",
     credential: "Decano do corpo docente",
-    role: "Coordenador do Dep. de Cultura Geral",
+    role: "Coordenador do Dep. de Teologia Pastoral",
     photo: "/images/rev-joao.jpg",
   },
   {
@@ -44,9 +44,9 @@ export const docentes: Docente[] = [
     photo: "/images/rev-junio-cesar.jpeg",
   },
   {
-    name: "Rev. Carlos Antônio",
+    name: "Rev. Carlos Lima",
     credential: "Mestre em Teologia Sistemática (CPAJ)",
-    role: "Coordenador do Dep. de Teologia Pastoral",
+    role: "Coordenador do Dep. de Teologia Sistemática",
   },
   {
     name: "Rev. Adelino da Silva",
@@ -71,6 +71,7 @@ export const docentes: Docente[] = [
   {
     name: "Profª Simone Xavier",
     credential: "Mestra em Educação (UFRJ)",
+    role: "Coordenadora do Dep. de Cultura Geral",
     photo: "/images/prof-simone-xavier.png",
   },
   {
@@ -128,6 +129,7 @@ export const docentes: Docente[] = [
     name: "Rev. José Mirabeau",
     credential:
       "Mestre em Teologia Bíblica/AT (PUC-Rio); pastor da IP de Copacabana",
+    role: "Coordenador do Dep. de Teologia Exegética",
     photo: "/images/rev-jose-mirabeau.jpeg",
   },
   {

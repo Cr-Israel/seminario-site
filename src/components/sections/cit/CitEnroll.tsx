@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { getEfalCourse } from "@/data/efal";
 import InscricaoButton from "@/components/inscricao/InscricaoButton";
+import CitDescontosDialog from "./CitDescontosDialog";
 
 /**
  * CTA final / matrícula do CIT — faixa centralizada sobre brand-950. Abre o
@@ -30,6 +31,7 @@ export default function CitEnroll() {
               <p className="mt-0.5 text-sm text-brand-100/70">
                 Total: {course.price.total}
               </p>
+              <CitDescontosDialog className="mt-1.5 inline-flex items-center gap-1.5 text-sm font-medium text-brand-200 underline-offset-4 transition-colors hover:text-white hover:underline" />
             </div>
           )}
           <InscricaoButton

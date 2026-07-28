@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { professorPhoto } from "@/data/professors";
+import ParallaxOrbs from "@/components/ui/ParallaxOrbs";
 
 type Instructor = {
   name: string;
@@ -72,7 +73,7 @@ function initials(name: string) {
     .split(/\s+/)
     .filter(Boolean);
   const first = parts[0]?.[0] ?? "";
-  const last = parts.length > 1 ? parts[parts.length - 1][0] ?? "" : "";
+  const last = parts.length > 1 ? (parts[parts.length - 1][0] ?? "") : "";
   return (first + last).toUpperCase() || "?";
 }
 
@@ -100,7 +101,7 @@ function InstructorPhoto({
   return (
     <div
       aria-hidden="true"
-      className={`${className} flex items-center justify-center bg-gradient-to-br from-brand-100 to-brand-50 font-serif font-bold text-brand-800`}
+      className={`${className} flex items-center justify-center bg-gradient-to-br from-white/15 to-white/5 font-serif font-bold text-brand-100/80`}
     >
       {initials(person.name)}
     </div>
@@ -118,68 +119,89 @@ export default function CitInstructors() {
   const current = instructors[selected];
 
   return (
-    <section className="bg-stone-50 py-24">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="relative overflow-hidden bg-brand-950 py-24">
+      {/* O vidro dos cartões precisa de algo atrás para desfocar — sobre cor
+          chapada o backdrop-blur não rende nada. Os orbs dão essa profundidade. */}
+      <ParallaxOrbs />
+
+      {/* Halo largo sob os cartões: os orbs sozinhos não cobrem uma seção deste
+          tamanho, e sem luz por baixo o vidro fica indistinguível do fundo. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[34rem] w-[78rem] max-w-[130%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-700/25 blur-3xl"
+      />
+
+      <div className="relative mx-auto max-w-7xl px-6">
         <div className="max-w-2xl">
-          <span className="text-xs font-medium uppercase tracking-[0.2em] text-brand-700">
+          <span className="text-xs font-medium uppercase tracking-[0.2em] text-brand-200/90">
             Quem ensina
           </span>
-          <h2 className="mt-4 font-serif text-3xl font-extrabold text-brand-950 sm:text-4xl">
+          <h2 className="mt-4 font-serif text-3xl font-extrabold text-white sm:text-4xl">
             Conheça nossos instrutores
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-stone-600">
+          <p className="mt-4 text-base leading-relaxed text-brand-100/80">
             Reverendos com experiência pastoral e docente conduzem cada
             disciplina do CIT, ao vivo.
           </p>
         </div>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-5 lg:gap-10">
-          {/* Lista (master) — rolagem independente; abaixo do detalhe no mobile */}
-          <div
-            role="tablist"
-            aria-label="Instrutores do curso"
-            aria-orientation="vertical"
-            className="order-2 max-h-[560px] space-y-1.5 overflow-y-auto rounded-sm border border-brand-900/10 bg-white p-3 [scrollbar-color:var(--color-brand-200)_transparent] [scrollbar-width:thin] lg:order-1 lg:col-span-2"
-          >
-            {instructors.map((person, i) => {
-              const active = i === selected;
-              return (
-                <button
-                  key={person.name}
-                  type="button"
-                  role="tab"
-                  id={`cit-instructor-tab-${i}`}
-                  aria-selected={active}
-                  aria-controls="cit-instructor-panel"
-                  onClick={() => setSelected(i)}
-                  className={`flex w-full items-center gap-3.5 rounded-sm border-l-2 p-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-700 ${
-                    active
-                      ? "border-brand-700 bg-brand-50"
-                      : "border-transparent hover:bg-brand-50/50"
-                  }`}
-                >
-                  <InstructorPhoto
-                    person={person}
-                    size={48}
-                    className="h-12 w-12 shrink-0 rounded-lg text-base"
-                  />
-                  <span className="min-w-0">
-                    <span className="block text-sm font-medium text-brand-950">
-                      {person.name}
-                    </span>
-                    <span className="mt-0.5 block text-xs font-medium text-brand-700">
-                      {person.discipline}
-                    </span>
-                    {/* line-clamp já aplica display:-webkit-box; NÃO usar `block`
+          {/* Lista (master) — rolagem independente; abaixo do detalhe no mobile.
+              A moldura de vidro e o elemento que rola são separados de
+              propósito: a barra de rolagem é desenhada na borda do elemento com
+              overflow, e se fosse o próprio cartão ela cruzaria o canto
+              arredondado. Assim ela fica embutida, a p-3 da borda. */}
+          <div className="relative order-2 overflow-hidden rounded-3xl border border-white/20 bg-gradient-to-b from-white/[0.13] to-white/[0.05] p-3 shadow-2xl shadow-black/30 backdrop-blur-xl before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent lg:order-1 lg:col-span-2">
+            <div
+              role="tablist"
+              aria-label="Instrutores do curso"
+              aria-orientation="vertical"
+              className="max-h-[536px] space-y-1.5 overflow-y-auto pr-1 [scrollbar-color:rgba(255,255,255,0.25)_transparent] [scrollbar-width:thin]"
+            >
+              {instructors.map((person, i) => {
+                const active = i === selected;
+                return (
+                  <button
+                    key={person.name}
+                    type="button"
+                    role="tab"
+                    id={`cit-instructor-tab-${i}`}
+                    aria-selected={active}
+                    aria-controls="cit-instructor-panel"
+                    onClick={() => setSelected(i)}
+                    className={`group flex w-full items-center gap-3.5 rounded-xl border-l-2 p-3 text-left transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-200 ${
+                      active
+                        ? "border-brand-200 bg-white/[0.16]"
+                        : "border-transparent opacity-65 hover:bg-white/[0.08] hover:opacity-100 focus-visible:opacity-100"
+                    }`}
+                  >
+                    {/* Retrato colorido só no selecionado; os demais entram em
+                        preto e branco, para o olho achar o ativo de imediato. */}
+                    <InstructorPhoto
+                      person={person}
+                      size={48}
+                      className={`h-12 w-12 shrink-0 rounded-lg text-base transition duration-300 ${
+                        active ? "" : "grayscale group-hover:grayscale-0"
+                      }`}
+                    />
+                    <span className="min-w-0">
+                      <span className="block text-sm font-medium text-white">
+                        {person.name}
+                      </span>
+                      <span className="mt-0.5 block text-xs font-semibold text-brand-400">
+                        {person.discipline}
+                      </span>
+                      {/* line-clamp já aplica display:-webkit-box; NÃO usar `block`
                         junto — o `.block` do Tailwind vence e mata o clamp.
                         Bio resumida a 2 linhas; a íntegra abre no painel ao lado. */}
-                    <span className="mt-0.5 line-clamp-2 text-xs leading-snug text-stone-500">
-                      {person.bio}
+                      <span className="mt-0.5 line-clamp-2 text-xs leading-snug text-brand-100/80">
+                        {person.bio}
+                      </span>
                     </span>
-                  </span>
-                </button>
-              );
-            })}
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           {/* Detalhe do selecionado — acima da lista no mobile */}
@@ -187,11 +209,11 @@ export default function CitInstructors() {
             role="tabpanel"
             id="cit-instructor-panel"
             aria-labelledby={`cit-instructor-tab-${selected}`}
-            className="order-1 flex flex-col items-start gap-6 rounded-sm border border-brand-900/10 bg-white p-6 sm:flex-row sm:gap-8 sm:p-8 lg:order-2 lg:col-span-3"
+            className="relative order-1 flex flex-col items-start gap-6 overflow-hidden rounded-3xl border border-white/20 bg-gradient-to-b from-white/[0.13] to-white/[0.05] p-6 shadow-2xl shadow-black/30 backdrop-blur-xl before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent sm:flex-row sm:gap-8 sm:p-8 lg:order-2 lg:col-span-3"
           >
             {/* Retrato com tamanho próprio (não estica com a altura do card):
                 items-start no flex + dimensões fixas w-44/h-55 (proporção 4:5). */}
-            <div className="h-55 w-44 shrink-0 overflow-hidden rounded-xl">
+            <div className="h-55 w-44 shrink-0 overflow-hidden rounded-2xl ring-1 ring-white/15">
               <InstructorPhoto
                 person={current}
                 size={352}
@@ -199,14 +221,14 @@ export default function CitInstructors() {
               />
             </div>
             <div className="min-w-0">
-              <h3 className="font-serif text-2xl font-bold text-brand-950 sm:text-3xl">
+              <h3 className="font-serif text-2xl font-bold text-white sm:text-3xl">
                 {current.name}
               </h3>
-              <p className="mt-1 text-sm text-stone-500">{current.role}</p>
-              <p className="mt-1 text-sm font-medium text-brand-700">
+              <p className="mt-1 text-sm text-brand-100/70">{current.role}</p>
+              <p className="mt-1 text-sm font-semibold text-brand-400">
                 {current.discipline}
               </p>
-              <p className="mt-5 text-base leading-relaxed text-stone-600">
+              <p className="mt-5 text-base leading-relaxed text-brand-50/95">
                 {current.bio}
               </p>
             </div>

@@ -21,7 +21,7 @@ const objections: Objection[] = [
   {
     icon: Clock,
     title: "Não tenho tempo nem como me deslocar",
-    text: "As aulas são 100% online e ao vivo (não são gravações), em horário marcado. Você estuda de qualquer lugar do Brasil e conclui o curso em até 6 meses.",
+    text: "As aulas são 100% online e ao vivo, em horário marcado. Além disso, as aulas ficam gravadas, para que você possa assistir quantas vezes quiser. Você estuda de qualquer lugar do Brasil.",
   },
   {
     icon: Layers,

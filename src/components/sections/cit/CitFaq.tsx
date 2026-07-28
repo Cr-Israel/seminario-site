@@ -14,7 +14,7 @@ const faqItems: FaqItem[] = [
   {
     question: "Como funcionam as aulas?",
     answer:
-      "São 100% online e ao vivo (remoto), em horário marcado — não são gravações assíncronas.",
+      "São 100% online e ao vivo (remoto), em horário marcado, com o professor acompanhando a turma. As aulas também ficam gravadas: se você não puder assistir no dia, revê depois — quantas vezes quiser.",
   },
   {
     question: "Qual é a duração do curso?",

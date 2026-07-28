@@ -5,6 +5,9 @@
  */
 export const WHATSAPP_NUMBER = "5521964027542";
 
+/** O mesmo número em formato brasileiro, para exibir ao lado dos botões. */
+export const WHATSAPP_DISPLAY = "(21) 96402-7542";
+
 const DEFAULT_MESSAGE =
   "Olá! Gostaria de mais informações sobre os cursos do Seminário Simonton.";
 

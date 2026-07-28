@@ -4,6 +4,8 @@ import CitObjections from "@/components/sections/cit/CitObjections";
 import CitCtaBand from "@/components/sections/cit/CitCtaBand";
 import CitCurriculum from "@/components/sections/cit/CitCurriculum";
 import CitInstructors from "@/components/sections/cit/CitInstructors";
+import CitAudience from "@/components/sections/cit/CitAudience";
+import CitCtaInvite from "@/components/sections/cit/CitCtaInvite";
 import CitFaq from "@/components/sections/cit/CitFaq";
 import CitEnroll from "@/components/sections/cit/CitEnroll";
 import { ogMetadata } from "@/lib/seo";
@@ -33,6 +35,8 @@ export default function CitLandingPage() {
       <CitCtaBand />
       <CitCurriculum />
       <CitInstructors />
+      <CitAudience />
+      <CitCtaInvite />
       <CitFaq />
       <CitEnroll />
     </div>

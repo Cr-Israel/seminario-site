@@ -2,7 +2,6 @@ import {
   ArrowUpRight,
   Clock,
   GraduationCap,
-  ImageIcon,
   Layers,
   type LucideIcon,
 } from "lucide-react";
@@ -17,7 +16,7 @@ const objections: Objection[] = [
   {
     icon: GraduationCap,
     title: "Achei que teologia era só para pastores",
-    text: "O CIT é o primeiro contato do aluno com o conhecimento produzido no ambiente acadêmico do Seminário. Vai além da Escola Dominical e não exige nenhuma formação teológica prévia — é feito para líderes já atuantes e para cristãos em geral que querem se aprofundar.",
+    text: "O CIT é o primeiro contato do aluno com o conhecimento produzido no ambiente acadêmico do Seminário. Vai além da Escola Dominical e não exige nenhuma formação teológica prévia, é feito para líderes já atuantes e para cristãos em geral que querem se aprofundar.",
   },
   {
     icon: Clock,
@@ -37,8 +36,8 @@ const objections: Objection[] = [
 ];
 
 /**
- * Quebra de objeções — blocos laterais alternando o lado do texto e da imagem
- * (esquerda/direita) a cada bloco. Server Component.
+ * Quebra de objeções — grade de cards, dois por linha a partir de sm. Server
+ * Component.
  */
 export default function CitObjections() {
   return (
@@ -53,43 +52,24 @@ export default function CitObjections() {
           </h2>
         </div>
 
-        <div className="mt-16 space-y-16 sm:space-y-20">
-          {objections.map((item, i) => {
-            const textRight = i % 2 === 1;
-            return (
-              <div
-                key={item.title}
-                className="grid items-center gap-8 lg:grid-cols-2 lg:gap-14"
-              >
-                <div className={textRight ? "lg:order-2" : ""}>
-                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-sm bg-brand-50 text-brand-800">
-                    <item.icon size={24} aria-hidden="true" />
-                  </span>
-                  <h3 className="mt-5 font-serif text-2xl font-bold text-brand-950">
-                    {item.title}
-                  </h3>
-                  <p className="mt-4 text-base leading-relaxed text-stone-600">
-                    {item.text}
-                  </p>
-                </div>
-
-                {/* TODO: imagem — ilustração/foto do bloco de objeção */}
-                <div
-                  className={`flex aspect-[4/3] items-center justify-center rounded-sm border border-brand-900/10 bg-gradient-to-br from-brand-50 to-brand-100 ${
-                    textRight ? "lg:order-1" : ""
-                  }`}
-                >
-                  <ImageIcon
-                    size={40}
-                    strokeWidth={1.25}
-                    aria-hidden="true"
-                    className="text-brand-400"
-                  />
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        <ul className="mt-12 grid gap-6 sm:grid-cols-2">
+          {objections.map((item) => (
+            <li
+              key={item.title}
+              className="rounded-sm border border-brand-900/10 bg-white p-8"
+            >
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-sm bg-brand-50 text-brand-800">
+                <item.icon size={24} aria-hidden="true" />
+              </span>
+              <h3 className="mt-5 font-serif text-xl font-bold text-brand-950">
+                {item.title}
+              </h3>
+              <p className="mt-3 text-base leading-relaxed text-stone-600">
+                {item.text}
+              </p>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

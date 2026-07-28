@@ -66,7 +66,7 @@ export const posProfessors: PosProfessor[] = [
     name: "Rev. Joel Theodoro",
     credential: "Doutor em Letras Clássicas (UFRJ) e Doutor em Ministério (RTS/CPAJ)",
     bio: "Doutor em Letras Clássicas pela UFRJ, Doutor em Ministério pelo RTS/CPAJ e Mestre em Ciência da Literatura pela UFRJ, com bacharelados em Letras, Filosofia e Teologia. Atua como docente em seminários teológicos do Brasil e do exterior, além de lecionar em cursos superiores não teológicos. No Seminário Simonton, é professor de Teologia Sistemática e Símbolos de Fé Reformados. Possui formação em Liderança Avançada pelo Haggai Institute (Cingapura) e integra o ministério Charles Simeon Trust no Brasil. Pastor desde 1996, pastoreia a Igreja Presbiteriana de São Cristóvão (Rio de Janeiro, RJ).",
-    photo: "/images/professores-pos/joel-theodoro.jpg",
+    photo: "/images/rev-joel-theodoro.jpeg",
     disciplines: ["Teologia Sistemática", "Símbolos de Fé Reformados"],
   },
   {

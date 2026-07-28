@@ -1,31 +1,23 @@
 import { ArrowRight, PlayCircle } from "lucide-react";
+import ParallaxOrbs from "@/components/ui/ParallaxOrbs";
 
 /**
  * Hero da landing do CIT — layout de duas colunas (texto à esquerda, vídeo de
- * apresentação 16:9 ao lado), sobre fundo brand-950. Server Component.
+ * apresentação 16:9 ao lado), sobre o mesmo fundo verde da /graduacao: orbs
+ * desfocados que acompanham o cursor (ParallaxOrbs). Server Component.
  */
 export default function CitHero() {
   return (
     <section className="relative overflow-hidden bg-brand-950 py-24">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.06]"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 1px, transparent 14px)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -left-24 -top-24 h-96 w-96 rounded-full bg-brand-800/40 blur-3xl"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-brand-400/15 blur-3xl"
-      />
+      <ParallaxOrbs />
 
-      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16">
-        <div>
+      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-6 lg:grid-cols-2 lg:gap-12">
+        {/* Mesma moldura de vidro do GreenGlassHero (topo da /graduacao e das
+            páginas institucionais), aqui alinhada à esquerda em vez de
+            centralizada, porque o hero do CIT divide espaço com o vídeo. O
+            padding é mais enxuto que o do GreenGlassHero para não estreitar a
+            linha de texto — senão o cartão cresce em altura. */}
+        <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-white/[0.06] px-5 py-8 shadow-2xl shadow-black/20 backdrop-blur-xl before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-white/40 before:to-transparent sm:px-7 sm:py-9 lg:-ml-6 lg:mr-8">
           <p className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-brand-200/90">
             EFAL · Curso Introdutório de Teologia
           </p>

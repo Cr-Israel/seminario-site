@@ -8,7 +8,7 @@ import type { Docente } from "@/data/docentes";
 /** Iniciais para o retrato de quem ainda não tem foto no acervo. */
 function initials(name: string) {
   return name
-    .replace(/^(Rev\.|Profª|Prof\.)\s*/i, "")
+    .replace(/^(Rev\.|Profª\.?|Prof\.)\s*/i, "")
     .split(/\s+/)
     .slice(0, 2)
     .map((w) => w[0])
@@ -114,8 +114,10 @@ export default function FacultyGrid({ docentes }: { docentes: Docente[] }) {
                 <span className="font-serif text-sm font-bold leading-snug text-brand-950 sm:text-base">
                   {docente.name}
                 </span>
+                {/* Sem credencial em mãos, o card resume as disciplinas para
+                    não ficar só com o nome solto. */}
                 <span className="mt-1 line-clamp-2 text-xs leading-relaxed text-stone-600 sm:text-sm">
-                  {docente.credential}
+                  {docente.credential ?? docente.disciplines?.join(" · ")}
                 </span>
               </div>
             </button>
@@ -159,9 +161,30 @@ export default function FacultyGrid({ docentes }: { docentes: Docente[] }) {
             </div>
 
             <div className="px-6 py-6 sm:px-8 sm:py-8">
-              <p className="text-sm font-medium text-brand-800">
-                {selected.credential}
-              </p>
+              {selected.credential && (
+                <p className="text-sm font-medium text-brand-800">
+                  {selected.credential}
+                </p>
+              )}
+
+              {selected.disciplines && selected.disciplines.length > 0 && (
+                <div className="mt-5 first:mt-0">
+                  <h4 className="text-xs font-medium uppercase tracking-wider text-brand-700">
+                    Disciplinas em 2026
+                  </h4>
+                  <ul className="mt-2 flex flex-wrap gap-1.5">
+                    {selected.disciplines.map((discipline) => (
+                      <li
+                        key={discipline}
+                        className="rounded-full bg-brand-50 px-3 py-1 text-xs font-medium text-brand-800 ring-1 ring-inset ring-brand-900/10"
+                      >
+                        {discipline}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
               {selected.bio ? (
                 selected.bio.split("\n\n").map((paragraph) => (
                   <p

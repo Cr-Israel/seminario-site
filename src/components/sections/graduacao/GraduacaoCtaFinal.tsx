@@ -34,9 +34,9 @@ export default function GraduacaoCtaFinal() {
             href={MANUAL_CANDIDATO_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm text-brand-100/80 transition-colors hover:text-white"
+            className="inline-flex items-center justify-center gap-2 rounded-sm border border-white/25 px-7 py-3.5 text-center text-sm font-medium text-white transition-colors hover:border-white/50 hover:bg-white/10"
           >
-            <FileText size={15} aria-hidden /> Manual do Candidato 2027
+            <FileText size={16} aria-hidden /> Manual do Candidato 2027
           </a>
         </div>
       </div>

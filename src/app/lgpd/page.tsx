@@ -1,4 +1,5 @@
 import Header from "@/components/layout/Header";
+import GreenGlassHero from "@/components/ui/GreenGlassHero";
 import { ogMetadata } from "@/lib/seo";
 
 const title = "LGPD e Privacidade | Seminário Simonton";
@@ -25,23 +26,26 @@ export default function LgpdPage() {
     <div className="min-h-screen bg-stone-50 font-sans text-stone-800">
       <Header />
 
-      <section className="bg-white py-24">
-        <div className="mx-auto max-w-3xl px-6">
-          <span className="text-xs font-medium uppercase tracking-[0.2em] text-brand-700">
-            Privacidade e proteção de dados
-          </span>
-          <h1 className="mt-4 font-serif text-3xl font-extrabold text-brand-950 sm:text-4xl">
-            LGPD — Lei Geral de Proteção de Dados
-          </h1>
-          <p className="mt-6 text-base leading-relaxed text-stone-600">
-            O Seminário Teológico Presbiteriano Rev. Ashbel Green Simonton
-            respeita a privacidade de quem visita este site e trata os dados
-            pessoais que recebe em conformidade com a Lei Geral de Proteção de
-            Dados (Lei nº 13.709/2018). Esta página explica quais dados
-            coletamos, para que os usamos e como você pode exercer seus
-            direitos.
-          </p>
+      {/* Intro — fundo verde com efeito de vidro */}
+      <GreenGlassHero>
+        <span className="text-xs font-medium uppercase tracking-[0.2em] text-brand-200/90">
+          Privacidade e proteção de dados
+        </span>
+        <h1 className="mt-4 font-serif text-3xl font-extrabold text-white sm:text-4xl">
+          Lei Geral de Proteção de Dados
+        </h1>
+        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-brand-100/80">
+          O Seminário Teológico Presbiteriano Rev. Ashbel Green Simonton
+          respeita a privacidade de quem visita este site e trata os dados
+          pessoais que recebe em conformidade com a Lei Geral de Proteção de
+          Dados (Lei nº 13.709/2018). Esta página explica quais dados coletamos,
+          para que os usamos e como você pode exercer seus direitos.
+        </p>
+      </GreenGlassHero>
 
+      {/* Conteúdo da política */}
+      <section className="bg-white py-16 sm:py-20">
+        <div className="mx-auto max-w-3xl px-6">
           <H2>Quais dados coletamos</H2>
           <p className="mt-4 text-base leading-relaxed text-stone-600">
             Este site não exige cadastro para navegação. Os únicos dados

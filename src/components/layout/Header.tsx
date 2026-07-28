@@ -5,7 +5,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, ChevronRight, Menu, X } from "lucide-react";
 
+import { conteudos } from "@/data/conteudos";
 import ThemeToggle from "./ThemeToggle";
+
+/** Props de nova aba para links externos (http) — undefined para links internos. */
+const externalProps = (href: string) =>
+  href.startsWith("http")
+    ? { target: "_blank", rel: "noopener noreferrer" }
+    : {};
 
 type MenuItem = {
   label: string;
@@ -44,7 +51,7 @@ const navEntries: NavEntry[] = [
           { label: "Sobre", href: "/sobre" },
           { label: "Nossos diferenciais", href: "/diferenciais" },
           { label: "Docentes", href: "/corpo-docente" },
-          { label: "Como chegar", href: "/#contato" },
+          { label: "Como chegar", href: "/como-chegar" },
           { label: "JURET-Rio", href: "/juret-rio" },
           {
             label: "LGPD",
@@ -98,18 +105,7 @@ const navEntries: NavEntry[] = [
   },
   {
     label: "Conteúdos",
-    groups: [
-      {
-        items: [
-          {
-            label: "Revista Sementes",
-            description: "A revista do seminário · materiais para baixar",
-            // TODO(conteúdo): trocar pelo link real da Revista Sementes.
-            href: "#",
-          },
-        ],
-      },
-    ],
+    groups: [{ items: conteudos }],
   },
   {
     label: "Projetos",
@@ -285,6 +281,7 @@ export default function Header() {
                                     key={item.label}
                                     role="menuitem"
                                     href={item.href}
+                                    {...externalProps(item.href)}
                                     onClick={() => setOpenMenu(null)}
                                     className="block px-5 py-2.5 transition-colors hover:bg-brand-100 dark:hover:bg-white/10"
                                   >
@@ -309,6 +306,7 @@ export default function Header() {
                                 key={item.label}
                                 role="menuitem"
                                 href={item.href}
+                                {...externalProps(item.href)}
                                 onClick={() => setOpenMenu(null)}
                                 className="block px-5 py-2.5 transition-colors hover:bg-brand-100 dark:hover:bg-white/10"
                               >
@@ -387,6 +385,7 @@ export default function Header() {
                       <Link
                         key={item.label}
                         href={item.href}
+                        {...externalProps(item.href)}
                         onClick={() => setMenuOpen(false)}
                         className="rounded-sm px-3 py-2 hover:bg-brand-100 dark:hover:bg-white/10"
                       >

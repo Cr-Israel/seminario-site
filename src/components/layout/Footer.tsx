@@ -1,12 +1,28 @@
 import Image from "next/image";
 import Link from "next/link";
 import { contato } from "@/data/contato";
+import { conteudos } from "@/data/conteudos";
 
+/** Props de nova aba para links externos (http) — undefined para links internos. */
+const externalProps = (href: string) =>
+  href.startsWith("http")
+    ? { target: "_blank", rel: "noopener noreferrer" }
+    : {};
+
+/**
+ * Mapa completo do site no rodapé — espelho enxuto da navegação do Header
+ * (src/components/layout/Header.tsx). Ao criar/renomear uma página ou curso,
+ * atualizar os dois lugares. Os "#" são páginas ainda não publicadas
+ * (TODO(conteúdo), iguais às do Header).
+ */
 const footerColumns = [
   {
     title: "Institucional",
     links: [
       { label: "Sobre", href: "/sobre" },
+      { label: "Nossos diferenciais", href: "/diferenciais" },
+      { label: "Docentes", href: "/corpo-docente" },
+      { label: "Como chegar", href: "/como-chegar" },
       { label: "JURET-Rio", href: "/juret-rio" },
       { label: "LGPD", href: "/lgpd" },
       { label: "Contato", href: "/#contato" },
@@ -19,6 +35,49 @@ const footerColumns = [
       { label: "Pós-graduação", href: "/cursos-online#pos" },
       { label: "EFAL", href: "/cursos-online" },
     ],
+  },
+  {
+    title: "Pós-graduação",
+    links: [
+      {
+        label: "Plantação e Revitalização de Igreja",
+        href: "/cursos-online/plantacao-e-revitalizacao",
+      },
+      {
+        label: "Estudos do Novo Testamento",
+        href: "/cursos-online/novo-testamento",
+      },
+      {
+        label: "Cosmovisão Reformada",
+        href: "/cursos-online/cosmovisao-reformada",
+      },
+      { label: "Gestão Ministerial", href: "/cursos-online/gestao-ministerial" },
+    ],
+  },
+  {
+    title: "EFAL",
+    links: [
+      { label: "Curso Introdutório de Teologia", href: "/cursos-online/cit" },
+      { label: "Aperfeiçoamento de Líderes", href: "/cursos-online/cal" },
+      { label: "Formação de Oficiais", href: "/cursos-online/cfo" },
+      { label: "Formação de Professores", href: "/cursos-online/cfp" },
+      { label: "Curso de Libras", href: "/cursos-online/cfl" },
+      { label: "Formação Musical", href: "/cursos-online/cfm" },
+      { label: "Formação em Capelania", href: "/cursos-online/cfc" },
+    ],
+  },
+  {
+    title: "Projetos",
+    links: [
+      { label: "Apoie um seminarista", href: "/apoie-um-seminarista" },
+      { label: "Casa de Isabel", href: "#" },
+      { label: "STPS vai às Igrejas", href: "#" },
+      { label: "STPS apoia Missões", href: "#" },
+    ],
+  },
+  {
+    title: "Conteúdos",
+    links: conteudos.map(({ label, href }) => ({ label, href })),
   },
 ];
 
@@ -60,45 +119,45 @@ export default function Footer() {
   return (
     <footer className="bg-brand-950 py-14">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="grid gap-10 md:grid-cols-[minmax(0,1.4fr)_1fr_1fr_1.2fr]">
-          {/* Marca + redes */}
-          <div>
-            <Image
-              src="/images/logo-branca-trim.png"
-              alt="Seminário Teológico Presbiteriano Rev. Ashbel Green Simonton"
-              width={269}
-              height={91}
-              className="h-16 w-auto opacity-90"
-            />
-            <div className="mt-6 flex items-center gap-3">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className="flex h-9 w-9 items-center justify-center rounded-full text-brand-100/80 ring-1 ring-white/15 transition-colors hover:bg-white/10 hover:text-white"
+        {/* Marca + redes */}
+        <div className="flex flex-col gap-6 border-b border-white/10 pb-10 sm:flex-row sm:items-center sm:justify-between">
+          <Image
+            src="/images/logo-branca-trim.png"
+            alt="Seminário Teológico Presbiteriano Rev. Ashbel Green Simonton"
+            width={269}
+            height={91}
+            className="h-16 w-auto opacity-90"
+          />
+          <div className="flex items-center gap-3">
+            {socialLinks.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.label}
+                className="flex h-9 w-9 items-center justify-center rounded-full text-brand-100/80 ring-1 ring-white/15 transition-colors hover:bg-white/10 hover:text-white"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
                 >
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    {social.path}
-                  </svg>
-                </a>
-              ))}
-            </div>
+                  {social.path}
+                </svg>
+              </a>
+            ))}
           </div>
+        </div>
 
-          {/* Colunas de links */}
+        {/* Mapa do site */}
+        <div className="grid grid-cols-1 gap-x-8 gap-y-10 pt-10 sm:grid-cols-2 lg:grid-cols-3">
           {footerColumns.map((column) => (
             <div key={column.title}>
               <h3 className="text-xs font-medium uppercase tracking-[0.2em] text-brand-200/70">
@@ -109,6 +168,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
+                      {...externalProps(link.href)}
                       className="text-sm text-brand-100/80 transition-colors hover:text-white"
                     >
                       {link.label}

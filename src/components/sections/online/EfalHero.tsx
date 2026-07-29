@@ -14,8 +14,8 @@ export default function EfalHero({ proofBar }: { proofBar?: ReactNode }) {
   return (
     <>
       {/* Capa de ponta a ponta. O recorte (object-cover) só come a faixa de
-          verde vazio: com o foco em 60% da altura, sobram tanto o wordmark
-          quanto a assinatura do Seminário, no rodapé da arte. */}
+          verde vazio: com o foco em 52% da altura, sobram tanto o wordmark
+          quanto a assinatura do Seminário, à direita da arte. */}
       <div className="relative aspect-[16/9] w-full sm:aspect-[2/1] lg:aspect-[19/8]">
         <Image
           src="/images/capa-efal.jpg"
@@ -25,7 +25,7 @@ export default function EfalHero({ proofBar }: { proofBar?: ReactNode }) {
           sizes="100vw"
           // Fundo em degradê com granulado banda feio na qualidade padrão (75).
           quality={90}
-          className="object-cover object-[center_60%]"
+          className="object-cover object-[center_52%]"
         />
       </div>
 

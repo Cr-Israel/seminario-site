@@ -174,10 +174,10 @@ planilha de contatos, o mesmo com os campos `nome`, `telefone`, `email`,
 
 Depois, teste pelo site (`npm run dev`):
 
-- **Inscrições**: abra um curso (ex.: `/cursos-online/novo-testamento`),
+- **Inscrições**: abra um curso (ex.: `/pos-graduacao/novo-testamento`),
   clique em "Inscrever-se", preencha e envie → linha na aba do curso.
 - **Contatos**: formulário no fim da Home (`/#contato`) → linha na aba
-  "Contatos". Idem o "Avise-me" em `/cursos-online`.
+  "Contatos". Idem o "Avise-me" em `/efal` e `/pos-graduacao`.
 
 Sem as variáveis configuradas, os formulários mostram um erro amigável e o
 site continua funcionando normalmente — nada quebra.

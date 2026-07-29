@@ -23,7 +23,7 @@ export const metadata = {
 
 /**
  * Landing page dedicada do CIT (curso carro-chefe da EFAL), voltada à conversão.
- * Rota estática que tem precedência sobre cursos-online/[slug]; o `cit` foi
+ * Rota estática que tem precedência sobre efal/[slug]; o `cit` foi
  * removido do generateStaticParams do template genérico para evitar conflito.
  */
 export default function CitLandingPage() {

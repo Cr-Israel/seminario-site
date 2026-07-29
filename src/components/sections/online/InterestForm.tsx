@@ -2,9 +2,16 @@
 
 import { useState } from "react";
 import { Check, LoaderCircle, Send } from "lucide-react";
-import { efalCourses } from "@/data/efal";
-import { posCourses } from "@/data/pos";
 import { enviarContato } from "@/app/actions/contato";
+
+type Props = {
+  /** Rótulo do grupo de opções do select (ex.: "EFAL"). */
+  groupLabel: string;
+  /** Títulos dos cursos do núcleo, na ordem em que aparecem no select. */
+  courses: string[];
+  /** Parágrafo de apoio, ao lado do formulário. */
+  description: string;
+};
 
 const textFields = [
   {
@@ -33,7 +40,11 @@ const textFields = [
   },
 ];
 
-export default function InterestForm() {
+export default function InterestForm({
+  groupLabel,
+  courses,
+  description,
+}: Props) {
   const [submitted, setSubmitted] = useState<{
     name: string;
     email: string;
@@ -85,9 +96,7 @@ export default function InterestForm() {
             Ainda não decidiu? Avise-me quando abrirem novas turmas
           </h2>
           <p className="mt-5 max-w-lg text-base leading-relaxed text-brand-100/75">
-            Deixe seus dados e o curso do seu interesse: avisamos você assim
-            que as inscrições das próximas turmas da EFAL e da Pós-graduação
-            forem abertas.
+            {description}
           </p>
         </div>
 
@@ -142,17 +151,10 @@ export default function InterestForm() {
                 <option value="" disabled>
                   Selecione um curso
                 </option>
-                <optgroup label="EFAL">
-                  {efalCourses.map((course) => (
-                    <option key={course.slug} value={course.title}>
-                      {course.title}
-                    </option>
-                  ))}
-                </optgroup>
-                <optgroup label="Pós-graduação">
-                  {posCourses.map((course) => (
-                    <option key={course.slug} value={course.title}>
-                      {course.title}
+                <optgroup label={groupLabel}>
+                  {courses.map((course) => (
+                    <option key={course} value={course}>
+                      {course}
                     </option>
                   ))}
                 </optgroup>

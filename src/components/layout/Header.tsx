@@ -68,37 +68,37 @@ const navEntries: NavEntry[] = [
     groups: [
       {
         label: "Pós-graduação",
-        href: "/cursos-online#pos",
+        href: "/pos-graduacao",
         items: [
           {
             label: "Plantação e Revitalização de Igreja",
-            href: "/cursos-online/plantacao-e-revitalizacao",
+            href: "/pos-graduacao/plantacao-e-revitalizacao",
           },
           {
             label: "Estudos do Novo Testamento",
-            href: "/cursos-online/novo-testamento",
+            href: "/pos-graduacao/novo-testamento",
           },
           {
             label: "Cosmovisão Reformada",
-            href: "/cursos-online/cosmovisao-reformada",
+            href: "/pos-graduacao/cosmovisao-reformada",
           },
           {
             label: "Gestão Ministerial",
-            href: "/cursos-online/gestao-ministerial",
+            href: "/pos-graduacao/gestao-ministerial",
           },
         ],
       },
       {
         label: "EFAL",
-        href: "/cursos-online",
+        href: "/efal",
         items: [
-          { label: "Curso Introdutório de Teologia", href: "/cursos-online/cit" },
-          { label: "Aperfeiçoamento de Líderes", href: "/cursos-online/cal" },
-          { label: "Formação de Oficiais", href: "/cursos-online/cfo" },
-          { label: "Formação de Professores", href: "/cursos-online/cfp" },
-          { label: "Curso de Libras", href: "/cursos-online/cfl" },
-          { label: "Formação Musical", href: "/cursos-online/cfm" },
-          { label: "Formação em Capelania", href: "/cursos-online/cfc" },
+          { label: "Curso Introdutório de Teologia", href: "/efal/cit" },
+          { label: "Aperfeiçoamento de Líderes", href: "/efal/cal" },
+          { label: "Formação de Oficiais", href: "/efal/cfo" },
+          { label: "Formação de Professores", href: "/efal/cfp" },
+          { label: "Curso de Libras", href: "/efal/cfl" },
+          { label: "Formação Musical", href: "/efal/cfm" },
+          { label: "Formação em Capelania", href: "/efal/cfc" },
         ],
       },
     ],

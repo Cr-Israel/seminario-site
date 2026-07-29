@@ -18,50 +18,50 @@ type Profile = {
 };
 
 /**
- * Guia por perfil: cada card parte de uma frase de identificação (não da
- * sigla do curso) e leva à página do curso indicado. O último perfil aponta
- * para a âncora #pos, que ativa a aba Pós-graduação do catálogo.
+ * Guia por perfil da EFAL: cada card parte de uma frase de identificação (não
+ * da sigla do curso) e leva à página do curso indicado. O último perfil sai da
+ * EFAL e encaminha para a Pós-graduação, que tem página própria.
  */
 const profiles: Profile[] = [
   {
     icon: Sprout,
     statement: "Nunca estudei teologia e quero começar",
     course: "Curso Introdutório de Teologia (CIT)",
-    href: "/cursos-online/cit",
+    href: "/efal/cit",
   },
   {
     icon: Shield,
     statement: "Sou presbítero ou diácono (ou aspirante)",
     course: "Curso de Formação de Oficiais (CFO)",
-    href: "/cursos-online/cfo",
+    href: "/efal/cfo",
   },
   {
     icon: BookOpen,
     statement: "Ensino na Escola Dominical",
     course: "Curso de Formação de Professores (CFP)",
-    href: "/cursos-online/cfp",
+    href: "/efal/cfp",
   },
   {
     icon: Users,
     statement: "Lidero ministérios na minha igreja",
     course: "Curso de Aperfeiçoamento de Líderes (CAL)",
-    href: "/cursos-online/cal",
+    href: "/efal/cal",
   },
   {
     icon: Hand,
     statement: "Quero servir a comunidade surda",
     course: "Curso de Libras",
-    href: "/cursos-online/cfl",
+    href: "/efal/cfl",
   },
   {
     icon: GraduationCap,
     statement: "Já tenho formação e quero me aprofundar",
     course: "Pós-graduação",
-    href: "#pos",
+    href: "/pos-graduacao",
   },
 ];
 
-export default function OnlineProfiles() {
+export default function EfalProfiles() {
   return (
     <section id="trilhas" className="scroll-mt-24 bg-brand-50/60 py-24">
       <div className="mx-auto max-w-6xl px-6">

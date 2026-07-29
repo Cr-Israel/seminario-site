@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { onlineProfessors } from "@/data/professors";
+import type { OnlineProfessor } from "@/data/professors";
 
 function initials(name: string) {
   const parts = name
@@ -22,13 +22,19 @@ const MAX_CHIPS = 3;
 /** Largura do card (w-72 = 288px) + gap (20px), usada no passo das setas. */
 const SCROLL_STEP = 308;
 
+type Props = {
+  professors: OnlineProfessor[];
+  /** Parágrafo de apresentação — cada núcleo fala do seu corpo docente. */
+  description: string;
+};
+
 /**
  * Vitrine do corpo docente — carrossel horizontal de cards em efeito vidro
- * (glassmorphism) sobre fundo escuro, com todos os docentes das grades da
- * EFAL e da Pós. A ideia é dar rosto aos cursos: o professor é parte do
- * produto. Sem foto cadastrada, o card mostra as iniciais.
+ * (glassmorphism) sobre fundo escuro, com os docentes das grades do núcleo
+ * que renderiza a seção. A ideia é dar rosto aos cursos: o professor é parte
+ * do produto. Sem foto cadastrada, o card mostra as iniciais.
  */
-export default function OnlineFaculty() {
+export default function OnlineFaculty({ professors, description }: Props) {
   const railRef = useRef<HTMLUListElement>(null);
 
   function scrollRail(direction: 1 | -1) {
@@ -75,8 +81,7 @@ export default function OnlineFaculty() {
               Conheça quem vai ensinar você
             </h2>
             <p className="mt-4 text-base leading-relaxed text-brand-100/80">
-              Cada disciplina tem um rosto: pastores e professores que unem
-              vida, ministério e sala de aula, da EFAL à Pós-graduação.
+              {description}
             </p>
           </div>
 
@@ -104,7 +109,7 @@ export default function OnlineFaculty() {
           ref={railRef}
           className="mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          {onlineProfessors.map((professor) => (
+          {professors.map((professor) => (
             <li
               key={professor.name}
               className="w-72 shrink-0 snap-start rounded-xl border border-white/15 bg-white/10 p-8 text-center backdrop-blur-md transition-colors hover:bg-white/15"

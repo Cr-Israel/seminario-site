@@ -12,10 +12,8 @@ import Header from "@/components/layout/Header";
 import InscricaoButton from "@/components/inscricao/InscricaoButton";
 import CourseCoordinator from "@/components/sections/CourseCoordinator";
 import CourseCurriculum from "@/components/sections/CourseCurriculum";
-import CourseProfessors from "@/components/sections/CourseProfessors";
 import SeloIPB from "@/components/sections/SeloIPB";
 import ModalidadeBadge from "@/components/ui/ModalidadeBadge";
-import { efalCourses, getEfalCourse } from "@/data/efal";
 import { posCourses, getPosCourse } from "@/data/pos";
 import { coordinators } from "@/data/coordinators";
 import { ogMetadata } from "@/lib/seo";
@@ -23,44 +21,23 @@ import { ogMetadata } from "@/lib/seo";
 type Params = Promise<{ slug: string }>;
 
 /**
- * Página unificada de um curso online. A EFAL e a Pós deixaram de ter páginas
- * próprias (/efal, /pos) — tudo mora sob /cursos-online. Como só pode existir
- * um segmento [slug] por pasta, este template resolve o curso pelo slug,
- * primeiro na EFAL e depois na Pós, e renderiza o layout apropriado.
- *
- * O CIT tem landing dedicada em /cursos-online/cit (rota estática, com
- * precedência sobre este [slug]); por isso é excluído do generateStaticParams.
+ * Página de um programa de pós-graduação. Espelha o template da EFAL
+ * (/efal/[slug]) — mesma anatomia, conteúdo e coordenação do núcleo de pós.
  */
 export function generateStaticParams() {
-  return [
-    ...efalCourses
-      .filter((course) => course.slug !== "cit")
-      .map((course) => ({ slug: course.slug })),
-    ...posCourses.map((course) => ({ slug: course.slug })),
-  ];
+  return posCourses.map((course) => ({ slug: course.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Params }) {
   const { slug } = await params;
-  const efalCourse = getEfalCourse(slug);
-  if (efalCourse) {
-    const title = `${efalCourse.title} (${efalCourse.code}) — EFAL | Seminário Simonton`;
-    return {
-      title,
-      description: efalCourse.tagline,
-      openGraph: ogMetadata(title, efalCourse.tagline),
-    };
-  }
-  const posCourse = getPosCourse(slug);
-  if (posCourse) {
-    const title = `${posCourse.title} — Pós-graduação | Seminário Simonton`;
-    return {
-      title,
-      description: posCourse.tagline,
-      openGraph: ogMetadata(title, posCourse.tagline),
-    };
-  }
-  return {};
+  const course = getPosCourse(slug);
+  if (!course) return {};
+  const title = `${course.title} — Pós-graduação | Seminário Simonton`;
+  return {
+    title,
+    description: course.tagline,
+    openGraph: ogMetadata(title, course.tagline),
+  };
 }
 
 function infoItems(course: {
@@ -75,18 +52,10 @@ function infoItems(course: {
   ];
 }
 
-export default async function OnlineCoursePage({
-  params,
-}: {
-  params: Params;
-}) {
+export default async function PosCoursePage({ params }: { params: Params }) {
   const { slug } = await params;
-  const efalCourse = getEfalCourse(slug);
-  const posCourse = efalCourse ? undefined : getPosCourse(slug);
-  const course = efalCourse ?? posCourse;
+  const course = getPosCourse(slug);
   if (!course) notFound();
-
-  const isEfal = Boolean(efalCourse);
 
   return (
     <div className="min-h-screen bg-stone-50 font-sans text-stone-800">
@@ -96,30 +65,25 @@ export default async function OnlineCoursePage({
       <section className="bg-brand-950 py-20">
         <div className="mx-auto max-w-3xl px-6">
           <Link
-            href="/cursos-online"
+            href="/pos-graduacao"
             className="inline-flex items-center gap-2 text-sm text-brand-200 transition-colors hover:text-white"
           >
-            <ArrowLeft size={16} /> Voltar para os Cursos Online
+            <ArrowLeft size={16} /> Voltar para a Pós-graduação
           </Link>
 
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <ModalidadeBadge
-              nivel={efalCourse ? "curso-livre" : "pos-graduacao"}
+              nivel="pos-graduacao"
               modalidade="online"
               tone="dark"
             />
-            {efalCourse?.isNew && (
-              <span className="rounded-full bg-brand-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-brand-900">
-                Novo curso
-              </span>
-            )}
-            {posCourse?.isPlaceholder && (
+            {course.isPlaceholder && (
               <span className="rounded-full bg-brand-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-brand-900">
                 Conteúdo provisório
               </span>
             )}
             <span className="text-xs font-medium uppercase tracking-[0.2em] text-brand-200/90">
-              {efalCourse ? `EFAL · ${efalCourse.code}` : "Pós-graduação"}
+              Pós-graduação
             </span>
           </div>
 
@@ -161,7 +125,7 @@ export default async function OnlineCoursePage({
 
         <div className="mt-12">
           <h2 className="font-serif text-xl font-bold text-brand-950">
-            Sobre o curso
+            Sobre o programa
           </h2>
           <p className="mt-4 text-base leading-relaxed text-stone-600">
             {course.description}
@@ -180,22 +144,9 @@ export default async function OnlineCoursePage({
           </div>
         </div>
 
-        {efalCourse ? (
-          <CourseCurriculum
-            disciplines={efalCourse.curriculum}
-            unit={efalCourse.curriculumUnit}
-          />
-        ) : (
-          <CourseCurriculum disciplines={posCourse!.curriculum} />
-        )}
+        <CourseCurriculum disciplines={course.curriculum} />
 
-        {efalCourse?.professors && (
-          <CourseProfessors professors={efalCourse.professors} />
-        )}
-
-        <CourseCoordinator
-          coordinator={isEfal ? coordinators.efal : coordinators.pos}
-        />
+        <CourseCoordinator coordinator={coordinators.pos} />
 
         {course.price && (
           <div className="mt-12 rounded-sm border border-brand-900/10 bg-white p-6">
@@ -216,16 +167,13 @@ export default async function OnlineCoursePage({
         <div className="mt-12 flex flex-col items-center gap-4 rounded-sm bg-brand-950 p-10 text-center sm:flex-row sm:justify-between sm:text-left">
           <div>
             <h3 className="font-serif text-lg font-bold text-white">
-              {efalCourse
-                ? `Pronto para começar o ${efalCourse.code}?`
-                : "Quer se especializar?"}
+              Quer se especializar?
             </h3>
             <p className="mt-1 text-sm text-brand-100/75">
               A secretaria orienta você em cada passo da matrícula.
             </p>
           </div>
           {course.enrollUrl !== "#" ? (
-            // Curso com formulário externo próprio (ex.: Libras) — mantém.
             <a
               href={course.enrollUrl}
               className="inline-flex shrink-0 items-center gap-2 rounded-sm bg-brand-50 px-7 py-3.5 text-sm font-medium text-brand-900 transition-colors hover:bg-white"
@@ -244,7 +192,6 @@ export default async function OnlineCoursePage({
           )}
         </div>
       </section>
-
     </div>
   );
 }

@@ -1,6 +1,29 @@
 import { whatsappHref } from "@/lib/whatsapp";
 
-export default function OnlineHero() {
+type Props = {
+  /** Etiqueta acima do título (ex.: "Escola de Formação de Líderes"). */
+  eyebrow: string;
+  title: string;
+  description: string;
+  /** CTA principal — âncora para a seção que a página quer destacar. */
+  ctaHref: string;
+  ctaLabel: string;
+  /** Mensagem que abre no WhatsApp da secretaria, quando personalizada. */
+  whatsappMessage?: string;
+};
+
+/**
+ * Hero das páginas de trilha online (/efal e /pos-graduacao) — mesma
+ * arquitetura visual, copy de cada núcleo vinda por props.
+ */
+export default function OnlineHero({
+  eyebrow,
+  title,
+  description,
+  ctaHref,
+  ctaLabel,
+  whatsappMessage,
+}: Props) {
   return (
     <section className="relative overflow-hidden bg-brand-950 py-24">
       <div
@@ -22,26 +45,24 @@ export default function OnlineHero() {
 
       <div className="relative mx-auto max-w-4xl px-6 text-center">
         <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-brand-200/90">
-          Formação Teológica Online
+          {eyebrow}
         </p>
         <h1 className="font-serif text-4xl font-extrabold leading-[1.15] text-white sm:text-5xl">
-          Um caminho de formação para cada etapa do seu chamado
+          {title}
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-brand-100/80 sm:text-lg">
-          Do primeiro contato com a teologia à pós-graduação: escolha sua
-          trilha, estude de qualquer lugar do Brasil com aulas ao vivo, e
-          inscreva-se direto — sem vestibular.
+          {description}
         </p>
 
         <div className="mt-9 flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center">
           <a
-            href="#trilhas"
+            href={ctaHref}
             className="rounded-sm bg-brand-50 px-7 py-3.5 text-center text-sm font-medium text-brand-900 transition-colors hover:bg-white"
           >
-            Encontre o seu curso
+            {ctaLabel}
           </a>
           <a
-            href={whatsappHref()}
+            href={whatsappHref(whatsappMessage)}
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-sm border border-white/25 px-7 py-3.5 text-center text-sm font-medium text-white transition-colors hover:bg-white/10"

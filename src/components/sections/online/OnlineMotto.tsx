@@ -1,47 +1,25 @@
 import { ArrowRight } from "lucide-react";
-import { efalCourses } from "@/data/efal";
-import { posCourses } from "@/data/pos";
-import { onlineProfessors } from "@/data/professors";
+import type { MottoStat } from "@/data/onlineNumbers";
 import { whatsappHref } from "@/lib/whatsapp";
 
-const seenDisciplines = new Set<string>();
-let liveClassCount = 0;
-for (const course of efalCourses) {
-  for (const discipline of course.curriculum) {
-    const key = `${discipline.name}|${discipline.docente}`;
-    if (seenDisciplines.has(key)) continue;
-    seenDisciplines.add(key);
-    liveClassCount += discipline.ementa.filter((item) =>
-      /^Aula \d/.test(item),
-    ).length;
-  }
-}
-
-/** Arredonda para baixo em múltiplos de 5, para nunca prometer mais do que há. */
-const floor5 = (n: number) => Math.floor(n / 5) * 5;
-
-const stats = [
-  {
-    value: `+${floor5(liveClassCount)}`,
-    label: "aulas ao vivo nas grades da EFAL",
-  },
-  {
-    value: `+${floor5(onlineProfessors.length)}`,
-    label: "professores e preletores nos cursos online",
-  },
-  {
-    value: `${efalCourses.length + posCourses.length}`,
-    label: "cursos e programas entre EFAL e Pós-graduação",
-  },
-];
+type Props = {
+  stats: MottoStat[];
+  description: string;
+  /** Mensagem que abre no WhatsApp da secretaria. */
+  whatsappMessage: string;
+};
 
 /**
  * Faixa de impacto entre a lista de cursos e o FAQ — motto institucional em
- * palavras grandes + números derivados dos dados reais das grades (efal.ts e
- * pos.ts), no espírito do banner "Formar | Servir | Transformar" da Academia
- * Martin Bucer.
+ * palavras grandes + números derivados dos dados reais das grades
+ * (src/data/onlineNumbers.ts), no espírito do banner "Formar | Servir |
+ * Transformar" da Academia Martin Bucer.
  */
-export default function OnlineMotto() {
+export default function OnlineMotto({
+  stats,
+  description,
+  whatsappMessage,
+}: Props) {
   return (
     <section className="relative overflow-hidden border-y border-brand-900/10 bg-white py-20 sm:py-24">
       <div
@@ -72,9 +50,7 @@ export default function OnlineMotto() {
 
         <div>
           <p className="max-w-xl text-base leading-relaxed text-stone-600 sm:text-lg">
-            Do primeiro contato com a teologia reformada ao aprofundamento na
-            pós-graduação, cada curso existe para capacitar quem serve à igreja
-            local, com professor ao vivo, do início ao fim.
+            {description}
           </p>
 
           <div className="mt-9 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3">
@@ -94,9 +70,7 @@ export default function OnlineMotto() {
           </div>
 
           <a
-            href={whatsappHref(
-              "Olá! Quero me inscrever em um dos cursos online do Seminário Simonton.",
-            )}
+            href={whatsappHref(whatsappMessage)}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-10 inline-flex items-center gap-2 rounded-sm bg-brand-900 px-7 py-3.5 text-sm font-medium text-white transition-colors hover:bg-brand-800"

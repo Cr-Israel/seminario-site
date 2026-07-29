@@ -15,10 +15,8 @@ type Gateway = {
 /**
  * Três portas de entrada para as trilhas de formação da casa — Bacharelado,
  * EFAL e Pós-graduação. Não é o comparador de cursos (esse mora nas páginas de
- * cada trilha); aqui é só o encaminhamento institucional, um card por trilha.
- *
- * EFAL e Pós apontam para /cursos-online (arquitetura "uma casa só" — não há
- * rotas /efal nem /pos); a Pós desce até a âncora #pos.
+ * cada trilha); aqui é só o encaminhamento institucional, um card por trilha,
+ * cada um para a página do seu núcleo (/graduacao, /efal e /pos-graduacao).
  */
 const gateways: Gateway[] = [
   {
@@ -36,7 +34,7 @@ const gateways: Gateway[] = [
       "Cursos livres para capacitar líderes da igreja local, com aulas online ao vivo.",
     nivel: "curso-livre",
     modalidade: "online",
-    href: "/cursos-online",
+    href: "/efal",
     cta: "Conheça os cursos",
   },
   {
@@ -45,7 +43,7 @@ const gateways: Gateway[] = [
       "Especialização teológica para aprofundar a formação de pastores e líderes.",
     nivel: "pos-graduacao",
     modalidade: "online",
-    href: "/cursos-online#pos",
+    href: "/pos-graduacao",
     cta: "Conheça os cursos",
   },
 ];

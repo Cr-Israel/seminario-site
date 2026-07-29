@@ -1,29 +1,17 @@
-import {
-  BadgeCheck,
-  CalendarCheck,
-  MapPin,
-  Radio,
-  type LucideIcon,
-} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-type ProofItem = { icon: LucideIcon; title: string; detail: string };
-
-const proofItems: ProofItem[] = [
-  { icon: Radio, title: "100% ao vivo", detail: "nada de aula gravada" },
-  { icon: BadgeCheck, title: "Certificação", detail: "JURET/IPB" },
-  { icon: CalendarCheck, title: "Turmas 2026.2", detail: "matrículas abertas" },
-  { icon: MapPin, title: "Alunos", detail: "de todo o Brasil" },
-];
+export type ProofItem = { icon: LucideIcon; title: string; detail: string };
 
 /**
- * Barra de prova do marketplace — razões de compra estáticas (por que estudar
- * aqui), no lugar da antiga barra de estatísticas institucionais.
+ * Barra de prova das páginas de trilha online — razões de compra estáticas
+ * (por que estudar aqui). Cada núcleo passa os seus itens: a EFAL fala de
+ * turmas abertas; a Pós, do formato dos programas.
  */
-export default function OnlineStats() {
+export default function OnlineStats({ items }: { items: ProofItem[] }) {
   return (
     <section className="relative px-6">
       <div className="mx-auto -mt-14 flex max-w-5xl flex-wrap justify-center rounded-sm bg-white shadow-xl shadow-brand-950/10">
-        {proofItems.map((item) => {
+        {items.map((item) => {
           const { icon: Icon } = item;
           return (
             <div

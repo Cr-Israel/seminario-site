@@ -92,7 +92,7 @@ const cursosEfal: Curso[] = efalCourses.map((c) => ({
   proximaTurma: proximaTurmaEfal(c),
   descricaoCurta: c.tagline,
   ingresso: "Inscrição direta pelo Seminário",
-  href: `/cursos-online/${c.slug}`,
+  href: `/efal/${c.slug}`,
 }));
 
 const cursosPos: Curso[] = posCourses.map((c) => ({
@@ -105,7 +105,7 @@ const cursosPos: Curso[] = posCourses.map((c) => ({
   proximaTurma: undefined,
   descricaoCurta: c.tagline,
   ingresso: "Inscrição direta pelo Seminário",
-  href: `/cursos-online/${c.slug}`,
+  href: `/pos-graduacao/${c.slug}`,
 }));
 
 /** Todos os programas da instituição, do Bacharelado à Pós, em ordem de nível. */

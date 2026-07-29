@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { posCourses } from "./src/data/pos";
 
 const nextConfig: NextConfig = {
   images: {
@@ -6,6 +7,31 @@ const nextConfig: NextConfig = {
       // quando o back-end/CMS servir imagens de outro domínio, adiciona aqui
       // { protocol: "https", hostname: "cdn.seminariosimonton.com.br" },
     ],
+  },
+  /**
+   * A antiga rota única /cursos-online (EFAL + Pós na mesma página, com abas)
+   * foi separada em /efal e /pos-graduacao. Os redirects preservam os links
+   * já divulgados: cada curso da Pós vai para a nova rota do seu núcleo e o
+   * resto — todos os cursos da EFAL e a raiz — cai na EFAL.
+   */
+  async redirects() {
+    return [
+      ...posCourses.map((course) => ({
+        source: `/cursos-online/${course.slug}`,
+        destination: `/pos-graduacao/${course.slug}`,
+        permanent: true,
+      })),
+      {
+        source: "/cursos-online/:slug",
+        destination: "/efal/:slug",
+        permanent: true,
+      },
+      {
+        source: "/cursos-online",
+        destination: "/efal",
+        permanent: true,
+      },
+    ];
   },
 };
 

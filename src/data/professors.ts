@@ -108,3 +108,11 @@ function buildProfessors(): OnlineProfessor[] {
 }
 
 export const onlineProfessors = buildProfessors();
+
+/** Código usado nas grades da Pós, que não têm sigla própria por programa. */
+const POS_CODE = "Pós";
+
+/** Docentes que lecionam em alguma grade da EFAL — vitrine de /efal. */
+export const efalProfessors = onlineProfessors.filter((professor) =>
+  professor.courses.some((code) => code !== POS_CODE),
+);

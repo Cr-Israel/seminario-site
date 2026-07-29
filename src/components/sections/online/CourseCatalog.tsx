@@ -1,104 +1,16 @@
-"use client";
-
-import { useEffect, useState, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
-  BookOpen,
   CalendarDays,
   Clock,
   Mail,
   MonitorPlay,
-  ScrollText,
   type LucideIcon,
 } from "lucide-react";
-import { coordinators, type Coordinator } from "@/data/coordinators";
-import { efalCourses, type EfalCourse } from "@/data/efal";
-import { posCourses } from "@/data/pos";
-
-type Tab = "EFAL" | "Pós-graduação";
-
-type CourseCard = {
-  key: string;
-  href: string;
-  enrollUrl: string;
-  icon: LucideIcon;
-  code: string;
-  title: string;
-  description: string;
-  duration?: string;
-  format?: string;
-  /** Data real de início das turmas (só quando existe no data layer). */
-  startInfo?: string;
-  price?: string;
-  /** Pinta o badge "Matrículas abertas · 2026.2". */
-  enrollmentOpen?: boolean;
-  isNew?: boolean;
-  isPlaceholder?: boolean;
-};
-
-/**
- * Extrai das datas de início da grade (campo `start`, ex.: "Início em
- * 04/08/2026") o intervalo real de começo das turmas. Hoje só o Curso de
- * Libras tem essas datas; assume turmas no mesmo mês/ano, como no calendário
- * oficial 2026.2.
- */
-function classStartRange(course: EfalCourse): string | undefined {
-  const matches = course.curriculum
-    .map((d) => d.start?.match(/(\d{2})\/(\d{2}\/\d{4})/))
-    .filter((m): m is RegExpMatchArray => Boolean(m));
-  if (matches.length === 0) return undefined;
-  const days = matches.map((m) => m[1]).sort();
-  const monthYear = matches[0][2];
-  const first = days[0];
-  const last = days[days.length - 1];
-  return first === last
-    ? `Início em ${first}/${monthYear}`
-    : `Turmas de ${first} a ${last}/${monthYear}`;
-}
-
-const efalCards: CourseCard[] = efalCourses.map((c) => ({
-  key: c.slug,
-  href: `/cursos-online/${c.slug}`,
-  enrollUrl: c.enrollUrl,
-  icon: BookOpen,
-  code: c.code,
-  title: c.title,
-  description: c.tagline,
-  duration: c.duration !== "A definir" ? c.duration : undefined,
-  format: c.format !== "A definir" ? c.format : undefined,
-  startInfo: classStartRange(c),
-  price: c.price?.installments,
-  // Cursos com grade e apresentação confirmadas estão com matrículas abertas
-  // para 2026.2; os marcados isNew ainda estão em estruturação (texto lorem).
-  enrollmentOpen: !c.isNew,
-  isNew: c.isNew,
-}));
-
-const posCards: CourseCard[] = posCourses.map((c) => ({
-  key: c.slug,
-  href: `/cursos-online/${c.slug}`,
-  enrollUrl: c.enrollUrl,
-  icon: ScrollText,
-  code: "Pós",
-  title: c.title,
-  description: c.tagline,
-  duration: c.duration !== "A definir" ? c.duration : undefined,
-  format: c.format,
-  price: c.price?.installments,
-  isPlaceholder: c.isPlaceholder,
-}));
-
-const tabs: { label: Tab; count: number }[] = [
-  { label: "EFAL", count: efalCards.length },
-  { label: "Pós-graduação", count: posCards.length },
-];
-
-const coordinatorByTab: Record<Tab, Coordinator> = {
-  EFAL: coordinators.efal,
-  "Pós-graduação": coordinators.pos,
-};
+import type { Coordinator } from "@/data/coordinators";
+import type { CourseCard } from "./courseCards";
 
 function CardBadges({ card }: { card: CourseCard }) {
   return (
@@ -190,8 +102,8 @@ function Card({ card }: { card: CourseCard }) {
 }
 
 /**
- * Card de destaque do CIT — o carro-chefe do catálogo: ocupa a largura da
- * grade, com borda brand-700, badge "Comece por aqui" e CTA duplo.
+ * Card de destaque do carro-chefe do catálogo (hoje o CIT, na EFAL): ocupa a
+ * largura da grade, com borda brand-700, badge "Comece por aqui" e CTA duplo.
  */
 function FeaturedCard({ card }: { card: CourseCard }) {
   return (
@@ -234,82 +146,49 @@ function FeaturedCard({ card }: { card: CourseCard }) {
   );
 }
 
-/** Slug do curso destacado como carro-chefe da aba EFAL. */
-const FEATURED_SLUG = "cit";
+type Props = {
+  eyebrow: string;
+  title: string;
+  cards: CourseCard[];
+  coordinator: Coordinator;
+  /** Frase do card de coordenação, ex.: "Dúvidas sobre os cursos da EFAL?". */
+  coordinatorQuestion: string;
+  /** Curso destacado no topo da grade (chave = slug), quando houver. */
+  featuredKey?: string;
+  /** Bloco extra entre a grade e a coordenação (ex.: corpo docente da Pós). */
+  children?: ReactNode;
+};
 
 /**
- * `posFaculty` é um slot para a seção "Corpo docente da Pós-graduação",
- * renderizada apenas na aba Pós. Vem como ReactNode do page.tsx para que
- * a seção continue sendo um Server Component dentro deste Client Component.
+ * Catálogo de cursos de um núcleo — a grade de cards de /efal e
+ * /pos-graduacao. Cada trilha tem sua página, então aqui não há mais abas:
+ * a página passa os cards do seu próprio núcleo.
  */
-export default function OnlineCourses({ posFaculty }: { posFaculty?: ReactNode }) {
-  const [active, setActive] = useState<Tab>("EFAL");
-
-  // A âncora #pos (usada na seção "Qual curso é para você?") ativa a aba
-  // Pós-graduação além de rolar até o catálogo.
-  useEffect(() => {
-    const syncTabWithHash = () => {
-      if (window.location.hash === "#pos") setActive("Pós-graduação");
-    };
-    syncTabWithHash();
-    window.addEventListener("hashchange", syncTabWithHash);
-    return () => window.removeEventListener("hashchange", syncTabWithHash);
-  }, []);
-
-  const cards = active === "EFAL" ? efalCards : posCards;
-  const featured =
-    active === "EFAL"
-      ? cards.find((card) => card.key === FEATURED_SLUG)
-      : undefined;
+export default function CourseCatalog({
+  eyebrow,
+  title,
+  cards,
+  coordinator,
+  coordinatorQuestion,
+  featuredKey,
+  children,
+}: Props) {
+  const featured = featuredKey
+    ? cards.find((card) => card.key === featuredKey)
+    : undefined;
   const regularCards = featured
-    ? cards.filter((card) => card.key !== FEATURED_SLUG)
+    ? cards.filter((card) => card.key !== featured.key)
     : cards;
-  const coordinator = coordinatorByTab[active];
 
   return (
     <section id="cursos" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-24">
-      <span id="pos" aria-hidden className="block scroll-mt-24" />
       <div className="mx-auto max-w-2xl text-center">
         <span className="text-xs font-medium uppercase tracking-[0.2em] text-brand-700">
-          Nossos cursos online
+          {eyebrow}
         </span>
         <h2 className="mt-4 font-serif text-3xl font-extrabold text-brand-950 sm:text-4xl">
-          Escolha por onde começar
+          {title}
         </h2>
-      </div>
-
-      {/* Abas EFAL / Pós-graduação */}
-      <div
-        role="tablist"
-        aria-label="Filtrar cursos por tipo"
-        className="mt-10 flex flex-wrap justify-center gap-3"
-      >
-        {tabs.map((tab) => {
-          const isActive = active === tab.label;
-          return (
-            <button
-              key={tab.label}
-              type="button"
-              role="tab"
-              aria-selected={isActive}
-              onClick={() => setActive(tab.label)}
-              className={`inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium transition-colors ${
-                isActive
-                  ? "bg-brand-900 text-white"
-                  : "border border-brand-900/15 bg-white text-brand-800 hover:bg-brand-50"
-              }`}
-            >
-              {tab.label}
-              <span
-                className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${
-                  isActive ? "bg-white/20 text-white" : "bg-brand-50 text-brand-700"
-                }`}
-              >
-                {tab.count}
-              </span>
-            </button>
-          );
-        })}
       </div>
 
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -319,9 +198,9 @@ export default function OnlineCourses({ posFaculty }: { posFaculty?: ReactNode }
         ))}
       </div>
 
-      {active === "Pós-graduação" && posFaculty}
+      {children}
 
-      {/* Coordenador do núcleo ativo — acompanha a aba selecionada. */}
+      {/* Coordenação do núcleo — o rosto de quem responde pelas dúvidas. */}
       <div className="mt-10 flex flex-col items-start gap-6 rounded-sm border border-brand-900/10 bg-white p-7 shadow-sm sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center">
           {coordinator.photo && (
@@ -341,8 +220,7 @@ export default function OnlineCourses({ posFaculty }: { posFaculty?: ReactNode }
               {coordinator.name}
             </h3>
             <p className="mt-1 text-sm leading-relaxed text-stone-600">
-              Dúvidas sobre {active === "EFAL" ? "os cursos da EFAL" : "a Pós-graduação"}?
-              Fale direto com quem coordena o núcleo.
+              {coordinatorQuestion} Fale direto com quem coordena o núcleo.
             </p>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import { BadgeCheck, CalendarCheck, MapPin, Radio } from "lucide-react";
 import Header from "@/components/layout/Header";
-import OnlineHero from "@/components/sections/online/OnlineHero";
+import EfalHero from "@/components/sections/online/EfalHero";
 import OnlineStats, {
   type ProofItem,
 } from "@/components/sections/online/OnlineStats";
@@ -21,7 +21,8 @@ import { efalMottoStats } from "@/data/onlineNumbers";
 import { efalProfessors } from "@/data/professors";
 import { ogMetadata } from "@/lib/seo";
 
-const title = "EFAL — Escola de Formação de Líderes | Seminário Simonton";
+const title =
+  "EFAL — Escola de Formação e Aperfeiçoamento de Líderes | Seminário Simonton";
 const description =
   "Cursos livres de teologia 100% online, com aula ao vivo: os 7 cursos da EFAL do Seminário Simonton, com inscrição direta — sem vestibular — e certificação pela JURET/IPB.";
 
@@ -53,15 +54,7 @@ export default function EfalPage() {
   return (
     <div className="min-h-screen bg-stone-50 font-sans text-stone-800">
       <Header />
-      <OnlineHero
-        eyebrow="EFAL · Escola de Formação de Líderes"
-        title="Capacitação teológica para quem já serve na igreja local"
-        description="Cursos livres 100% online, com aula ao vivo: escolha a trilha do seu ministério, estude de qualquer lugar do Brasil e inscreva-se direto — sem vestibular."
-        ctaHref="#trilhas"
-        ctaLabel="Encontre o seu curso"
-        whatsappMessage="Olá! Gostaria de mais informações sobre os cursos da EFAL do Seminário Simonton."
-      />
-      <OnlineStats items={proofItems} />
+      <EfalHero proofBar={<OnlineStats items={proofItems} />} />
       <EfalProfiles />
       <CourseCatalog
         eyebrow="Cursos da EFAL"

@@ -1,7 +1,7 @@
 import { whatsappHref } from "@/lib/whatsapp";
 
 type Props = {
-  /** Etiqueta acima do título (ex.: "Escola de Formação de Líderes"). */
+  /** Etiqueta acima do título (ex.: "Pós-graduação"). */
   eyebrow: string;
   title: string;
   description: string;
@@ -13,8 +13,8 @@ type Props = {
 };
 
 /**
- * Hero das páginas de trilha online (/efal e /pos-graduacao) — mesma
- * arquitetura visual, copy de cada núcleo vinda por props.
+ * Hero escuro das páginas de trilha online — hoje o da Pós-graduação; a EFAL
+ * abre com a sua capa oficial (EfalHero).
  */
 export default function OnlineHero({
   eyebrow,

@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
       // quando o back-end/CMS servir imagens de outro domínio, adiciona aqui
       // { protocol: "https", hostname: "cdn.seminariosimonton.com.br" },
     ],
+    // O Next 16 exige allowlist de qualidade. 75 é o padrão; 90 atende as
+    // artes em degradê (capa da EFAL), que bandeiam na compressão padrão.
+    qualities: [75, 90],
   },
   /**
    * A antiga rota única /cursos-online (EFAL + Pós na mesma página, com abas)

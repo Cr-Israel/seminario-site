@@ -90,19 +90,19 @@ export default function LgpdPage() {
             em contato conosco.
           </p>
 
-          <H2>Encarregado pelo tratamento de dados</H2>
+          {/*<H2>Encarregado pelo tratamento de dados</H2>*/}
           {/* TODO(conteúdo): confirmar o encarregado (DPO) e o e-mail oficial
               de privacidade, e substituir o placeholder. */}
-          <p className="mt-4 text-base leading-relaxed text-stone-600">
-            [PLACEHOLDER] Nome e e-mail do encarregado pelo tratamento de
-            dados pessoais (DPO) do Seminário.
-          </p>
+          {/*<p className="mt-4 text-base leading-relaxed text-stone-600">*/}
+            {/*[PLACEHOLDER] Nome e e-mail do encarregado pelo tratamento de
+            dados pessoais (DPO) do Seminário.*/}
+          {/*</p>*/}
 
           <p className="mt-12 border-t border-brand-900/10 pt-6 text-sm text-stone-500">
             Esta política pode ser atualizada para refletir mudanças no site
             ou na legislação.{" "}
             {/* TODO(conteúdo): confirmar a data de vigência da política. */}
-            [PLACEHOLDER] Última atualização.
+            Última atualização: 29/07/2026.
           </p>
         </div>
       </section>

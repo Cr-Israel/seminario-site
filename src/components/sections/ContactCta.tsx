@@ -161,7 +161,7 @@ export default function ContactCta() {
               rel="noopener noreferrer"
               className="mt-9 inline-flex items-center gap-2 rounded-sm bg-brand-50 px-7 py-3.5 text-sm font-medium text-brand-900 transition-colors hover:bg-white"
             >
-              Falar com a secretaria <ArrowRight size={16} />
+              Fale com a nossa equipe <ArrowRight size={16} />
             </a>
           </div>
 

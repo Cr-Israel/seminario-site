@@ -49,12 +49,12 @@ export default function EfalHero({ proofBar }: { proofBar?: ReactNode }) {
             <p className="text-base leading-relaxed text-stone-600 sm:text-lg">
               Cursos livres 100% online, com aula ao vivo: escolha a trilha do
               seu ministério, estude de qualquer lugar do Brasil e inscreva-se
-              direto — sem vestibular.
+              direto.
             </p>
 
             <div className="mt-8 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center">
               <a
-                href="#trilhas"
+                href="#cursos"
                 className="rounded-sm bg-brand-900 px-7 py-3.5 text-center text-sm font-medium text-white transition-colors hover:bg-brand-800"
               >
                 Encontre o seu curso
@@ -67,7 +67,7 @@ export default function EfalHero({ proofBar }: { proofBar?: ReactNode }) {
                 rel="noopener noreferrer"
                 className="rounded-sm border border-brand-900/20 px-7 py-3.5 text-center text-sm font-medium text-brand-800 transition-colors hover:bg-brand-50"
               >
-                Falar com a secretaria
+                Fale com a nossa equipe
               </a>
             </div>
           </div>

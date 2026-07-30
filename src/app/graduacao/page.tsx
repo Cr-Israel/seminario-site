@@ -47,9 +47,7 @@ export default function GraduacaoPage() {
       <AdmissionProcess />
 
       {/* Legitimação eclesiástica, no mesmo padrão da Home. */}
-      <section className="px-6 pb-4">
-        <SeloIPB />
-      </section>
+      <SeloIPB />
 
       <GraduacaoStructure />
       <Faculty />

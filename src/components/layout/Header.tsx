@@ -96,7 +96,7 @@ const navEntries: NavEntry[] = [
           { label: "Aperfeiçoamento de Líderes", href: "/efal/cal" },
           { label: "Formação de Oficiais", href: "/efal/cfo" },
           { label: "Formação de Professores", href: "/efal/cfp" },
-          { label: "Curso de Libras", href: "/efal/cfl" },
+          { label: "Formação em Libras", href: "/efal/cfl" },
           { label: "Formação Musical", href: "/efal/cfm" },
           { label: "Formação em Capelania", href: "/efal/cfc" },
         ],

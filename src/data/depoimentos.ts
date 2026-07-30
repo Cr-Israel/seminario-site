@@ -34,8 +34,8 @@ export const depoimentos: Depoimento[] = [
   },
   {
     name: "[PLACEHOLDER] Nome da aluna",
-    context: "Curso de Libras, online",
-    text: "[PLACEHOLDER] Depoimento de aluna do Curso de Libras sobre servir a comunidade surda na igreja.",
+    context: "Curso de Formação em Libras, online",
+    text: "[PLACEHOLDER] Depoimento de aluna do Curso de Formação em Libras sobre servir a comunidade surda na igreja.",
     initials: "CL",
   },
 ];

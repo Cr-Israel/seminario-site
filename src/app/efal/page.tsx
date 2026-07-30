@@ -1,10 +1,10 @@
+import Link from "next/link";
 import { BadgeCheck, CalendarCheck, MapPin, Radio } from "lucide-react";
 import Header from "@/components/layout/Header";
 import EfalHero from "@/components/sections/online/EfalHero";
 import OnlineStats, {
   type ProofItem,
 } from "@/components/sections/online/OnlineStats";
-import EfalProfiles from "@/components/sections/online/EfalProfiles";
 import CourseCatalog from "@/components/sections/online/CourseCatalog";
 import { efalCards } from "@/components/sections/online/courseCards";
 import OnlineFaculty from "@/components/sections/online/OnlineFaculty";
@@ -15,7 +15,7 @@ import InterestForm from "@/components/sections/online/InterestForm";
 import SeloIPB from "@/components/sections/SeloIPB";
 import { coordinators } from "@/data/coordinators";
 import { depoimentos } from "@/data/depoimentos";
-import { efalCourses } from "@/data/efal";
+import { efalCourses, efalTopics } from "@/data/efal";
 import { efalFaqItems } from "@/data/faqOnline";
 import { efalMottoStats } from "@/data/onlineNumbers";
 import { efalProfessors } from "@/data/professors";
@@ -45,7 +45,7 @@ const proofItems: ProofItem[] = [
 ];
 
 /**
- * Página da EFAL — funil claro (guia por perfil → catálogo → docentes →
+ * Página da EFAL — funil claro (catálogo navegável por tópico → docentes →
  * depoimentos → FAQ → contato), mas dentro da mesma casa institucional:
  * mesmos selos, mesmo tom vocacional, sem urgência artificial. A
  * Pós-graduação tem página irmã em /pos-graduacao.
@@ -55,24 +55,36 @@ export default function EfalPage() {
     <div className="min-h-screen bg-stone-50 font-sans text-stone-800">
       <Header />
       <EfalHero proofBar={<OnlineStats items={proofItems} />} />
-      <EfalProfiles />
       <CourseCatalog
-        eyebrow="Cursos da EFAL"
-        title="Escolha por onde começar"
+        eyebrow="Guia de cursos"
+        title="Um ambiente teológico completo"
+        description="Cada chamado tem um ponto de partida. Encontre o seu."
         cards={efalCards}
+        topics={efalTopics}
+        tinted
         coordinator={coordinators.efal}
         coordinatorQuestion="Dúvidas sobre os cursos da EFAL?"
         featuredKey="cit"
-      />
+      >
+        {/* A EFAL não cobre quem já tem formação — a ponte para a página irmã. */}
+        <p className="mt-12 text-center text-sm leading-relaxed text-stone-600">
+          Já tem formação teológica e quer se aprofundar?{" "}
+          <Link
+            href="/pos-graduacao"
+            className="font-medium text-brand-800 underline underline-offset-4 transition-colors hover:text-brand-900"
+          >
+            Conheça a Pós-graduação
+          </Link>
+          .
+        </p>
+      </CourseCatalog>
 
       {/* Legitimação eclesiástica logo abaixo do catálogo, como na Home. */}
-      <section className="px-6 pb-20">
-        <SeloIPB />
-      </section>
+      <SeloIPB />
 
       <OnlineFaculty
         professors={efalProfessors}
-        description="Cada disciplina tem um rosto: pastores e professores que unem vida, ministério e sala de aula nas grades da EFAL."
+        description="Cada disciplina tem um rosto: pastores e professores que unem vida, ministério e sala de aula."
       />
       <Testimonials items={depoimentosEfal} title="Quem estudou, recomenda" />
       <OnlineMotto

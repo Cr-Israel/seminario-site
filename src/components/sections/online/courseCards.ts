@@ -1,16 +1,24 @@
-import { BookOpen, ScrollText, type LucideIcon } from "lucide-react";
 import { efalCourses, type EfalCourse } from "@/data/efal";
 import { posCourses } from "@/data/pos";
+
+/**
+ * Ícone do card — uma chave, não o componente: a grade do catálogo é client
+ * component e só recebe props serializáveis. O mapa chave → ícone vive em
+ * CourseCatalogGrid.
+ */
+export type CourseCardIcon = "book" | "scroll";
 
 /** Modelo de exibição de um curso no catálogo (CourseCatalog). */
 export type CourseCard = {
   key: string;
   href: string;
   enrollUrl: string;
-  icon: LucideIcon;
+  icon: CourseCardIcon;
   code: string;
   title: string;
   description: string;
+  /** Tópicos do filtro por interesse; vazio nos catálogos sem navegação. */
+  topics?: string[];
   duration?: string;
   format?: string;
   /** Data real de início das turmas (só quando existe no data layer). */
@@ -46,10 +54,11 @@ export const efalCards: CourseCard[] = efalCourses.map((c) => ({
   key: c.slug,
   href: `/efal/${c.slug}`,
   enrollUrl: c.enrollUrl,
-  icon: BookOpen,
+  icon: "book",
   code: c.code,
   title: c.title,
   description: c.tagline,
+  topics: c.topics,
   duration: c.duration !== "A definir" ? c.duration : undefined,
   format: c.format !== "A definir" ? c.format : undefined,
   startInfo: classStartRange(c),
@@ -64,7 +73,7 @@ export const posCards: CourseCard[] = posCourses.map((c) => ({
   key: c.slug,
   href: `/pos-graduacao/${c.slug}`,
   enrollUrl: c.enrollUrl,
-  icon: ScrollText,
+  icon: "scroll",
   code: "Pós",
   title: c.title,
   description: c.tagline,

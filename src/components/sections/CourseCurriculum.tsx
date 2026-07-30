@@ -13,7 +13,7 @@ type Discipline = {
   docente?: string;
   /** Ementa (tópicos das aulas). Quando presente, a disciplina vira acordeão. */
   ementa?: string[];
-  /** Metadados por nível (Curso de Libras) — linha discreta sob o nome. */
+  /** Metadados por nível (Curso de Formação em Libras) — linha discreta sob o nome. */
   schedule?: string;
   start?: string;
   prerequisite?: string;

@@ -10,7 +10,7 @@ export type EfalDiscipline = {
   name: string;
   docente: string;
   ementa: string[];
-  // Campos opcionais usados pelos níveis do Curso de Libras (cada nível é
+  // Campos opcionais usados pelos níveis do Curso de Formação em Libras (cada nível é
   // tratado como uma "disciplina" com dia/horário, início e pré-requisito):
   schedule?: string; // ex.: "Terças-feiras, 19h–21h30"
   start?: string; // ex.: "Início em 04/08/2026"
@@ -25,6 +25,24 @@ export type EfalProfessor = {
   photo: string; // caminho em /public
 };
 
+/**
+ * Tópicos do catálogo da EFAL — a navegação por interesse de /efal. A ordem
+ * desta lista é a ordem dos filtros na tela (do primeiro contato com a
+ * teologia aos ministérios específicos); cada curso declara os seus em
+ * `topics`, e um curso pode aparecer em mais de um tópico.
+ */
+export const efalTopics = [
+  "Primeiros passos",
+  "Liderança e ministério",
+  "Oficialato",
+  "Ensino e Escola Dominical",
+  "Acessibilidade e Libras",
+  "Música e louvor",
+  "Capelania",
+] as const;
+
+export type EfalTopic = (typeof efalTopics)[number];
+
 export type EfalCourse = {
   slug: string;
   /** Origem da inscrição — define a planilha (webhook) de destino. */
@@ -36,12 +54,14 @@ export type EfalCourse = {
   tagline: string;
   description: string;
   audience: string;
+  /** Tópicos do curso — alimentam o filtro por interesse do catálogo. */
+  topics: EfalTopic[];
   format: string;
   duration: string;
   disciplines: string;
   /**
    * Grade curricular com docente e ementa por disciplina, na ordem oficial.
-   * Vazia enquanto o conteúdo não está definido (cursos placeholder CFL/CFM).
+   * Vazia enquanto o conteúdo não está definido (hoje só o CFM).
    */
   curriculum: EfalDiscipline[];
   isNew: boolean;
@@ -52,7 +72,7 @@ export type EfalCourse = {
    */
   enrollUrl: string;
   /**
-   * Rótulo do item da grade (plural). Default "disciplinas"; o Curso de Libras
+   * Rótulo do item da grade (plural). Default "disciplinas"; o Curso de Formação em Libras
    * usa "trilhas" porque a grade lista níveis, não disciplinas.
    */
   curriculumUnit?: string;
@@ -490,7 +510,7 @@ const cfcDisciplines: EfalDiscipline[] = [
   },
 ];
 
-/** Os 3 níveis do Curso de Libras, cada um tratado como uma "disciplina"
+/** Os 3 níveis do Curso de Formação em Libras, cada um tratado como uma "disciplina"
  *  com sua ementa. Iniciante e Intermediário com ementa aula-a-aula (PDFs
  *  oficiais 2026); Avançado com os principais conteúdos (o PDF do Avançado
  *  não traz a lista aula-a-aula). */
@@ -581,6 +601,7 @@ export const efalCourses: EfalCourse[] = [
       "Oferece uma formação sólida em Teologia Reformada, com ênfase na prática, e visa equipar líderes para desempenharem suas funções com excelência. É o primeiro contato do aluno com os conhecimentos produzidos e discutidos no ambiente acadêmico do Seminário, vai além da Escola Dominical local e é o degrau anterior ao Curso Livre de Bacharel em Teologia.",
     audience:
       "Líderes já envolvidos nas igrejas e cristãos em geral interessados em serem capacitados no exercício de seus dons e ministérios.",
+    topics: ["Primeiros passos", "Liderança e ministério"],
     format: "100% online, aulas ao vivo (remoto)",
     duration: "Até 6 meses",
     disciplines: "8 disciplinas",
@@ -600,6 +621,7 @@ export const efalCourses: EfalCourse[] = [
       "Tem o objetivo de fornecer formação básica para diferentes áreas de atuação ministerial na igreja, apresentando os fundamentos do exercício ministerial aplicados à prática. Inclui disciplinas focadas na prática ministerial, capacitando para o exercício da liderança em diversas áreas da igreja.",
     audience:
       "Professores de Escola Dominical, presbíteros, diáconos, evangelistas, obreiros, diretorias de sociedades internas e outros líderes já envolvidos nas igrejas.",
+    topics: ["Liderança e ministério", "Ensino e Escola Dominical"],
     format: "100% online, aulas ao vivo (remoto)",
     duration: "Até 6 meses",
     disciplines: "8 disciplinas",
@@ -619,6 +641,7 @@ export const efalCourses: EfalCourse[] = [
       "Aborda temas específicos da dinâmica ministerial dos oficiais da igreja. Seu objetivo é proporcionar capacitação para um exercício consciente e bem preparado do oficialato bíblico — o curso é composto pelo CIT somado a um programa específico voltado para presbíteros e diáconos.",
     audience:
       "Aspirantes ao oficialato e oficiais já ordenados (presbíteros e diáconos).",
+    topics: ["Oficialato", "Liderança e ministério"],
     format: "100% online, aulas ao vivo (remoto)",
     duration: "Até 12 meses (CIT + programa específico)",
     disciplines: "16 disciplinas",
@@ -638,6 +661,7 @@ export const efalCourses: EfalCourse[] = [
       "Unido ao Curso Introdutório de Teologia, oferece uma formação específica para professores, com disciplinas teórico-metodológicas com base na Teologia Reformada. A formação visa promover a reflexão sobre os saberes e práticas docentes que atuam no ensino bíblico local.",
     audience:
       "Professores de Escola Dominical e líderes envolvidos no ensino bíblico nas igrejas locais.",
+    topics: ["Ensino e Escola Dominical", "Liderança e ministério"],
     format: "100% online, aulas ao vivo (remoto)",
     duration: "Até 12 meses (CIT + programa específico)",
     disciplines: "16 disciplinas",
@@ -650,13 +674,14 @@ export const efalCourses: EfalCourse[] = [
     slug: "cfl",
     origem: "efal",
     codigo: "CFL",
-    code: "Libras",
-    title: "Curso de Libras",
+    code: "CFL",
+    title: "Curso de Formação em Libras",
     tagline: "Do primeiro sinal à fluência.",
     description:
       "Aprenda Língua Brasileira de Sinais em um ambiente cristão, com foco em acessibilidade na igreja e na sociedade. Uma trilha progressiva completa — Iniciante, Intermediário e Avançado — com conteúdo voltado à atuação religiosa cristã (tradição reformada) e à acessibilidade da igreja. As turmas contam com aulas ministradas por convidados surdos e intérpretes (TILS) presbiterianos, proporcionando vivência real da comunidade surda. É o caminho natural para quem deseja se tornar bilíngue em Libras e usar esse conhecimento na igreja ou na sociedade.",
     audience:
       "Aberto a qualquer pessoa do Brasil, a partir de 15 anos. Cada nível tem seu pré-requisito: o Iniciante não exige conhecimento prévio; o Intermediário exige base (algumas aulas só em Libras); o Avançado exige nível intermediário (maioria das aulas só em Libras).",
+    topics: ["Acessibilidade e Libras"],
     format: "100% online, aulas ao vivo (remoto)",
     duration: "Trilha em 3 níveis · aulas semanais, 19h–21h30",
     disciplines: "3 níveis (Iniciante · Intermediário · Avançado)",
@@ -693,6 +718,7 @@ export const efalCourses: EfalCourse[] = [
       "[PLACEHOLDER] Descrição do Curso de Formação Musical a ser fornecida pela coordenação da EFAL — objetivos, conteúdo e proposta de formação para o ministério de música da igreja local.",
     audience:
       "[PLACEHOLDER] Público-alvo a confirmar com a coordenação da EFAL.",
+    topics: ["Música e louvor"],
     format: "A definir",
     duration: "A definir",
     disciplines: "A definir",
@@ -716,6 +742,7 @@ export const efalCourses: EfalCourse[] = [
       "[PLACEHOLDER] Descrição do Curso de Formação em Capelania a ser fornecida pela coordenação da EFAL. A grade curricular abaixo já é a oficial do calendário 2026.2.",
     audience:
       "[PLACEHOLDER] Público-alvo a confirmar com a coordenação da EFAL.",
+    topics: ["Capelania"],
     format: "A definir",
     duration: "A definir",
     disciplines: "9 disciplinas",

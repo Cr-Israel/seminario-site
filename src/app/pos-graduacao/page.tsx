@@ -67,9 +67,7 @@ export default function PosGraduacaoPage() {
       </CourseCatalog>
 
       {/* Legitimação eclesiástica logo abaixo do catálogo, como na Home. */}
-      <section className="px-6 pb-20">
-        <SeloIPB />
-      </section>
+      <SeloIPB />
 
       <OnlineMotto
         stats={posMottoStats}

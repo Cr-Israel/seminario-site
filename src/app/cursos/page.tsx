@@ -45,9 +45,7 @@ export default function CursosPage() {
       <CoursesExplorer />
 
       {/* Legitimação eclesiástica logo abaixo dos cards, como na Home. */}
-      <section className="px-6 pb-20">
-        <SeloIPB />
-      </section>
+      <SeloIPB />
 
       {/* FAQ */}
       <Faq />

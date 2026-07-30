@@ -57,7 +57,7 @@ export default function Hero() {
               rel="noopener noreferrer"
               className="w-full rounded-sm border border-white/25 px-7 py-3.5 text-center text-sm font-medium text-white transition-colors hover:bg-white/10 sm:w-auto"
             >
-              Falar com a secretaria
+              Fale com a nossa equipe
             </a>
           </div>
         </div>

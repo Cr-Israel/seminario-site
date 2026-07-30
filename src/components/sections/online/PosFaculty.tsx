@@ -23,7 +23,7 @@ function hasPhoto(professor: PosProfessor) {
 
 /**
  * "Corpo docente da Pós-graduação" — grid de cards com foto, nome, credencial
- * e bio, no mesmo estilo dos cards de professores do Curso de Libras
+ * e bio, no mesmo estilo dos cards de professores do Curso de Formação em Libras
  * (CourseProfessors). Server Component, renderizada dentro da aba
  * Pós-graduação do catálogo via slot (prop `posFaculty` de OnlineCourses).
  */

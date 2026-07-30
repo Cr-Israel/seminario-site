@@ -38,7 +38,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "Qual a duração dos cursos?",
     answer:
-      "Os cursos da EFAL duram de 6 a 12 meses, conforme o curso; o Curso de Libras é uma trilha em 3 níveis, com aulas semanais. [PLACEHOLDER] A duração do Bacharelado e das pós-graduações será confirmada pela secretaria.",
+      "Os cursos da EFAL duram de 6 a 12 meses, conforme o curso; o Curso de Formação em Libras é uma trilha em 3 níveis, com aulas semanais. [PLACEHOLDER] A duração do Bacharelado e das pós-graduações será confirmada pela secretaria.",
     // TODO(conteúdo): confirmar duração oficial do Bacharelado e da Pós.
   },
   {

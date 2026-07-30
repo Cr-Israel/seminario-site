@@ -1,7 +1,7 @@
 /**
  * Contato da secretaria via WhatsApp — Eliane Estevam.
  * 55 (Brasil) + 21 (DDD) + número. Usado no botão flutuante e nos
- * botões "Falar com a secretaria" espalhados pelo site.
+ * botões "Fale com a nossa equipe" espalhados pelo site.
  */
 export const WHATSAPP_NUMBER = "5521964027542";
 

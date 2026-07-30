@@ -46,7 +46,7 @@ export const nivelLabel: Record<Nivel, string> = {
 
 /**
  * Extrai das datas de início da grade (campo `start`, ex.: "Início em
- * 04/08/2026") o mês/ano de começo das turmas — hoje só o Curso de Libras
+ * 04/08/2026") o mês/ano de começo das turmas — hoje só o Curso de Formação em Libras
  * tem essas datas no calendário oficial 2026.2.
  */
 function proximaTurmaEfal(course: EfalCourse): string | undefined {

@@ -67,7 +67,7 @@ export default function OnlineHero({
             rel="noopener noreferrer"
             className="rounded-sm border border-white/25 px-7 py-3.5 text-center text-sm font-medium text-white transition-colors hover:bg-white/10"
           >
-            Falar com a secretaria
+            Fale com a nossa equipe
           </a>
         </div>
       </div>

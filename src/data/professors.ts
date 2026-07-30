@@ -14,7 +14,7 @@ export type OnlineProfessor = {
   /** Foto em /public, quando já disponível — sem foto o card mostra as iniciais. */
   photo?: string;
   credential?: string;
-  /** Bio quando o curso já a fornece (ex.: professoras do Curso de Libras). */
+  /** Bio quando o curso já a fornece (ex.: professoras do Curso de Formação em Libras). */
   bio?: string;
 };
 

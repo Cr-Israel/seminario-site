@@ -89,7 +89,7 @@ export default function EfalPage() {
       <Testimonials items={depoimentosEfal} title="Quem estudou, recomenda" />
       <OnlineMotto
         stats={efalMottoStats}
-        description="Do primeiro contato com a teologia reformada à capacitação de oficiais, professores e líderes, cada curso da EFAL existe para servir à igreja local — com professor ao vivo, do início ao fim."
+        description="Do primeiro contato com a teologia reformada à capacitação de oficiais, professores e líderes, cada curso da EFAL existe para servir à igreja local, com professores ao vivo, do início ao fim da sua caminhada."
         whatsappMessage="Olá! Quero me inscrever em um dos cursos da EFAL do Seminário Simonton."
       />
       <OnlineFaq

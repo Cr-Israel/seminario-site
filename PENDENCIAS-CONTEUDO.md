@@ -51,6 +51,22 @@ no código e risque o item aqui.
 - [ ] Bios dos instrutores do CIT (`src/components/sections/cit/CitInstructors.tsx`,
       todos com `BIO_PLACEHOLDER`).
 
+## Privacidade / LGPD — direção e secretaria
+
+- [ ] **ID de medição do Google Analytics 4** (`G-XXXXXXXXXX`): criar a
+      propriedade GA4 do site e preencher `NEXT_PUBLIC_GA_MEASUREMENT_ID` no
+      ambiente. Sem a variável o site roda normal, apenas sem medição.
+- [ ] **Encarregado (DPO):** nome e e-mail oficial de privacidade
+      (`src/app/lgpd/page.tsx`). Enquanto não houver, a política aponta para a
+      secretaria.
+- [ ] **Revisão jurídica da política de privacidade** e definição da data de
+      vigência oficial (`src/app/lgpd/page.tsx`, hoje 27/08/2026). O texto foi
+      redigido a partir do que o site de fato coleta — formulários para Google
+      Sheets, Analytics opt-in, Maps, YouTube nocookie e WhatsApp —, mas
+      precisa do aval da direção.
+- [ ] **Prazo de guarda dos dados dos formulários:** a política diz "pelo tempo
+      necessário ao atendimento"; definir um prazo concreto com a secretaria.
+
 ## Graduação / institucional — secretaria
 
 - [ ] Duração oficial do Bacharelado (`src/data/cursos.ts`, `src/data/faq.ts`).

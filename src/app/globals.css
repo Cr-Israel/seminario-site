@@ -128,3 +128,13 @@ button:not(:disabled),
 [data-theme="dark"] .divide-stone-100:not(header *) > :not([hidden]) ~ :not([hidden]) {
   border-color: var(--dk-border);
 }
+
+/* Enquanto o banner de consentimento (CookieBanner) está aberto, ele ocupa o
+   rodapé inteiro no mobile — inclusive o canto do FAB do WhatsApp. O botão
+   sai de cena até a pessoa responder; a partir de `sm` o banner vira um
+   cartão à esquerda e não há conflito. */
+@media (max-width: 639px) {
+  [data-consent-banner="open"] .whatsapp-fab {
+    display: none;
+  }
+}

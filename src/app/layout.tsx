@@ -3,6 +3,8 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/layout/Footer";
 import WhatsappFab from "@/components/layout/WhatsappFab";
+import CookieBanner from "@/components/layout/CookieBanner";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -96,6 +98,10 @@ export default function RootLayout({
         {children}
         <Footer />
         <WhatsappFab />
+        {/* Consentimento primeiro: o Analytics só se monta depois do aceite
+            (opt-in estrito — ver src/lib/consent.ts). */}
+        <CookieBanner />
+        <GoogleAnalytics />
       </body>
     </html>
   );

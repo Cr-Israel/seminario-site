@@ -20,27 +20,25 @@ const faqItems: FaqItem[] = [
     question: "Qual é a duração do curso?",
     answer: "Até 6 meses, distribuídos nas 8 disciplinas.",
   },
-  // [CONFIRMAR] certificado — validar com a secretaria
   {
     question: "O curso tem certificado?",
     answer:
-      "Sim. Ao concluir, o aluno recebe Certificado de Conclusão emitido pelo Seminário. É um curso livre, com reconhecimento intracorpus sob a autoridade da Junta de Educação Teológica (JET) da Igreja Presbiteriana do Brasil.",
+      "Sim. Ao concluir, o aluno recebe Certificado de Conclusão emitido pelo Seminário — na versão digital e na via impressa, entregue no dia da formatura. É um curso livre, com reconhecimento intracorpus sob a autoridade da Junta de Educação Teológica (JET) da Igreja Presbiteriana do Brasil.",
   },
   {
     question: "É reconhecido pelo MEC?",
     answer:
       "O CIT é um curso livre, sem submissão à avaliação do MEC; seu reconhecimento é intracorpus, no âmbito da IPB.",
   },
-  // [CONFIRMAR] avaliação — validar com a secretaria
   {
     question: "O curso tem avaliação?",
-    answer: "Sim, há avaliações ao longo das disciplinas.",
+    answer:
+      "Sim, há avaliações ao longo das disciplinas, e a frequência nas aulas também conta para a conclusão.",
   },
-  // [CONFIRMAR VALOR] valores e matrícula — validar com a secretaria
   {
     question: "Quanto custa e como faço a matrícula?",
     answer:
-      "Fale com a secretaria para valores e condições atualizadas e para garantir sua vaga na próxima turma.",
+      "O valor, com parcelas e total, está logo abaixo — nesta mesma página. Para se matricular, a secretaria orienta o passo a passo e solicita os documentos necessários; o pagamento é feito por boleto, enviado para o seu e-mail.",
   },
 ];
 

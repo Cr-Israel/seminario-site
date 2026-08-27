@@ -83,9 +83,10 @@ export type EfalCourse = {
 };
 
 /**
- * As 8 disciplinas do Curso Introdutório de Teologia (CIT). O CFO e o CFP são
- * compostos por essas 8 + um programa específico de mais 8 — por isso a grade
- * deles reaproveita esta lista.
+ * As 8 disciplinas do Curso Introdutório de Teologia (CIT). O CFO e o CFP têm
+ * essas mesmas 8 na grade, mais 8 específicas — por isso reaproveitam a lista
+ * aqui. Do lado do aluno são 16 disciplinas normais: as páginas do CFO e do CFP
+ * não anunciam o CIT embutido.
  */
 const citDisciplines: EfalDiscipline[] = [
   {
@@ -170,7 +171,7 @@ const citDisciplines: EfalDiscipline[] = [
   },
 ];
 
-/** Programa específico do Curso de Formação de Oficiais (soma-se ao CIT). */
+/** As 8 disciplinas específicas do Curso de Formação de Oficiais. */
 const cfoDisciplines: EfalDiscipline[] = [
   {
     name: "Panorama de História da IPB 1",
@@ -254,7 +255,7 @@ const cfoDisciplines: EfalDiscipline[] = [
   },
 ];
 
-/** Programa específico do Curso de Formação de Professores (soma-se ao CIT). */
+/** As 8 disciplinas específicas do Curso de Formação de Professores. */
 const cfpDisciplines: EfalDiscipline[] = [
   {
     name: "Preparação de Estudos e Mensagens 1",
@@ -638,12 +639,12 @@ export const efalCourses: EfalCourse[] = [
     title: "Curso de Formação de Oficiais",
     tagline: "Capacitação para o exercício consciente do oficialato",
     description:
-      "Aborda temas específicos da dinâmica ministerial dos oficiais da igreja. Seu objetivo é proporcionar capacitação para um exercício consciente e bem preparado do oficialato bíblico — o curso é composto pelo CIT somado a um programa específico voltado para presbíteros e diáconos.",
+      "Aborda temas específicos da dinâmica ministerial dos oficiais da igreja. Seu objetivo é proporcionar capacitação para um exercício consciente e bem preparado do oficialato bíblico, com disciplinas voltadas ao trabalho de presbíteros e diáconos na igreja local.",
     audience:
       "Aspirantes ao oficialato e oficiais já ordenados (presbíteros e diáconos).",
     topics: ["Oficialato", "Liderança e ministério"],
     format: "100% online, aulas ao vivo (remoto)",
-    duration: "Até 12 meses (CIT + programa específico)",
+    duration: "Até 12 meses",
     disciplines: "16 disciplinas",
     curriculum: [...citDisciplines, ...cfoDisciplines],
     isNew: false,
@@ -658,12 +659,12 @@ export const efalCourses: EfalCourse[] = [
     title: "Curso de Formação de Professores",
     tagline: "Prática docente à luz da Teologia Reformada",
     description:
-      "Unido ao Curso Introdutório de Teologia, oferece uma formação específica para professores, com disciplinas teórico-metodológicas com base na Teologia Reformada. A formação visa promover a reflexão sobre os saberes e práticas docentes que atuam no ensino bíblico local.",
+      "Oferece uma formação específica para professores, com disciplinas teórico-metodológicas com base na Teologia Reformada. A formação visa promover a reflexão sobre os saberes e práticas docentes que atuam no ensino bíblico local.",
     audience:
       "Professores de Escola Dominical e líderes envolvidos no ensino bíblico nas igrejas locais.",
     topics: ["Ensino e Escola Dominical", "Liderança e ministério"],
     format: "100% online, aulas ao vivo (remoto)",
-    duration: "Até 12 meses (CIT + programa específico)",
+    duration: "Até 12 meses",
     disciplines: "16 disciplinas",
     curriculum: [...citDisciplines, ...cfpDisciplines],
     isNew: false,

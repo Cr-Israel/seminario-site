@@ -1,12 +1,12 @@
 import { ArrowRight } from "lucide-react";
 import type { MottoStat } from "@/data/onlineNumbers";
-import { whatsappHref } from "@/lib/whatsapp";
 
 type Props = {
   stats: MottoStat[];
   description: string;
-  /** Mensagem que abre no WhatsApp da secretaria. */
-  whatsappMessage: string;
+  /** CTA de fechamento — âncora de volta para o catálogo de cursos da página. */
+  ctaHref: string;
+  ctaLabel?: string;
 };
 
 /**
@@ -24,7 +24,8 @@ type Props = {
 export default function OnlineMotto({
   stats,
   description,
-  whatsappMessage,
+  ctaHref,
+  ctaLabel = "Quero me inscrever",
 }: Props) {
   return (
     <section className="relative overflow-hidden bg-brand-950 py-20 sm:py-24">
@@ -70,12 +71,10 @@ export default function OnlineMotto({
           </dl>
 
           <a
-            href={whatsappHref(whatsappMessage)}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={ctaHref}
             className="mt-10 inline-flex items-center gap-2 rounded-sm bg-brand-50 px-8 py-4 text-sm font-medium text-brand-900 transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-950"
           >
-            Quero me inscrever <ArrowRight size={16} />
+            {ctaLabel} <ArrowRight size={16} />
           </a>
         </div>
       </div>

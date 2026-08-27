@@ -72,7 +72,7 @@ export default function PosGraduacaoPage() {
       <OnlineMotto
         stats={posMottoStats}
         description="Teologia reformada estudada a fundo, com pesquisa e rigor acadêmico, a serviço de quem lidera, ensina e prega na igreja local — com professor ao vivo, do início ao fim."
-        whatsappMessage="Olá! Quero me inscrever em um dos programas de Pós-graduação do Seminário Simonton."
+        ctaHref="#cursos"
       />
       <OnlineFaq
         items={posFaqItems}

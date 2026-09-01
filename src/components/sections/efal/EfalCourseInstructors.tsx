@@ -2,73 +2,12 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { professorPhoto } from "@/data/professors";
+import type { CourseInstructor } from "@/data/professors";
 import ParallaxOrbs from "@/components/ui/ParallaxOrbs";
-
-type Instructor = {
-  name: string;
-  role: string;
-  discipline: string;
-  bio: string;
-  /** Caminho em /public — ausente enquanto não temos as fotos reais. */
-  photo?: string;
-};
-
-// TODO: substituir bios e fotos pelas versões reais dos professores
-// (fotos irão para public/images/professores/)
-const BIO_PLACEHOLDER =
-  "Reverendo da Igreja Presbiteriana do Brasil, com experiência pastoral e docente na formação de líderes. Dedica-se ao ensino teológico reformado e ao discipulado na igreja local. Biografia completa em breve.";
-
-// Fotos vêm do mapa central em data/professors.ts (professorPhoto) — nova
-// foto em /public/images só precisa ser registrada lá para aparecer aqui.
-const instructors: Instructor[] = [
-  {
-    name: "Rev. Diego Maia",
-    role: "Professor",
-    discipline: "Introdução à Teologia Reformada 1 e 2",
-    bio: BIO_PLACEHOLDER,
-  },
-  {
-    name: "Rev. Nilson Santos",
-    role: "Professor",
-    discipline: "Panorama de História da Igreja",
-    bio: BIO_PLACEHOLDER,
-  },
-  {
-    name: "Rev. Renato Prates",
-    role: "Professor",
-    discipline: "Panorama do Antigo Testamento",
-    bio: BIO_PLACEHOLDER,
-  },
-  {
-    name: "Rev. Jayro Alves",
-    role: "Professor",
-    discipline: "Princípios de Interpretação Bíblica",
-    bio: BIO_PLACEHOLDER,
-  },
-  {
-    name: "Rev. Leonard Neumann",
-    role: "Professor",
-    discipline: "Panorama do Novo Testamento",
-    bio: BIO_PLACEHOLDER,
-  },
-  {
-    name: "Rev. Orlando Ferreira",
-    role: "Professor",
-    discipline: "Noções de Aconselhamento Cristão",
-    bio: BIO_PLACEHOLDER,
-  },
-  {
-    name: "Rev. Carlos Vitor",
-    role: "Professor",
-    discipline: "Evangelização Prática",
-    bio: BIO_PLACEHOLDER,
-  },
-].map((person) => ({ ...person, photo: professorPhoto(person.name) }));
 
 function initials(name: string) {
   const parts = name
-    .replace(/^Rev\.?\s+/i, "")
+    .replace(/^(Rev\.?|Profª\.?|Prof\.?)\s+/i, "")
     .trim()
     .split(/\s+/)
     .filter(Boolean);
@@ -83,7 +22,7 @@ function InstructorPhoto({
   size,
   className,
 }: {
-  person: Instructor;
+  person: CourseInstructor;
   size: number;
   className: string;
 }) {
@@ -113,10 +52,20 @@ function InstructorPhoto({
  * instrutores à esquerda, painel de detalhe (foto grande + bio completa) à
  * direita. No mobile, o detalhe empilha acima da lista. Client Component
  * (useState para a seleção).
+ *
+ * A lista vem da própria grade do curso (data/professors.ts), então docente
+ * novo numa disciplina aparece aqui sozinho.
  */
-export default function CitInstructors() {
+export default function EfalCourseInstructors({
+  instructors,
+  description,
+}: {
+  instructors: CourseInstructor[];
+  description: string;
+}) {
   const [selected, setSelected] = useState(0);
-  const current = instructors[selected];
+  if (instructors.length === 0) return null;
+  const current = instructors[Math.min(selected, instructors.length - 1)];
 
   return (
     <section className="relative overflow-hidden bg-brand-950 py-24">
@@ -140,8 +89,7 @@ export default function CitInstructors() {
             Conheça nossos instrutores
           </h2>
           <p className="mt-4 text-base leading-relaxed text-brand-100/80">
-            Reverendos com experiência pastoral e docente conduzem cada
-            disciplina do CIT, ao vivo.
+            {description}
           </p>
         </div>
 
@@ -159,15 +107,15 @@ export default function CitInstructors() {
               className="max-h-[536px] space-y-1.5 overflow-y-auto pr-1 [scrollbar-color:rgba(255,255,255,0.25)_transparent] [scrollbar-width:thin]"
             >
               {instructors.map((person, i) => {
-                const active = i === selected;
+                const active = person === current;
                 return (
                   <button
                     key={person.name}
                     type="button"
                     role="tab"
-                    id={`cit-instructor-tab-${i}`}
+                    id={`efal-instructor-tab-${i}`}
                     aria-selected={active}
-                    aria-controls="cit-instructor-panel"
+                    aria-controls="efal-instructor-panel"
                     onClick={() => setSelected(i)}
                     className={`group flex w-full items-center gap-3.5 rounded-xl border-l-2 p-3 text-left transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-200 ${
                       active
@@ -207,8 +155,8 @@ export default function CitInstructors() {
           {/* Detalhe do selecionado — acima da lista no mobile */}
           <div
             role="tabpanel"
-            id="cit-instructor-panel"
-            aria-labelledby={`cit-instructor-tab-${selected}`}
+            id="efal-instructor-panel"
+            aria-labelledby={`efal-instructor-tab-${selected}`}
             className="relative order-1 flex flex-col items-start gap-6 overflow-hidden rounded-3xl border border-white/20 bg-gradient-to-b from-white/[0.13] to-white/[0.05] p-6 shadow-2xl shadow-black/30 backdrop-blur-xl before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent sm:flex-row sm:gap-8 sm:p-8 lg:order-2 lg:col-span-3"
           >
             {/* Retrato com tamanho próprio (não estica com a altura do card):
@@ -224,7 +172,9 @@ export default function CitInstructors() {
               <h3 className="font-serif text-2xl font-bold text-white sm:text-3xl">
                 {current.name}
               </h3>
-              <p className="mt-1 text-sm text-brand-100/70">{current.role}</p>
+              <p className="mt-1 text-sm text-brand-100/70">
+                {current.credential ?? current.role}
+              </p>
               <p className="mt-1 text-sm font-semibold text-brand-400">
                 {current.discipline}
               </p>

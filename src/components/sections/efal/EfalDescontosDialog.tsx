@@ -9,6 +9,7 @@ import {
   regraGrupo,
   type Desconto,
 } from "@/data/citDescontos";
+import type { EfalCourse } from "@/data/efal";
 
 /** Linha "quem tem direito · desconto · parcela final". */
 function DescontoRow({ item }: { item: Desconto }) {
@@ -28,17 +29,24 @@ function DescontoRow({ item }: { item: Desconto }) {
 }
 
 /**
- * Botão + modal com a política de descontos do CIT, usado nos CTAs da landing.
- * Segue o mesmo padrão do InscricaoButton: <dialog> nativo, que já entrega
- * foco preso, Esc e fechamento por clique no fundo.
+ * Botão + modal com a política de descontos, usado nos CTAs das landings da
+ * EFAL. Segue o mesmo padrão do InscricaoButton: <dialog> nativo, que já
+ * entrega foco preso, Esc e fechamento por clique no fundo.
+ *
+ * A tabela de citDescontos.ts traz as parcelas já calculadas sobre o valor
+ * cheio do CIT; por isso a landing só liga o modal (`descontos: true`) nos
+ * cursos cuja política a secretaria divulgou com esses valores. Quando os
+ * demais cursos tiverem política própria, basta declará-la e ligá-la.
  *
  * `className` permite ao CTA escolher a aparência do gatilho (link discreto
  * sobre fundo verde, botão sobre fundo claro etc.).
  */
-export default function CitDescontosDialog({
+export default function EfalDescontosDialog({
+  course,
   className,
   children,
 }: {
+  course: EfalCourse;
   className?: string;
   children?: React.ReactNode;
 }) {
@@ -77,9 +85,11 @@ export default function CitDescontosDialog({
               >
                 Política de descontos
               </h2>
-              <p className="mt-1 text-sm text-stone-500">
-                Valor cheio: 6x de R$ 159,90
-              </p>
+              {course.price && (
+                <p className="mt-1 text-sm text-stone-500">
+                  Valor cheio: {course.price.installments}
+                </p>
+              )}
             </div>
             <button
               type="button"

@@ -21,8 +21,10 @@ import { ogMetadata } from "@/lib/seo";
 type Params = Promise<{ slug: string }>;
 
 /**
- * Página de um programa de pós-graduação. Espelha o template da EFAL
- * (/efal/[slug]) — mesma anatomia, conteúdo e coordenação do núcleo de pós.
+ * Página de um programa de pós-graduação — ficha do curso em página única
+ * (hero, grade, coordenação e matrícula). As páginas da EFAL (/efal/[slug])
+ * seguiram para uma landing de conversão mais longa; a Pós mantém este
+ * formato até que o núcleo peça o mesmo tratamento.
  */
 export function generateStaticParams() {
   return posCourses.map((course) => ({ slug: course.slug }));

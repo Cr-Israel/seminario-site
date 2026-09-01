@@ -1,4 +1,4 @@
-import { efalCourses } from "./efal";
+import { efalCourses, type EfalCourse } from "./efal";
 import { posCourses } from "./pos";
 
 /**
@@ -116,3 +116,101 @@ const POS_CODE = "Pós";
 export const efalProfessors = onlineProfessors.filter((professor) =>
   professor.courses.some((code) => code !== POS_CODE),
 );
+
+/** Instrutor de um curso, como exibido na seção "Quem ensina" da landing. */
+export type CourseInstructor = {
+  /** Nome como está na grade, com título (ex.: "Rev. Diego Maia"). */
+  name: string;
+  /** "Professor" / "Professora", conforme o título na grade. */
+  role: string;
+  /** Disciplinas que leciona no curso, já mescladas ("… 1 e 2"). */
+  discipline: string;
+  bio: string;
+  credential?: string;
+  /** Caminho em /public — ausente enquanto não temos a foto real. */
+  photo?: string;
+};
+
+// TODO: substituir pelas bios reais dos professores conforme forem chegando —
+// hoje só as professoras do Curso de Formação em Libras têm bio própria
+// (declarada em efal.ts).
+const BIO_PLACEHOLDER_REV =
+  "Reverendo da Igreja Presbiteriana do Brasil, com experiência pastoral e docente na formação de líderes. Dedica-se ao ensino teológico reformado e ao discipulado na igreja local. Biografia completa em breve.";
+const BIO_PLACEHOLDER_PROFA =
+  "Professora do corpo docente da EFAL, com experiência na formação de líderes e no ensino da igreja local. Biografia completa em breve.";
+const BIO_PLACEHOLDER_PROF =
+  "Professor do corpo docente da EFAL, com experiência na formação de líderes e no ensino da igreja local. Biografia completa em breve.";
+
+function isReverendo(name: string) {
+  return /^Rev\./i.test(name);
+}
+
+function isProfessora(name: string) {
+  return /^Profª/i.test(name);
+}
+
+function bioPadrao(name: string) {
+  if (isReverendo(name)) return BIO_PLACEHOLDER_REV;
+  return isProfessora(name) ? BIO_PLACEHOLDER_PROFA : BIO_PLACEHOLDER_PROF;
+}
+
+/**
+ * Junta as disciplinas de um mesmo docente numa linha só, colapsando a
+ * numeração das sequências: "Introdução à Teologia Reformada 1" e "… 2" viram
+ * "Introdução à Teologia Reformada 1 e 2". Disciplinas diferentes ficam
+ * separadas por "·".
+ */
+function mergeDisciplineNames(names: string[]) {
+  const groups = new Map<string, string[]>();
+  for (const name of names) {
+    const match = name.match(/^(.*?)\s+(\d+)$/);
+    const base = match ? match[1] : name;
+    const numbers = groups.get(base) ?? [];
+    if (match) numbers.push(match[2]);
+    groups.set(base, numbers);
+  }
+  return [...groups.entries()]
+    .map(([base, numbers]) => {
+      if (numbers.length === 0) return base;
+      if (numbers.length === 1) return `${base} ${numbers[0]}`;
+      return `${base} ${numbers.slice(0, -1).join(", ")} e ${numbers.at(-1)}`;
+    })
+    .join(" · ");
+}
+
+/**
+ * Instrutores de um curso da EFAL, derivados da própria grade: cada docente
+ * aparece uma vez, na ordem em que a primeira disciplina dele entra no
+ * currículo, com todas as suas disciplinas na mesma linha. Docentes ainda em
+ * aberto ("Professor", "Professor em aberto") ficam de fora.
+ *
+ * Bio, credencial e foto vêm de `course.professors` quando o curso as declara
+ * (é o caso do Curso de Formação em Libras); senão, foto do mapa central e bio
+ * provisória.
+ */
+export function courseInstructors(course: EfalCourse): CourseInstructor[] {
+  const disciplinesByName = new Map<string, { name: string; items: string[] }>();
+
+  for (const discipline of course.curriculum) {
+    const raw = discipline.docente;
+    if (/^Professor( em aberto)?$/.test(raw)) continue;
+    const key = stripTitle(raw);
+    const entry = disciplinesByName.get(key);
+    if (entry) entry.items.push(discipline.name);
+    else disciplinesByName.set(key, { name: raw, items: [discipline.name] });
+  }
+
+  return [...disciplinesByName.entries()].map(([key, { name, items }]) => {
+    const declared = course.professors?.find(
+      (professor) => stripTitle(professor.name) === key,
+    );
+    return {
+      name,
+      role: isProfessora(name) ? "Professora" : "Professor",
+      discipline: mergeDisciplineNames(items),
+      bio: declared?.bio ?? bioPadrao(name),
+      credential: declared?.credential,
+      photo: declared?.photo ?? photoByName[key],
+    };
+  });
+}

@@ -1,36 +1,42 @@
 import { ArrowRight } from "lucide-react";
-import { getEfalCourse } from "@/data/efal";
-import InscricaoButton from "@/components/inscricao/InscricaoButton";
 import WhatsappIcon from "@/components/ui/WhatsappIcon";
-import CitDescontosDialog from "./CitDescontosDialog";
+import EfalDescontosDialog from "./EfalDescontosDialog";
+import EfalEnrollButton from "./EfalEnrollButton";
+import type { EfalCourse } from "@/data/efal";
+import type { EfalLanding } from "@/data/efalLandings";
 import { whatsappHref } from "@/lib/whatsapp";
 
 /**
  * CTA que fecha a seção "Esse curso é para mim?" — emenda na identificação que
  * o leitor acabou de fazer com um dos perfis.
  *
- * Ângulo próprio para não repetir os outros dois CTAs da página: o CitCtaBand
- * argumenta com o formato do curso e o CitEnroll é a matrícula final; aqui o
- * trabalho é tirar o medo do clique, descrevendo o que o formulário pede e o
- * que acontece depois. Layout centralizado, também para não repetir o
+ * Ângulo próprio para não repetir os outros dois CTAs da página: a faixa
+ * intermediária argumenta com o formato do curso e o CTA final é a matrícula;
+ * aqui o trabalho é tirar o medo do clique, descrevendo o que a inscrição pede
+ * e o que acontece depois. Layout centralizado, também para não repetir o
  * texto-à-esquerda/botão-à-direita dos outros. Server Component.
  */
-export default function CitCtaInvite() {
-  const course = getEfalCourse("cit");
+export default function EfalCourseCtaInvite({
+  course,
+  landing,
+}: {
+  course: EfalCourse;
+  landing: EfalLanding;
+}) {
+  const invite = landing.ctaInvite;
+  if (!invite) return null;
 
   return (
     <section className="bg-brand-900">
       <div className="mx-auto max-w-3xl px-6 py-20 text-center">
         <h2 className="font-serif text-2xl font-bold text-white sm:text-3xl">
-          Se reconheceu em algum desses perfis?
+          {invite.title}
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-brand-100/80">
-          A inscrição leva um minuto e pede só nome, telefone e e-mail. A
-          secretaria entra em contato para concluir a matrícula e tirar as
-          últimas dúvidas antes de você começar.
+          {invite.description}
         </p>
 
-        {course?.price && (
+        {course.price && (
           <p className="mt-6 text-sm text-brand-100/70">
             <span className="font-serif text-xl font-bold text-white">
               {course.price.installments}
@@ -39,25 +45,26 @@ export default function CitCtaInvite() {
           </p>
         )}
 
-        <CitDescontosDialog className="mx-auto mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-brand-200 underline-offset-4 transition-colors hover:text-white hover:underline">
-          Há descontos de até 50% — ver quem tem direito
-        </CitDescontosDialog>
+        {landing.descontos && (
+          <EfalDescontosDialog
+            course={course}
+            className="mx-auto mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-brand-200 underline-offset-4 transition-colors hover:text-white hover:underline"
+          >
+            Há descontos de até 50% — ver quem tem direito
+          </EfalDescontosDialog>
+        )}
 
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <InscricaoButton
-            curso={course?.title ?? "Curso Introdutório de Teologia"}
-            origem={course?.origem ?? "efal"}
-            codigo={course?.codigo ?? "CIT"}
+          <EfalEnrollButton
+            course={course}
             className="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-brand-50 px-8 py-3.5 text-sm font-medium text-brand-900 transition-colors hover:bg-white sm:w-auto"
           >
             Quero me inscrever <ArrowRight size={16} aria-hidden="true" />
-          </InscricaoButton>
+          </EfalEnrollButton>
 
           <a
             href={whatsappHref(
-              `Olá! Gostaria de saber mais sobre o ${
-                course?.title ?? "Curso Introdutório de Teologia"
-              } (CIT).`,
+              `Olá! Gostaria de saber mais sobre o ${course.title} (${course.code}).`,
             )}
             target="_blank"
             rel="noopener noreferrer"

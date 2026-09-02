@@ -4,16 +4,19 @@ import { ArrowRight } from "lucide-react";
 import { noticias } from "@/data/noticias";
 
 /**
- * Notícias e vida acadêmica. Fica oculta até existir conteúdo real em
- * src/data/noticias.ts — vire a chave abaixo para publicar.
+ * Notícias e vida acadêmica na Home — vitrine das 3 mais recentes, com saída
+ * para a listagem completa em /noticias.
+ *
+ * Não há mais chave manual: `noticias` já vem filtrado (só o que não é
+ * placeholder) e ordenado do mais novo para o mais antigo em
+ * src/data/noticias.ts. Sem notícia publicada, a seção simplesmente não
+ * renderiza — a Home fecha do mesmo jeito de hoje.
  */
-// TODO(conteúdo): ligar quando houver notícias reais.
-const SHOW_NEWS = false;
-
 const dateFormat = new Intl.DateTimeFormat("pt-BR", { dateStyle: "long" });
 
 export default function News() {
-  if (!SHOW_NEWS) return null;
+  const destaques = noticias.slice(0, 3);
+  if (destaques.length === 0) return null;
 
   return (
     <section className="bg-brand-50/60 py-24">
@@ -28,10 +31,10 @@ export default function News() {
         </div>
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {noticias.map((noticia) => (
+          {destaques.map((noticia) => (
             <Link
-              key={noticia.titulo}
-              href={noticia.href}
+              key={noticia.slug}
+              href={`/noticias/${noticia.slug}`}
               className="group flex flex-col overflow-hidden rounded-sm border border-brand-900/10 bg-white transition-shadow hover:shadow-lg"
             >
               {noticia.imagem && (
@@ -65,6 +68,16 @@ export default function News() {
               </div>
             </Link>
           ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <Link
+            href="/noticias"
+            className="inline-flex items-center gap-2 rounded-sm border border-brand-900/15 bg-white px-6 py-3 text-sm font-medium text-brand-800 transition-colors hover:bg-brand-50"
+          >
+            Ver todas as notícias
+            <ArrowRight size={16} aria-hidden />
+          </Link>
         </div>
       </div>
     </section>

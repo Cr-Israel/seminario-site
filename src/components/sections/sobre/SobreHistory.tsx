@@ -170,7 +170,7 @@ export default function SobreHistory() {
                       className={`font-serif text-xs font-bold transition-colors duration-300 motion-reduce:transition-none sm:text-lg ${
                         i === active
                           ? "text-brand-700"
-                          : "text-stone-400 group-hover:text-stone-600"
+                          : "text-stone-600 group-hover:text-stone-800"
                       }`}
                     >
                       {item.year}

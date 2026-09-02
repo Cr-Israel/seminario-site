@@ -52,6 +52,7 @@ const navEntries: NavEntry[] = [
           { label: "Nossos diferenciais", href: "/diferenciais" },
           { label: "Docentes", href: "/corpo-docente" },
           { label: "Como chegar", href: "/como-chegar" },
+          { label: "Notícias", href: "/noticias" },
           { label: "JURET-Rio", href: "/juret-rio" },
           {
             label: "LGPD",
@@ -172,7 +173,17 @@ export default function Header() {
     "text-base font-medium text-brand-900 transition-colors hover:text-brand-700 dark:text-white/85 dark:hover:text-white";
 
   return (
-    <header className="sticky top-0 z-40 border-b border-brand-100 bg-brand-50/95 backdrop-blur supports-[backdrop-filter]:bg-brand-50/80 dark:border-brand-900 dark:bg-brand-950/95 dark:supports-[backdrop-filter]:bg-brand-950/80">
+    <>
+      {/* Pular para o conteúdo: primeiro foco de qualquer página, invisível até
+          receber foco pelo teclado. O alvo é a âncora renderizada logo depois
+          do <header>, para que o próximo Tab caia no conteúdo e não na nav. */}
+      <a
+        href="#conteudo"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-sm focus:bg-brand-700 focus:px-4 focus:py-2.5 focus:text-sm focus:font-medium focus:text-white"
+      >
+        Pular para o conteúdo
+      </a>
+      <header className="sticky top-0 z-40 border-b border-brand-100 bg-brand-50/95 backdrop-blur supports-[backdrop-filter]:bg-brand-50/80 dark:border-brand-900 dark:bg-brand-950/95 dark:supports-[backdrop-filter]:bg-brand-950/80">
       <div className="mx-auto flex max-w-7xl items-center gap-4 px-6 py-4">
         {/* Logo — verde no tema claro, branca no escuro */}
         <Link href="/" className="shrink-0" aria-label="Página inicial">
@@ -415,6 +426,10 @@ export default function Header() {
           </Link>
         </nav>
       )}
-    </header>
+      </header>
+      {/* Alvo do "pular para o conteúdo". tabIndex -1 para poder receber foco
+          programático sem entrar na ordem de tabulação. */}
+      <span id="conteudo" tabIndex={-1} className="sr-only" />
+    </>
   );
 }

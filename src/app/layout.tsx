@@ -5,16 +5,13 @@ import Footer from "@/components/layout/Footer";
 import WhatsappFab from "@/components/layout/WhatsappFab";
 import CookieBanner from "@/components/layout/CookieBanner";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+import { SITE_URL } from "@/lib/seo";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
   variable: "--font-montserrat",
 });
-
-// TODO(conteúdo): confirmar o domínio oficial do novo site (o antigo era
-// seminariosimonton.com.br) — usado nas URLs absolutas de SEO/Open Graph.
-const SITE_URL = "https://seminariosimonton.com.br";
 
 const SITE_TITLE = "Seminário Simonton | Formação Teológica Reformada";
 const SITE_DESCRIPTION =
@@ -30,7 +27,6 @@ export const metadata: Metadata = {
     siteName: "Seminário Simonton",
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
-    images: [{ url: "/images/logo-verde-trim.png" }],
   },
 };
 

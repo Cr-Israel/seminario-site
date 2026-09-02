@@ -23,6 +23,7 @@ const footerColumns = [
       { label: "Nossos diferenciais", href: "/diferenciais" },
       { label: "Docentes", href: "/corpo-docente" },
       { label: "Como chegar", href: "/como-chegar" },
+      { label: "Notícias", href: "/noticias" },
       { label: "JURET-Rio", href: "/juret-rio" },
       { label: "LGPD", href: "/lgpd" },
       { label: "Contato", href: "/#contato" },

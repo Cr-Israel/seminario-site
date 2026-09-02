@@ -6,6 +6,7 @@ import CoursesGateway from "@/components/sections/CoursesGateway";
 import VideoIntro from "@/components/sections/VideoIntro";
 import Highlights from "@/components/sections/Highlights";
 import EncontroDeMulheres from "@/components/sections/EncontroDeMulheres";
+import News from "@/components/sections/News";
 import Testimonials from "@/components/sections/Testimonials";
 import Faq from "@/components/sections/Faq";
 import ContactCta from "@/components/sections/ContactCta";
@@ -24,9 +25,9 @@ export const metadata = {
  * Home institucional. Ordem após o topo (Header/Hero/Stats): três portas de
  * entrada para as trilhas de curso, apresentação da casa com a mensagem do
  * diretor (fundo escuro), pilares institucionais, evento em destaque
- * (Encontro de Mulheres — bloco temporário), depoimentos, dúvidas frequentes
- * e o contato com formulário e mapa. Fundos alternam claro/escuro para dar
- * ritmo.
+ * (Encontro de Mulheres — bloco temporário), notícias (some sozinha enquanto
+ * não houver nenhuma publicada), depoimentos, dúvidas frequentes e o contato
+ * com formulário e mapa. Fundos alternam claro/escuro para dar ritmo.
  */
 export default function Home() {
   return (
@@ -38,6 +39,7 @@ export default function Home() {
       <VideoIntro />
       <Highlights />
       <EncontroDeMulheres />
+      <News />
       <Testimonials tone="dark" />
       <Faq />
       <ContactCta />

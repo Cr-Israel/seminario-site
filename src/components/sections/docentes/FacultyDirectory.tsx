@@ -121,7 +121,7 @@ export default function FacultyDirectory() {
         </ul>
 
         {/* Legenda dos códigos de curso usados nos chips. */}
-        <dl className="mx-auto mt-12 flex max-w-4xl flex-wrap justify-center gap-x-6 gap-y-1 text-xs text-stone-400">
+        <dl className="mx-auto mt-12 flex max-w-4xl flex-wrap justify-center gap-x-6 gap-y-1 text-xs text-stone-600">
           {Object.entries(courseTitleByCode).map(([code, title]) => (
             <div key={code} className="flex gap-1.5">
               <dt className="font-semibold uppercase tracking-wider">{code}</dt>

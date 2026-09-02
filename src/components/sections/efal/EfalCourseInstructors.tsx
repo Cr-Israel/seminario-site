@@ -136,7 +136,7 @@ export default function EfalCourseInstructors({
                       <span className="block text-sm font-medium text-white">
                         {person.name}
                       </span>
-                      <span className="mt-0.5 block text-xs font-semibold text-brand-400">
+                      <span className="mt-0.5 block text-xs font-semibold text-brand-200">
                         {person.discipline}
                       </span>
                       {/* line-clamp já aplica display:-webkit-box; NÃO usar `block`
@@ -175,7 +175,7 @@ export default function EfalCourseInstructors({
               <p className="mt-1 text-sm text-brand-100/70">
                 {current.credential ?? current.role}
               </p>
-              <p className="mt-1 text-sm font-semibold text-brand-400">
+              <p className="mt-1 text-sm font-semibold text-brand-200">
                 {current.discipline}
               </p>
               <p className="mt-5 text-base leading-relaxed text-brand-50/95">

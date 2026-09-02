@@ -111,7 +111,7 @@ export default function InscricaoButton({
               type="button"
               onClick={close}
               aria-label="Fechar"
-              className="shrink-0 rounded-sm p-1 text-stone-400 transition-colors hover:text-stone-700"
+              className="shrink-0 rounded-sm p-1 text-stone-500 transition-colors hover:text-stone-700"
             >
               <X size={20} aria-hidden />
             </button>
@@ -196,7 +196,7 @@ export default function InscricaoButton({
                   className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-stone-500"
                 >
                   Cupom de desconto{" "}
-                  <span className="normal-case text-stone-400">(opcional)</span>
+                  <span className="normal-case text-stone-600">(opcional)</span>
                 </label>
                 <input
                   id={`${titleId}-cupom`}

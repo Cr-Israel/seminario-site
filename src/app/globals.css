@@ -10,15 +10,51 @@
   --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
 
-  /* Paleta oficial do Seminário Simonton */
-  --color-brand-50: #f3f5f4;   /* exata */
-  --color-brand-100: #e4ebe7;  /* interpolada entre 50 e 200 */
-  --color-brand-200: #bdd1c4;  /* exata */
-  --color-brand-400: #7baa8c;  /* exata */
-  --color-brand-700: #005c1f;  /* exata */
-  --color-brand-800: #004c1a;  /* interpolada entre 700 e 900 */
-  --color-brand-900: #004117;  /* exata */
-  --color-brand-950: #002d10;  /* interpolada, mais escura que 900 */
+  /* ------------------------------------------------------------------ *
+   * PALETA OFICIAL DO SEMINÁRIO SIMONTON
+   *
+   * Três hexes oficiais, confirmados pela direção, mais preto e branco:
+   *   #004117  verde escuro  → brand-900
+   *   #7baa8c  verde claro   → brand-400
+   *   #605f5d  cinza         → neutral-600 (base dos neutros/stone)
+   *
+   * Todos os demais degraus são clareamentos (mistura com branco) ou
+   * escurecimentos (mistura com preto) desses três — não há cor "nova" na
+   * escala. Nenhum tom aqui é palpite: os dois oficiais estão marcados e o
+   * resto sai deles. NÃO introduzir hexes fora dessa derivação.
+   * ------------------------------------------------------------------ */
+  --color-brand-50: #f2f6f3;
+  --color-brand-100: #e3ece6;
+  --color-brand-200: #c2d8ca;
+  --color-brand-300: #9dc0aa;
+  --color-brand-400: #7baa8c;  /* OFICIAL */
+  --color-brand-500: #4e8767;
+  --color-brand-600: #2a6a43;
+  --color-brand-700: #00521c;
+  --color-brand-800: #004a19;
+  --color-brand-900: #004117;  /* OFICIAL */
+  --color-brand-950: #002d10;
+
+  /* Neutros derivados de #605f5d. Sobrescrevem a escala `stone` do Tailwind
+     (usada em ~180 lugares como texto e fundo de seção), para que o cinza
+     do site inteiro seja o cinza oficial em vez do stone padrão, que puxa
+     para o marrom. As utilities continuam sendo `text-stone-600` etc. */
+     Os degraus 50–300 são #605f5d clareado com branco (fundos, bordas). Do
+     400 para baixo eles preservam a proporção de canais do cinza oficial e
+     foram calibrados por CONTRASTE sobre branco, para não regredir a
+     acessibilidade: 400 = 3.00 (mínimo de ícone/UI), 500 = 4.60 e 600 = 6.38
+     (ambos passam AA para texto normal). Ao mexer, refazer a conta. */
+  --color-stone-50: #f8f8f8;
+  --color-stone-100: #efefef;
+  --color-stone-200: #dedddd;
+  --color-stone-300: #c4c4c3;
+  --color-stone-400: #969592;  /* 3.00:1 — só ícone/borda, nunca texto */
+  --color-stone-500: #767573;  /* 4.60:1 */
+  --color-stone-600: #605f5d;  /* OFICIAL — 6.38:1 */
+  --color-stone-700: #4a4a48;
+  --color-stone-800: #3a3938;
+  --color-stone-900: #2d2d2c;
+  --color-stone-950: #201f1f;
 }
 
 body {
@@ -30,6 +66,36 @@ body {
 button:not(:disabled),
 [role="button"]:not(:disabled) {
   cursor: pointer;
+}
+
+/* ------------------------------------------------------------------ *
+ * FOCO VISÍVEL — padrão para navegação por teclado
+ *
+ * Anel de dois tons: contorno verde escuro (aparece sobre fundo claro) com
+ * halo branco por dentro (aparece sobre os heros/faixas verdes). Assim o
+ * foco é perceptível nas duas metades da paleta, sem precisar saber o fundo.
+ *
+ * Envolvido em :where() → especificidade ZERO, então qualquer componente que
+ * já defina o próprio `focus-visible:ring-*` do Tailwind continua vencendo.
+ * Só :focus-visible: não pinta anel em clique de mouse.
+ * ------------------------------------------------------------------ */
+:where(a, button, [role="button"], input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-brand-950);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #fff;
+  border-radius: 2px;
+}
+
+[data-theme="dark"]
+  :where(a, button, [role="button"], input, select, textarea, summary, [tabindex]):focus-visible {
+  outline-color: #fff;
+  box-shadow: 0 0 0 2px var(--color-brand-950);
+}
+
+/* O alvo do skip link não deve ganhar anel ao receber foco programático. */
+#conteudo:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
 [data-theme="dark"] body {

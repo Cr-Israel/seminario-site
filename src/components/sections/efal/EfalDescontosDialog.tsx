@@ -95,7 +95,7 @@ export default function EfalDescontosDialog({
               type="button"
               onClick={() => dialogRef.current?.close()}
               aria-label="Fechar"
-              className="shrink-0 rounded-sm p-1 text-stone-400 transition-colors hover:text-stone-700"
+              className="shrink-0 rounded-sm p-1 text-stone-500 transition-colors hover:text-stone-700"
             >
               <X size={20} aria-hidden="true" />
             </button>

@@ -57,6 +57,64 @@
   --color-stone-950: #201f1f;
 }
 
+/* ------------------------------------------------------------------ *
+ * EXPERIMENTO — CARA "OFICIAL" (verdes + preto e branco)
+ *
+ * Segunda pele do site, para comparar com a atual. Nada de componente
+ * muda: como toda seção pinta através dos tokens acima, reescrever os
+ * valores aqui repinta o site inteiro. Ligue com ?look=oficial na URL,
+ * desligue com ?look=atual (ver o script inline em layout.tsx).
+ *
+ * A ESCALA COLAPSA em quatro cores. Onze degraus de verde viram dois:
+ *   #7baa8c  (verde claro oficial) — tudo que era 200–500
+ *   #004117  (verde escuro oficial) — tudo que era 600–900
+ *   #000     — o degrau 950, que hoje é o mais usado do site
+ *   #fff     — o degrau 100 (texto claro sobre fundo escuro)
+ *
+ * O 50 vira VERDE CLARO, não branco: são ~70 badges, botões e círculos
+ * que sumiriam sobre as seções brancas. Verde claro com texto verde
+ * escuro dá 4.5:1 — passa AA e vira o acento gráfico da cara nova.
+ *
+ * `html[...]` (0,1,1) para vencer o `:root` (0,1,0) do @theme.
+ * Para descartar o experimento: apague este bloco e o `look` no layout.
+ * ------------------------------------------------------------------ */
+html[data-look="oficial"] {
+  --color-brand-50: #7baa8c;   /* acento: badge/botão/círculo sobre branco */
+  --color-brand-100: #ffffff;  /* texto claro sobre verde/preto */
+  --color-brand-200: #7baa8c;
+  --color-brand-300: #7baa8c;
+  --color-brand-400: #7baa8c;  /* OFICIAL */
+  --color-brand-500: #7baa8c;
+  --color-brand-600: #004117;
+  --color-brand-700: #004117;
+  --color-brand-800: #004117;
+  --color-brand-900: #004117;  /* OFICIAL */
+  --color-brand-950: #000000;  /* heros e títulos deixam o verde e vão a preto */
+
+  /* Neutros: cinza de verdade, sem hue — preto misturado com branco. Os
+     degraus 400/500/600 mantêm o MESMO contraste da escala atual (3.00,
+     4.60 e 6.48 sobre branco), então nada de texto regride em AA. */
+  --color-stone-50: #f5f5f5;
+  --color-stone-100: #ebebeb;
+  --color-stone-200: #d6d6d6;
+  --color-stone-300: #bdbdbd;
+  --color-stone-400: #949494;  /* 3.03:1 — só ícone/borda, nunca texto */
+  --color-stone-500: #757575;  /* 4.61:1 */
+  --color-stone-600: #5e5e5e;  /* 6.48:1 */
+  --color-stone-700: #474747;
+  --color-stone-800: #333333;
+  --color-stone-900: #262626;
+  --color-stone-950: #1a1a1a;
+}
+
+/* No escuro, o acento também passa a ser o verde claro oficial (7.97:1
+   sobre preto) no lugar dos dois verdes próprios do dark mode. */
+html[data-look="oficial"][data-theme="dark"] {
+  --dk-bg: #000000;
+  --dk-green: #7baa8c;
+  --dk-green-strong: #7baa8c;
+}
+
 body {
   @apply bg-stone-50 text-stone-800;
 }

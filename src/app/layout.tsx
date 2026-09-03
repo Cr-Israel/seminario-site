@@ -83,6 +83,13 @@ export default function RootLayout({
             __html: `(function(){try{var t=localStorage.getItem("theme");if(!t){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})()`,
           }}
         />
+        {/* EXPERIMENTO (temporário) — segunda paleta, ver globals.css.
+            ?look=oficial liga, ?look=atual desliga; a escolha fica salva. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var p=new URLSearchParams(location.search).get("look");if(p){localStorage.setItem("look",p);}var l=p||localStorage.getItem("look");if(l&&l!=="atual"){document.documentElement.setAttribute("data-look",l);}else{document.documentElement.removeAttribute("data-look");}}catch(e){}})()`,
+          }}
+        />
       </head>
       <body>
         <script

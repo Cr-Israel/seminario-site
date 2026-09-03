@@ -38,7 +38,7 @@
   /* Neutros derivados de #605f5d. Sobrescrevem a escala `stone` do Tailwind
      (usada em ~180 lugares como texto e fundo de seção), para que o cinza
      do site inteiro seja o cinza oficial em vez do stone padrão, que puxa
-     para o marrom. As utilities continuam sendo `text-stone-600` etc. */
+     para o marrom. As utilities continuam sendo `text-stone-600` etc.
      Os degraus 50–300 são #605f5d clareado com branco (fundos, bordas). Do
      400 para baixo eles preservam a proporção de canais do cinza oficial e
      foram calibrados por CONTRASTE sobre branco, para não regredir a

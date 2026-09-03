@@ -71,7 +71,7 @@ const footerColumns = [
     title: "Projetos",
     links: [
       { label: "Apoie um seminarista", href: "/apoie-um-seminarista" },
-      { label: "Casa de Isabel", href: "#" },
+      { label: "Casa de Isabel", href: "/casa-de-isabel" },
       { label: "STPS vai às Igrejas", href: "#" },
       { label: "STPS apoia Missões", href: "#" },
     ],

@@ -115,7 +115,7 @@ const navEntries: NavEntry[] = [
         // TODO(conteúdo): criar as páginas dos demais projetos e trocar os "#".
         items: [
           { label: "Apoie um seminarista", href: "/apoie-um-seminarista" },
-          { label: "Casa de Isabel", href: "#" },
+          { label: "Casa de Isabel", href: "/casa-de-isabel" },
           { label: "STPS vai às Igrejas", href: "#" },
           { label: "STPS apoia Missões", href: "#" },
         ],
